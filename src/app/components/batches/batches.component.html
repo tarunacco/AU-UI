@@ -4,28 +4,33 @@
   <button mat-raised-button color="primary" (click) = "openNewBatchDialog()">New Batch</button>
 </div>
 
+
+<mat-table [dataSource]="dataSource" style = "margin: 20px;" class="mat-elevation-z8">
+  <!-- Batch Name Column -->
+  <ng-container matColumnDef="BatchName">
+    <mat-header-cell *matHeaderCellDef> BatchName </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.BatchName}} </mat-cell>
+  </ng-container>
+
+  <!-- Start Date Column -->
+  <ng-container matColumnDef="StartDate">
+    <mat-header-cell *matHeaderCellDef> StartDate </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.StartDate}} </mat-cell>
+  </ng-container>
+
+  <!-- End Date Column -->
+  <ng-container matColumnDef="EndDate">
+    <mat-header-cell *matHeaderCellDef> EndDate </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.EndDate}} </mat-cell>
+  </ng-container>
+
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+
 <!--
-<table mat-table #table [dataSource]="dataSource">
-  <ng-container mat ColumnDef="BatchName">
-    <th mat-header-cell *matHeaderCellDef> Batch Name </th>
-    <td mat-cell *matCellDef="let row"> {{row.BatchName}} </td>
-  </ng-container>
-
-
-  <ng-container mat ColumnDef="StartDate">
-    <th mat-header-cell *matHeaderCellDef> Start Date </th>
-    <td mat-cell *matCellDef="let row"> {{row.StartDate}} </td>
-  </ng-container>
-
-
-  <ng-container mat ColumnDef="EndDate">
-    <th mat-header-cell *matHeaderCellDef> End Date </th>
-    <td mat-cell *matCellDef="let row"> {{row.EndDate}} </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table> -->
-
 <button (click) = "showBatches()"></button>
+-->
 

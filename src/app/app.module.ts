@@ -19,6 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import {MatTableModule} from '@angular/material/table';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [AppComponent, BatchesComponent, BatchformComponent, SideNavComponent],
@@ -39,7 +40,9 @@ import {MatTableModule} from '@angular/material/table';
     MatListModule,
     FormsModule,
       ReactiveFormsModule,
-      MatTableModule
+      MatTableModule,
+      MatDatepickerModule
+
   ],
   providers: [],
   bootstrap: [AppComponent],
