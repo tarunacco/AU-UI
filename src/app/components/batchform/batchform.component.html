@@ -1,0 +1,89 @@
+<mat-dialog-content>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Provide Batch Details</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h1 class="text-center"> Provide Batch Details </h1>
+
+    <form [formGroup]="newBatchForm">
+
+        <div class="form-group">
+            <label>Batch Name : </label>
+            <input type="text" formControlName="BatchName" class="form-control">
+        </div>
+
+
+        <div class="form-group">
+            <label>Start Date : </label>
+            <input type="date" formControlName="StartDate" class="form-control">
+        </div>
+
+
+        <div class="form-group">
+            <label>End Date : </label>
+            <input type="date" formControlName="EndDate" class="form-control">
+        </div>
+
+        <mat-dialog-actions>
+          <button mat-button mat-dialog-close class="btn btn-dark"  type="submit" (click) = "onSubmit()">Submit</button>
+        </mat-dialog-actions>
+        </form>
+
+
+<!--
+    <table border="2px" style="margin: 20px;" *ngIf = "displaytable()" >
+        <thead class = "text-center">
+            <tr >
+                <th (click) = "sorttable('firstname')" class = "table-header">First Name  </th>
+                <th (click) = "sorttable('lastname')" class = "table-header">Last Name </th>
+                <th (click) = "sorttable('contact')" class = "table-header">Phone Number </th>
+                <th (click) = "sorttable('dob')" class = "table-header">DOB </th>
+                <th (click) = "sorttable('city')" class = "table-header">City </th>
+                <th (click) = "sorttable('zip')" class = "table-header">Postal Code </th>
+
+            </tr>
+        </thead>
+
+        <td class = "table-data">{{i.dob | date : 'longDate'}}</td>
+        <tr *ngFor = "let i of users">
+            <td class = "table-data">{{i.firstname}}</td>
+            <td class = "table-data">{{i.lastname}}</td>
+            <td class = "table-data">{{i.contact}}</td>
+            <td class = "table-data">{{i.dob | customdob: "months day, year" }}</td>
+            <td class = "table-data">{{i.city}}</td>
+            <td class = "table-data">{{i.zip}}</td>
+            <td (click) = "delete(i.firstname)">
+            <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="30"
+                  height="30"
+                  fill="black"
+                  class="bi bi-trash"
+                  viewBox="0 0 16 16"
+                  style="cursor: pointer;"
+                >
+                  <path
+                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                  />
+            </svg>
+        </td>
+        </tr>
+
+    </table> -->
+
+</div>
+
+</body>
+</html>
+</mat-dialog-content>
