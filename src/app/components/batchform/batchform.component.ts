@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-batchform',
@@ -13,7 +15,7 @@ export class BatchformComponent implements OnInit {
 
 
   newBatchForm : FormGroup;
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private http: HttpClient, private dialogRef:MatDialogRef<BatchformComponent>) {}
 
 
   ngOnInit() {
@@ -30,6 +32,6 @@ export class BatchformComponent implements OnInit {
 
 
   onSubmit() {
-
+    this.http.post('/batches', this.newBatchForm.value).subscribe(() => this.dialogRef.close())
   }
 }

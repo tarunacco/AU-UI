@@ -20,6 +20,8 @@ import { MatListModule } from '@angular/material/list';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [AppComponent, BatchesComponent, BatchformComponent, SideNavComponent],
@@ -41,8 +43,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     FormsModule,
       ReactiveFormsModule,
       MatTableModule,
-      MatDatepickerModule
-
+      MatDatepickerModule,
+      MatNativeDateModule,
+      FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent],

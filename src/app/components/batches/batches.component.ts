@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
@@ -20,14 +21,15 @@ export class BatchesComponent implements OnInit {
   constructor(private dialog: MatDialog) {}
 
   displayedColumns: string[] = ['BatchName', 'StartDate', 'EndDate'];
-  dataSource = JSON.parse(localStorage.getItem('Batches'));
+  dataSource = [];
   ngOnInit(): void {
 
-  console.log(this.dataSource);
+
   }
 
   openNewBatchDialog() {
     this.dialog.open(BatchformComponent);
+    // this.dialog.open(BatchformComponent).afterClosed().subscribe();
   }
 
   // showBatches() {
