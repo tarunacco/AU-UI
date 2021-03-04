@@ -1,0 +1,40 @@
+<div>
+  <h1>Students</h1>
+
+  <button mat-raised-button color="primary" (click) = "openNewStudentDialog()">Add Student</button>
+</div>
+
+
+<mat-table [dataSource]="dataSource" style = "margin: 20px;" class="mat-elevation-z8">
+
+  <!-- Student first Name Column -->
+  <ng-container matColumnDef="FirstName">
+    <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.firstName}} </mat-cell>
+  </ng-container>
+
+
+  <!-- Student LastName Column -->
+  <ng-container matColumnDef="LastName">
+    <mat-header-cell *matHeaderCellDef> Last Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.lastName}} </mat-cell>
+  </ng-container>
+
+  <!-- Skype Id Column -->
+  <ng-container matColumnDef="SkypeId">
+    <mat-header-cell *matHeaderCellDef> Skype Id </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.skypeId}} </mat-cell>
+  </ng-container>
+
+
+  <!-- Email Column -->
+  <ng-container matColumnDef="emailId">
+    <mat-header-cell *matHeaderCellDef> Email Id </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.emailId}} </mat-cell>
+  </ng-container>
+
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
+</mat-table>
+

@@ -5,21 +5,29 @@
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput [matDatepicker]="startDate" placeholder="Start Date">
+    <input matInput [matDatepicker]="startDate" placeholder="Start Date" formControlName="startDate">
     <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
     <mat-datepicker #startDate></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput [matDatepicker]="endDate" placeholder="End Date">
+    <input matInput [matDatepicker]="endDate" placeholder="End Date" formControlName="endDate">
     <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
     <mat-datepicker #endDate></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Batch Skype Id" formControlName="commonSkypeId">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Batch Email Id" formControlName="groupEmailId">
   </mat-form-field>
 
 </form>
 
 <div>
-  <button mat-button>Cancel</button>
+  <button mat-button mat-dialog-close>Cancel</button>
   <button (click) = "onSubmit()" mat-raised-button>Save</button>
 </div>
 

@@ -1,0 +1,30 @@
+
+<h3>New Student </h3>
+<form [formGroup] = "newStudentForm">
+
+  <mat-form-field>
+    <input matInput placeholder="First Name" formControlName="FirstName">
+  </mat-form-field>
+
+
+  <mat-form-field>
+    <input matInput placeholder="Last Name" formControlName="LastName">
+  </mat-form-field>
+
+
+  <mat-form-field>
+    <input matInput placeholder="Skype Id" formControlName="SkypeId">
+  </mat-form-field>
+
+
+  <mat-form-field>
+    <input matInput placeholder="Email Id" formControlName="emailId">
+  </mat-form-field>
+
+
+</form>
+
+<div>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button (click) = "onSubmit()" mat-raised-button>Save</button>
+</div>

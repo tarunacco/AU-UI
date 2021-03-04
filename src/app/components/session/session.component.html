@@ -1,0 +1,40 @@
+<div>
+  <h1>Sessions</h1>
+
+  <button mat-raised-button color="primary" (click) = "openNewSessionDialog()">Create New Session</button>
+</div>
+
+
+<mat-table [dataSource]="dataSource" style = "margin: 20px;" class="mat-elevation-z8">
+
+  <!-- Session Id Column -->
+  <ng-container matColumnDef="SessionId">
+    <mat-header-cell *matHeaderCellDef> Session Id </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.sessionId}} </mat-cell>
+  </ng-container>
+
+
+  <!-- Session Name Column -->
+  <ng-container matColumnDef="SessionName">
+    <mat-header-cell *matHeaderCellDef> Session Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.sessionName}} </mat-cell>
+  </ng-container>
+
+  <!-- TopicId Column -->
+  <ng-container matColumnDef="TopicId">
+    <mat-header-cell *matHeaderCellDef> Topic Id </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.classroomTopicId}} </mat-cell>
+  </ng-container>
+
+
+  <!-- Created On Column -->
+  <ng-container matColumnDef="CreatedOn">
+    <mat-header-cell *matHeaderCellDef> Created On </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.createdOn}} </mat-cell>
+  </ng-container>
+
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
+</mat-table>
+

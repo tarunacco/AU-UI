@@ -1,0 +1,29 @@
+
+<h3>New Session </h3>
+<form [formGroup] = "newSessionForm">
+  <mat-form-field>
+    <input matInput placeholder="Session Id" formControlName="sessionId">
+  </mat-form-field>
+
+
+  <mat-form-field>
+    <input matInput placeholder="Session Name" formControlName="sessionName">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Classroom Topic Id" formControlName="classroomTopicId">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [matDatepicker]="createdOn" placeholder="Created On" formControlName="createdOn">
+    <mat-datepicker-toggle matSuffix [for]="createdOn"></mat-datepicker-toggle>
+    <mat-datepicker #createdOn></mat-datepicker>
+  </mat-form-field>
+
+
+</form>
+
+<div>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button (click) = "onSubmit()" mat-raised-button>Save</button>
+</div>

@@ -23,10 +23,15 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
-
+import { MatTabsModule } from '@angular/material/tabs';
+import { BatchdetailsComponent } from './components/batchdetails/batchdetails.component';
+import { SessionComponent } from './components/session/session.component';
+import { SessionformComponent } from './components/sessionform/sessionform.component';
+import { StudentsComponent } from './components/students/students.component';
+import { StudentformComponent } from './components/studentform/studentform.component';
 
 @NgModule({
-  declarations: [AppComponent, BatchesComponent, BatchformComponent, SideNavComponent],
+  declarations: [AppComponent, BatchesComponent, BatchformComponent, SideNavComponent, BatchdetailsComponent, SessionComponent, SessionformComponent, StudentsComponent, StudentformComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -48,8 +53,13 @@ import { HttpClientModule } from '@angular/common/http';
       MatDatepickerModule,
       MatNativeDateModule,
       FlexLayoutModule,
-      HttpClientModule
+      HttpClientModule,
+      MatTabsModule
   ],
+  exports:[
+    MatTabsModule
+  ],
+
   providers: [],
   bootstrap: [AppComponent],
 })

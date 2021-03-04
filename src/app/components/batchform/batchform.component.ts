@@ -22,6 +22,8 @@ export class BatchformComponent implements OnInit {
       batchName: ['', [Validators.required]],
         startDate: ['', [Validators.required]],
         endDate: ['', [Validators.required]],
+        commonSkypeId: ['', [Validators.required]],
+        groupEmailId: ['', [Validators.required]],
     });
   }
 
