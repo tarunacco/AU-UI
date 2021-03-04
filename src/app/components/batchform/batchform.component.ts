@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
@@ -32,6 +31,6 @@ export class BatchformComponent implements OnInit {
 
 
   onSubmit() {
-    this.http.post('/batches', this.newBatchForm.value).subscribe(() => this.dialogRef.close())
+    this.http.post('/api/batch', this.newBatchForm.value).subscribe(() => this.dialogRef.close())
   }
 }

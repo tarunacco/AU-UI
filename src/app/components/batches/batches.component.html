@@ -8,20 +8,20 @@
 <mat-table [dataSource]="dataSource" style = "margin: 20px;" class="mat-elevation-z8">
   <!-- Batch Name Column -->
   <ng-container matColumnDef="BatchName">
-    <mat-header-cell *matHeaderCellDef> BatchName </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.BatchName}} </mat-cell>
+    <mat-header-cell *matHeaderCellDef> Batch Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.batchName}} </mat-cell>
   </ng-container>
 
   <!-- Start Date Column -->
   <ng-container matColumnDef="StartDate">
-    <mat-header-cell *matHeaderCellDef> StartDate </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.StartDate}} </mat-cell>
+    <mat-header-cell *matHeaderCellDef> Start Date </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.startDate}} </mat-cell>
   </ng-container>
 
   <!-- End Date Column -->
   <ng-container matColumnDef="EndDate">
-    <mat-header-cell *matHeaderCellDef> EndDate </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.EndDate}} </mat-cell>
+    <mat-header-cell *matHeaderCellDef> End Date </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.endDate}} </mat-cell>
   </ng-container>
 
 

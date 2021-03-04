@@ -22,6 +22,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [AppComponent, BatchesComponent, BatchformComponent, SideNavComponent],
@@ -45,7 +47,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
       MatTableModule,
       MatDatepickerModule,
       MatNativeDateModule,
-      FlexLayoutModule
+      FlexLayoutModule,
+      HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

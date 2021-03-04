@@ -18,12 +18,16 @@ import { BatchSchema } from '../batchform/batchSchema';
   styleUrls: ['./batches.component.css'],
 })
 export class BatchesComponent implements OnInit {
-  constructor(private dialog: MatDialog) {}
+
+
+
+  constructor(private dialog: MatDialog, private http:HttpClient) {}
 
   displayedColumns: string[] = ['BatchName', 'StartDate', 'EndDate'];
-  dataSource = [];
+  dataSource : any[] = [];
   ngOnInit(): void {
 
+    this.http.get<any[]>('/api/batch').subscribe((batches)=> this.dataSource = batches);
 
   }
 
