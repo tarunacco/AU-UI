@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SessionformComponent } from '../sessionform/sessionform.component';
 
 @Component({
@@ -9,23 +9,39 @@ import { SessionformComponent } from '../sessionform/sessionform.component';
   templateUrl: './studentform.component.html',
   styleUrls: ['./studentform.component.css']
 })
+
+
+
 export class StudentformComponent implements OnInit {
   newStudentForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private dialogRef:MatDialogRef<SessionformComponent>){}
+    batchId:number;
+
+  constructor(private fb: FormBuilder, private http: HttpClient, private dialogRef:MatDialogRef<SessionformComponent>,
+    @Inject(MAT_DIALOG_DATA) public dialogData){
+
+      this.batchId = dialogData.batchId;
+      console.log(dialogData);
+  }
+
 
   ngOnInit() {
     this.newStudentForm = this.fb.group({
-      FirstName: ['', [Validators.required]],
-      LastName: ['', [Validators.required]],
-      SkypeId: ['', [Validators.required]],
+      batchId: [this.batchId, [Validators.required]],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      emailId: ['', [Validators.required]]
 
     });
+
+
   }
 
 
   onSubmit() {
-    this.http.post('/api/batch', this.newStudentForm.value).subscribe(() => this.dialogRef.close())
+    console.log(this.newStudentForm.value);
+    // console.log("Student saved " + JSON.stringify(this.newStudentForm.value));
+     this.http.post('api/student/add', this.newStudentForm.value).subscribe(() => this.dialogRef.close())
   }
 
 }

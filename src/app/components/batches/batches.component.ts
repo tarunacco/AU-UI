@@ -28,7 +28,6 @@ export class BatchesComponent implements OnInit {
     'StartDate',
     'EndDate',
     'BatchSkypeId',
-    'BatchEmailId',
     'Actions',
   ];
   dataSource: any[] = [];
@@ -61,4 +60,12 @@ export class BatchesComponent implements OnInit {
   openSkype(skypeId) {
     window.open(`skype:${skypeId}?chat`);
   }
+
+  deleteBatch(batch) {
+    let batchId = batch.batchId;
+    let url = '/api/batch/' + batchId;
+    this.http.delete(url).subscribe(() =>status = 'Delete successful');
+    console.log("Deleted Batch with Id " + batchId);
+  }
+
 }

@@ -28,9 +28,9 @@ export class SessionComponent implements OnInit {
 
   dataSource = JSON.parse(sessionStorage.getItem('Sessions'));
   ngOnInit(): void {
-    // this.http
-    //   .get<any[]>('/api/session', { params: { batchId: `${this.batchId}` } })
-    //   .subscribe((res) => (this.dataSource = res));
+    this.http
+      .get<any[]>('api/session', { params: { batchId: `${this.batchId}` } })
+      .subscribe((res) => (this.dataSource = res));
   }
 
   openNewSessionDialog() {

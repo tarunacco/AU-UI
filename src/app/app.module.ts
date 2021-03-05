@@ -32,6 +32,7 @@ import { StudentformComponent } from './components/studentform/studentform.compo
 import { TrainersComponent } from './components/trainers/trainers.component';
 import { TrainerFormComponent } from './components/trainer-form/trainer-form.component';
 import { MatSelect, MatSelectModule } from '@angular/material/select';
+import {MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,7 @@ import { MatSelect, MatSelectModule } from '@angular/material/select';
     BrowserAnimationsModule,
     MatSliderModule,
     MatSelectModule,
-    
+    MatSortModule,
     MatDialogModule,
     MatInputModule,
     MatButtonModule,

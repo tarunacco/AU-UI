@@ -48,7 +48,7 @@
 
 <div>
   <button mat-button mat-dialog-close color="warn">Cancel</button>
-  <button (click)="onSubmit()" mat-raised-button color="primary">
+  <button (click)="onSubmit()" mat-raised-button mat-dialog-close color="primary">
     {{ dialogData ? "Update" : "Save" }}
   </button>
 </div>

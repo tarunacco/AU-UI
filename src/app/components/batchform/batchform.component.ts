@@ -30,6 +30,7 @@ export class BatchformComponent implements OnInit {
 
   ngOnInit() {
     this.newBatchForm = this.fb.group({
+      batchId:['', [Validators.required]],
       batchName: ['', [Validators.required]],
       startDate: ['', [Validators.required]],
       endDate: ['', [Validators.required]],
@@ -42,12 +43,11 @@ export class BatchformComponent implements OnInit {
     }
   }
 
-  // public batches : BatchSchema[] = [];
-
   onSubmit() {
-    console.log(this.newBatchForm.value);
-    this.http
-      .post('/api/batch', this.newBatchForm.value)
-      .subscribe(() => this.dialogRef.close());
+
+    {
+         this.http.post('api/batch/add', this.newBatchForm.value).subscribe(()=>this.dialogRef.close());
+    }
+
   }
 }

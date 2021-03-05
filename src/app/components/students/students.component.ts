@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { StudentformComponent } from '../studentform/studentform.component';
+import { SessionformComponent } from '../sessionform/sessionform.component';
 
 @Component({
   selector: 'app-students',
@@ -15,12 +16,24 @@ export class StudentsComponent implements OnInit {
   displayedColumns: string[] = ['FirstName', 'LastName', 'SkypeId', 'emailId'];
   dataSource : any[] = [];
 
+  @Input()
+  batchId: number;
+
+
   ngOnInit(): void {
+    this.http
+      .get<any[]>('api/student/all', { params: { batchId: `${this.batchId}` } })
+      .subscribe((res) => (this.dataSource = res));
   }
 
-  openNewStudentDialog() {
-    this.dialog.open(StudentformComponent);
 
+  openNewStudentDialog() {
+    //this.dialog.open(StudentformComponent);
+    this.dialog.open(StudentformComponent, {
+         data: {
+        batchId: this.batchId
+      }
+    });
   }
 
 }
