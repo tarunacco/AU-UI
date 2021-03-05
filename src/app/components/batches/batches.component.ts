@@ -24,7 +24,7 @@ export class BatchesComponent implements OnInit {
 
   constructor(private dialog: MatDialog, private http:HttpClient, private router:Router) {}
 
-  displayedColumns: string[] = ['BatchId', 'BatchName', 'StartDate', 'EndDate', 'BatchSkypeId', 'BatchEmailId'];
+  displayedColumns: string[] = ['BatchId', 'BatchName', 'StartDate', 'EndDate', 'BatchSkypeId', 'BatchEmailId', 'action'];
   dataSource : any[] = [];
 
 
@@ -43,6 +43,12 @@ export class BatchesComponent implements OnInit {
   getBatch(batch) {
     console.log(batch);
     this.router.navigate(['/batch', batch.batchId]);
+  }
+
+
+  editBatch(batchId) {
+    console.log("Edit batch " + batchId);
+    this.dialog.open(BatchformComponent);
   }
 
 }

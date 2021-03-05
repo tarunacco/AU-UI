@@ -10,7 +10,7 @@
   <!-- Batch Id Column -->
   <ng-container matColumnDef="BatchId">
     <mat-header-cell *matHeaderCellDef> Batch Id </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.batchId}} </mat-cell>
+    <mat-cell *matCellDef="let element" (click) = "getBatch(element)" > {{element.batchId}} </mat-cell>
   </ng-container>
 
 
@@ -35,18 +35,25 @@
 
   <!-- Batch Skype Id Column -->
   <ng-container matColumnDef="BatchSkypeId">
-    <mat-header-cell *matHeaderCellDef> Batch Skype Id </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef> Skype Id </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.commonSkypeId}} </mat-cell>
   </ng-container>
 
   <!-- Batch Email Id Column -->
   <ng-container matColumnDef="BatchEmailId">
-    <mat-header-cell *matHeaderCellDef> Batch Email Id </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.groupEmailId}} </mat-cell>
   </ng-container>
 
+  <!-- Actions Column -->
+  <ng-container matColumnDef="action">
+    <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <button mat-raised-button (click) = "editBatch(element.batchId)"> Edit </button> </mat-cell>
+  </ng-container>
+
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;" (click) = "getBatch(row)"></mat-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
 </mat-table>
 
 <!--
