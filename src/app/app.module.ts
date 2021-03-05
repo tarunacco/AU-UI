@@ -18,8 +18,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
-import {MatTableModule} from '@angular/material/table';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatTableModule } from '@angular/material/table';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
@@ -29,14 +29,31 @@ import { SessionComponent } from './components/session/session.component';
 import { SessionformComponent } from './components/sessionform/sessionform.component';
 import { StudentsComponent } from './components/students/students.component';
 import { StudentformComponent } from './components/studentform/studentform.component';
+import { TrainersComponent } from './components/trainers/trainers.component';
+import { TrainerFormComponent } from './components/trainer-form/trainer-form.component';
+import { MatSelect, MatSelectModule } from '@angular/material/select';
 
 @NgModule({
-  declarations: [AppComponent, BatchesComponent, BatchformComponent, SideNavComponent, BatchdetailsComponent, SessionComponent, SessionformComponent, StudentsComponent, StudentformComponent],
+  declarations: [
+    AppComponent,
+    BatchesComponent,
+    BatchformComponent,
+    SideNavComponent,
+    BatchdetailsComponent,
+    SessionComponent,
+    SessionformComponent,
+    StudentsComponent,
+    StudentformComponent,
+    TrainersComponent,
+    TrainerFormComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSliderModule,
+    MatSelectModule,
+    
     MatDialogModule,
     MatInputModule,
     MatButtonModule,
@@ -48,17 +65,16 @@ import { StudentformComponent } from './components/studentform/studentform.compo
     MatIconModule,
     MatListModule,
     FormsModule,
-      ReactiveFormsModule,
-      MatTableModule,
-      MatDatepickerModule,
-      MatNativeDateModule,
-      FlexLayoutModule,
-      HttpClientModule,
-      MatTabsModule
+    ReactiveFormsModule,
+    MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FlexLayoutModule,
+    HttpClientModule,
+    MatTabsModule,
+
   ],
-  exports:[
-    MatTabsModule
-  ],
+  exports: [MatTabsModule],
 
   providers: [],
   bootstrap: [AppComponent],

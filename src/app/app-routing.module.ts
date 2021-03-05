@@ -1,3 +1,4 @@
+import { TrainersComponent } from './components/trainers/trainers.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BatchdetailsComponent } from './components/batchdetails/batchdetails.component';
@@ -12,6 +13,11 @@ const routes: Routes = [
   {
     path: 'batch/:batchId',
     component: BatchdetailsComponent,
+  },
+
+  {
+    path: 'trainers',
+    component: TrainersComponent,
   },
 ];
 

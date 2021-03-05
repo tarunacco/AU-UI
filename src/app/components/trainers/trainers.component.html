@@ -1,0 +1,57 @@
+<div>
+  <h1>Trainers</h1>
+  <button mat-raised-button color="primary" (click) = "openNewTrainerDialog()">Add Trainer</button>
+</div>
+
+
+<mat-table [dataSource]="dataSource" style = "margin: 20px;" class="mat-elevation-z8">
+
+  <!-- Trainer first Name Column -->
+  <ng-container matColumnDef="First Name">
+    <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.firstName}} </mat-cell>
+  </ng-container>
+
+
+  <!-- Trainer LastName Column -->
+  <ng-container matColumnDef="Last Name">
+    <mat-header-cell *matHeaderCellDef> Last Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.lastName}} </mat-cell>
+  </ng-container>
+
+  <!-- Skype Id Column -->
+  <ng-container matColumnDef="Skype Id">
+    <mat-header-cell *matHeaderCellDef> Skype Id </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.skypeId}} </mat-cell>
+  </ng-container>
+
+
+  <!-- Email Column -->
+  <ng-container matColumnDef="Email Id">
+    <mat-header-cell *matHeaderCellDef> Email Id </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.emailId}} </mat-cell>
+  </ng-container>
+
+   <!-- Reporting Manager Email -->
+   <ng-container matColumnDef="Reporting Manager Email">
+    <mat-header-cell *matHeaderCellDef> Reporting Manager Email </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.repManagerEmail}} </mat-cell>
+  </ng-container>
+
+   <!-- BU Head Name -->
+   <ng-container matColumnDef="BU Head Name">
+    <mat-header-cell *matHeaderCellDef> BU Head Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.bu.name}} </mat-cell>
+  </ng-container>
+
+    <!-- BU Head Email -->
+    <ng-container matColumnDef="BU head Email">
+      <mat-header-cell *matHeaderCellDef> BU Head Email </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.bu.email}} </mat-cell>
+    </ng-container>
+
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
+</mat-table>
+
