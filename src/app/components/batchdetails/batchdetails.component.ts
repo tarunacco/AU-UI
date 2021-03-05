@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {ActivatedRoute, Router, ParamMap} from '@angular/router';
 
 
@@ -12,6 +12,10 @@ export class BatchdetailsComponent implements OnInit {
   constructor(private route:ActivatedRoute, private router:Router) { }
 
   public batchId:number;
+
+  @Input()
+  batchName:String;
+
   ngOnInit(): void {
     let id = parseInt(this.route.snapshot.paramMap.get('batchId'));
     this.batchId = id;

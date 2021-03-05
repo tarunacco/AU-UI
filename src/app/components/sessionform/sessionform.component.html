@@ -1,23 +1,39 @@
 
 <h3>New Session </h3>
 <form [formGroup] = "newSessionForm">
-  <mat-form-field>
-    <input matInput placeholder="Session Id" formControlName="sessionId">
-  </mat-form-field>
-
 
   <mat-form-field>
     <input matInput placeholder="Session Name" formControlName="sessionName">
   </mat-form-field>
 
-  <mat-form-field>
-    <input matInput placeholder="Classroom Topic Id" formControlName="classroomTopicId">
+  <!-- [(ngModel)]="selectedValue" -->
+
+  <mat-form-field >
+    <mat-label>Trainer</mat-label>
+    <mat-select  name="trainer" formControlName="trainer">
+      <mat-option *ngFor="let trainer of Trainers" [value]="trainer">
+        {{trainer}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field >
+    <mat-label>Time Slot</mat-label>
+    <mat-select  name="timeSlot" formControlName="timeSlot">
+      <mat-option value = "Morning"> Morning </mat-option>
+      <mat-option value = "Evening"> Evening </mat-option>
+    </mat-select>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput [matDatepicker]="createdOn" placeholder="Created On" formControlName="createdOn">
-    <mat-datepicker-toggle matSuffix [for]="createdOn"></mat-datepicker-toggle>
-    <mat-datepicker #createdOn></mat-datepicker>
+    <input
+      matInput
+      [matDatepicker]="startDate"
+      placeholder="Start Date"
+      formControlName="startDate"
+    />
+    <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+    <mat-datepicker #startDate></mat-datepicker>
   </mat-form-field>
 
 
@@ -25,5 +41,5 @@
 
 <div>
   <button mat-button mat-dialog-close>Cancel</button>
-  <button (click) = "onSubmit()" mat-raised-button>Save</button>
+  <button (click) = "onSubmit()" mat-raised-button mat-dialog-close>Save</button>
 </div>

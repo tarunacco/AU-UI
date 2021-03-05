@@ -19,6 +19,7 @@ import {
   styleUrls: ['./batchform.component.css'],
 })
 export class BatchformComponent implements OnInit {
+
   newBatchForm: FormGroup;
   constructor(
     private fb: FormBuilder,
@@ -44,6 +45,7 @@ export class BatchformComponent implements OnInit {
   // public batches : BatchSchema[] = [];
 
   onSubmit() {
+    console.log(this.newBatchForm.value);
     this.http
       .post('/api/batch', this.newBatchForm.value)
       .subscribe(() => this.dialogRef.close());

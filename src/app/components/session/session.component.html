@@ -1,5 +1,5 @@
 <div fxLayoutAlign="space-between center" style="margin: 0 20px">
-  <h1>Sessions</h1>
+  <h1>{{ batchName }}Sessions</h1>
   <button mat-raised-button color="primary" (click)="openNewSessionDialog()">
     Create New Session
   </button>
@@ -10,30 +10,30 @@
   style="margin: 20px"
   class="mat-elevation-z8"
 >
-  <!-- Session Id Column -->
-  <ng-container matColumnDef="SessionId">
-    <mat-header-cell *matHeaderCellDef> Session Id </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{ element.sessionId }} </mat-cell>
-  </ng-container>
-
   <!-- Session Name Column -->
   <ng-container matColumnDef="SessionName">
     <mat-header-cell *matHeaderCellDef> Session Name </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{ element.sessionName }} </mat-cell>
   </ng-container>
 
-  <!-- TopicId Column -->
-  <ng-container matColumnDef="TopicId">
-    <mat-header-cell *matHeaderCellDef> Topic Id </mat-header-cell>
+  <!-- Session Start Date Column -->
+  <ng-container matColumnDef="Date">
+    <mat-header-cell *matHeaderCellDef> Start Date </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.startDate }} </mat-cell>
+  </ng-container>
+
+  <!-- Time Slot Column -->
+  <ng-container matColumnDef="Time">
+    <mat-header-cell *matHeaderCellDef> Time Slot </mat-header-cell>
     <mat-cell *matCellDef="let element">
-      {{ element.classroomTopicId }}
+      {{ element.timeSlot }}
     </mat-cell>
   </ng-container>
 
   <!-- Created On Column -->
-  <ng-container matColumnDef="CreatedOn">
-    <mat-header-cell *matHeaderCellDef> Created On </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{ element.createdOn }} </mat-cell>
+  <ng-container matColumnDef="Trainer">
+    <mat-header-cell *matHeaderCellDef> Trainer </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.trainer }} </mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

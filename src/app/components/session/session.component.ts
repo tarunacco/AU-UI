@@ -9,23 +9,28 @@ import { SessionformComponent } from '../sessionform/sessionform.component';
   styleUrls: ['./session.component.css'],
 })
 export class SessionComponent implements OnInit {
+
   @Input()
   batchId: number;
+
+  @Input()
+  batchName : String
 
   constructor(private dialog: MatDialog, private http: HttpClient) {}
 
   displayedColumns: string[] = [
-    'SessionId',
     'SessionName',
-    'TopicId',
-    'CreatedOn',
+    'Date',
+    'Time',
+    'Trainer',
   ];
-  dataSource: any[] = [];
+  //dataSource: any[] = [];
 
+  dataSource = JSON.parse(sessionStorage.getItem('Sessions'));
   ngOnInit(): void {
-    this.http
-      .get<any[]>('/api/session', { params: { batchId: `${this.batchId}` } })
-      .subscribe((res) => (this.dataSource = res));
+    // this.http
+    //   .get<any[]>('/api/session', { params: { batchId: `${this.batchId}` } })
+    //   .subscribe((res) => (this.dataSource = res));
   }
 
   openNewSessionDialog() {

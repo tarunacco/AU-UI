@@ -24,7 +24,6 @@ export class BatchesComponent implements OnInit {
   ) {}
 
   displayedColumns: string[] = [
-    'BatchId',
     'BatchName',
     'StartDate',
     'EndDate',
@@ -38,7 +37,6 @@ export class BatchesComponent implements OnInit {
     this.http
       .get<any[]>('/api/batch/all')
       .subscribe((batches) => (this.dataSource = batches));
-    console.log(this.dataSource);
   }
 
   openNewBatchDialog(batch) {
@@ -55,6 +53,9 @@ export class BatchesComponent implements OnInit {
   getBatch(batch) {
     console.log(batch);
     this.router.navigate(['/batch', batch.batchId]);
+
+    //console.log("Data source array" + JSON.stringify(this.dataSource));
+
   }
 
   openSkype(skypeId) {

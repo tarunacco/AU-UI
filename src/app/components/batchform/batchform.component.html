@@ -1,8 +1,9 @@
 <h3>New Batch</h3>
 <form [formGroup]="newBatchForm">
-  <mat-form-field>
+  <mat-form-field style="width: 100%;">
     <input matInput placeholder="Batch Name" formControlName="batchName" />
   </mat-form-field>
+  <br/>
 
   <mat-form-field>
     <input
@@ -26,6 +27,8 @@
     <mat-datepicker #endDate></mat-datepicker>
   </mat-form-field>
 
+  <br/>
+
   <mat-form-field>
     <input
       matInput
@@ -44,56 +47,9 @@
 </form>
 
 <div>
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button (click)="onSubmit()" mat-raised-button>
+  <button mat-button mat-dialog-close color="warn">Cancel</button>
+  <button (click)="onSubmit()" mat-raised-button color="primary">
     {{ dialogData ? "Update" : "Save" }}
   </button>
 </div>
 
-<!-- <mat-dialog-content>
-  <!DOCTYPE html>
-  <html lang="en">
-
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Provide Batch Details</title>
-  </head>
-
-  <body>
-    <div class="container-fluid">
-      <h1 class="text-center"> Provide Batch Details </h1>
-
-      <form [formGroup]="newBatchForm">
-
-        <div class="form-group">
-          <label>Batch Name : </label>
-          <input type="text" formControlName="BatchName" class="form-control">
-        </div>
-
-
-        <div class="form-group">
-          <label>Start Date : </label>
-          <input type="date" formControlName="StartDate" class="form-control">
-        </div>
-
-
-        <div class="form-group">
-          <label>End Date : </label>
-          <input type="date" formControlName="EndDate" class="form-control">
-        </div>
-
-        <mat-dialog-actions>
-          <button mat-button mat-dialog-close class="btn btn-dark" type="submit" (click)="onSubmit()">Submit</button>
-        </mat-dialog-actions>
-      </form>
-
-
-
-    </div>
-
-  </body>
-
-  </html>
-</mat-dialog-content> -->
