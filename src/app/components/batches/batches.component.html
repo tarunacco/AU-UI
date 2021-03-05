@@ -1,55 +1,67 @@
-<div>
+<div fxlayout="row" fxLayoutAlign="space-between center" style="margin: 0 20px">
   <h1>Batches</h1>
-
-  <button mat-raised-button color="primary" (click) = "openNewBatchDialog()">New Batch</button>
+  <button mat-raised-button color="primary" (click)="openNewBatchDialog(null)">
+    New Batch
+  </button>
 </div>
 
-
-<mat-table [dataSource]="dataSource" style = "margin: 20px;" class="mat-elevation-z8">
-
+<mat-table
+  [dataSource]="dataSource"
+  style="margin: 20px"
+  class="mat-elevation-z8"
+>
   <!-- Batch Id Column -->
   <ng-container matColumnDef="BatchId">
     <mat-header-cell *matHeaderCellDef> Batch Id </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.batchId}} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{ element.batchId }} </mat-cell>
   </ng-container>
-
 
   <!-- Batch Name Column -->
   <ng-container matColumnDef="BatchName">
     <mat-header-cell *matHeaderCellDef> Batch Name </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.batchName}} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{ element.batchName }} </mat-cell>
   </ng-container>
 
   <!-- Start Date Column -->
   <ng-container matColumnDef="StartDate">
     <mat-header-cell *matHeaderCellDef> Start Date </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.startDate}} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{ element.startDate }} </mat-cell>
   </ng-container>
 
   <!-- End Date Column -->
   <ng-container matColumnDef="EndDate">
     <mat-header-cell *matHeaderCellDef> End Date </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.endDate}} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{ element.endDate }} </mat-cell>
   </ng-container>
-
 
   <!-- Batch Skype Id Column -->
   <ng-container matColumnDef="BatchSkypeId">
     <mat-header-cell *matHeaderCellDef> Batch Skype Id </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.commonSkypeId}} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{ element.commonSkypeId }} </mat-cell>
   </ng-container>
 
   <!-- Batch Email Id Column -->
   <ng-container matColumnDef="BatchEmailId">
     <mat-header-cell *matHeaderCellDef> Batch Email Id </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.groupEmailId}} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{ element.groupEmailId }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="Actions">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let row">
+      <button mat-button (click)="openNewBatchDialog(row)">Edit</button>
+      <button mat-button (click)="openSkype(row.commonSkypeId)">Chat</button>
+      <button mat-button color="warn">Archieve</button>
+    </td>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;" (click) = "getBatch(row)"></mat-row>
+  <mat-row
+    *matRowDef="let row; columns: displayedColumns"
+    (click)="getBatch(row)"
+  ></mat-row>
 </mat-table>
 
 <!--
 <button (click) = "showBatches()"></button>
 -->
-

@@ -1,7 +1,4 @@
-<p>batchdetails works!</p>
-<h1>Batch Id = {{batchId}}</h1>
 <mat-tab-group>
-  <mat-tab label="Sessions">  <app-session></app-session>  </mat-tab>
+  <mat-tab label="Sessions"> <app-session [batchId]="batchId"></app-session> </mat-tab>
   <mat-tab label="Candidates"> <app-students> </app-students> </mat-tab>
 </mat-tab-group>
-

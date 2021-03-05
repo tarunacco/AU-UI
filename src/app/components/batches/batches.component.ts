@@ -11,38 +11,53 @@ import { Router } from '@angular/router';
 import { BatchformComponent } from '../batchform/batchform.component';
 import { BatchSchema } from '../batchform/batchSchema';
 
-
-
 @Component({
   selector: 'app-batches',
   templateUrl: './batches.component.html',
   styleUrls: ['./batches.component.css'],
 })
 export class BatchesComponent implements OnInit {
+  constructor(
+    private dialog: MatDialog,
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
-
-
-  constructor(private dialog: MatDialog, private http:HttpClient, private router:Router) {}
-
-  displayedColumns: string[] = ['BatchId', 'BatchName', 'StartDate', 'EndDate', 'BatchSkypeId', 'BatchEmailId'];
-  dataSource : any[] = [];
-
+  displayedColumns: string[] = [
+    'BatchId',
+    'BatchName',
+    'StartDate',
+    'EndDate',
+    'BatchSkypeId',
+    'BatchEmailId',
+    'Actions',
+  ];
+  dataSource: any[] = [];
 
   ngOnInit(): void {
-
-    this.http.get<any[]>('/api/batch').subscribe((batches)=> this.dataSource = batches);
+    this.http
+      .get<any[]>('/api/batch/all')
+      .subscribe((batches) => (this.dataSource = batches));
     console.log(this.dataSource);
   }
 
-  openNewBatchDialog() {
-    this.dialog.open(BatchformComponent);
+  openNewBatchDialog(batch) {
+    if (batch) {
+      this.dialog.open(BatchformComponent, {
+        data: batch,
+      });
+    } else {
+      this.dialog.open(BatchformComponent);
+    }
     // this.dialog.open(BatchformComponent).afterClosed().subscribe();
   }
-
 
   getBatch(batch) {
     console.log(batch);
     this.router.navigate(['/batch', batch.batchId]);
   }
 
+  openSkype(skypeId) {
+    window.open(`skype:${skypeId}?chat`);
+  }
 }
