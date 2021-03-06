@@ -33,6 +33,7 @@ import { TrainersComponent } from './components/trainers/trainers.component';
 import { TrainerFormComponent } from './components/trainer-form/trainer-form.component';
 import { MatSelect, MatSelectModule } from '@angular/material/select';
 import {MatSortModule} from '@angular/material/sort';
+import { AttendanceComponent } from './components/attendance/attendance.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import {MatSortModule} from '@angular/material/sort';
     StudentformComponent,
     TrainersComponent,
     TrainerFormComponent,
+    AttendanceComponent,
   ],
   imports: [
     BrowserModule,
