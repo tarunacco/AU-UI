@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
   FormGroup,
@@ -6,7 +6,7 @@ import {
   FormBuilder,
   Validators,
 } from '@angular/forms';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-trainer-form',
@@ -18,30 +18,36 @@ export class TrainerFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
-    private dialogRef: MatDialogRef<TrainerFormComponent>
+    private dialogRef: MatDialogRef<TrainerFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public dialogData
   ) {}
 
-  bu_heads: any[] = [{ value: '1', bu_name: 'Abhi' }];
+  bu_heads: any[] =[];
 
   ngOnInit() {
     this.newTrainerForm = this.fb.group({
-      fName: ['', [Validators.required]],
-      lName: ['', [Validators.required]],
+      trainerName: ['', [Validators.required]],
       skypeId: ['', [Validators.required]],
       emailId: ['', [Validators.required]],
-      reportManagerEmail: ['', [Validators.required]],
-      buHead: ['', [Validators.required]],
+      reportingManagerEmailId: ['', [Validators.required]],
+      businessUnitId: ['', [Validators.required]],
     });
+
+    if (this.dialogData) {
+      this.newTrainerForm.patchValue(this.dialogData);
+    }
+
     this.http
-      .get<any[]>('/api/bu/getAllBu')
-      .subscribe((all_bu) => (this.bu_heads = [...this.bu_heads, ...all_bu]));
+      .get<any[]>('/api/businessUnit/all')
+      .subscribe((all_bu) => (this.bu_heads = all_bu));
   }
 
   // public batches : BatchSchema[] = [];
 
   onSubmit() {
+    console.log(this.newTrainerForm.value);
     this.http
-      .post('/api/trainer/addTrainer', this.newTrainerForm.value)
+      .post('/api/trainer/add', this.newTrainerForm.value)
       .subscribe(() => this.dialogRef.close());
   }
 }

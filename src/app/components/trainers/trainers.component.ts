@@ -18,22 +18,27 @@ export class TrainersComponent implements OnInit {
   constructor(private dialog: MatDialog, private http: HttpClient) {}
 
   displayedColumns: string[] = [
-    'First Name',
-    'Last Name',
+    'Trainer Name',
     'Skype Id',
     'Email Id',
-    'Reporting Manager Email',
-    'BU Head Name',
-    'BU head Email',
+    'Reporting Manager Email'
   ];
   dataSource: any[] = [];
 
   ngOnInit(): void {
-    this.http.get<any[]>('/api/trainer/getAllTrainers').subscribe((trainer)=> this.dataSource = trainer);
+    this.http.get<any[]>('/api/trainer/all').subscribe((trainer)=> this.dataSource = trainer);
     console.log(this.dataSource);
   }
 
-  openNewTrainerDialog() {
-    this.dialog.open(TrainerFormComponent);
+  openNewTrainerDialog(trainer_) {
+
+    if (trainer_) {
+      this.dialog.open(TrainerFormComponent, {
+        data: trainer_,
+      });
+    } else {
+      this.dialog.open(TrainerFormComponent);
+    }
+    // this.dialog.open(BatchformComponent).afterClosed().subscribe();
   }
 }

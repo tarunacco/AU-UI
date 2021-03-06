@@ -13,7 +13,7 @@ export class StudentsComponent implements OnInit {
 
   constructor(private dialog: MatDialog, private http:HttpClient) { }
 
-  displayedColumns: string[] = ['FirstName', 'LastName', 'SkypeId', 'emailId'];
+  displayedColumns: string[] = ['FirstName', 'LastName', 'emailId'];
   dataSource : any[] = [];
 
   @Input()

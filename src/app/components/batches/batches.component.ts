@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSort} from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import {
   FormGroup,
   FormControl,
@@ -17,11 +19,7 @@ import { BatchSchema } from '../batchform/batchSchema';
   styleUrls: ['./batches.component.css'],
 })
 export class BatchesComponent implements OnInit {
-  constructor(
-    private dialog: MatDialog,
-    private http: HttpClient,
-    private router: Router
-  ) {}
+dataSource: any[] = [];
 
   displayedColumns: string[] = [
     'BatchName',
@@ -30,12 +28,25 @@ export class BatchesComponent implements OnInit {
     'BatchSkypeId',
     'Actions',
   ];
-  dataSource: any[] = [];
+
+  // dataSource: MatTableDataSource<any[]> = new MatTableDataSource<any[]>([]);
+  // @ViewChild(MatSort, {static: false}) sort: MatSort;
+
+  constructor(
+    private dialog: MatDialog,
+    private http: HttpClient,
+    private router: Router
+  ) {}
+
+
 
   ngOnInit(): void {
+
     this.http
       .get<any[]>('/api/batch/all')
       .subscribe((batches) => (this.dataSource = batches));
+      // this.dataSource.sort = this.sort;
+
   }
 
   openNewBatchDialog(batch) {
@@ -63,7 +74,7 @@ export class BatchesComponent implements OnInit {
 
   deleteBatch(batch) {
     let batchId = batch.batchId;
-    let url = '/api/batch/' + batchId;
+    let url = 'api/batch/' + batchId;
     this.http.delete(url).subscribe(() =>status = 'Delete successful');
     console.log("Deleted Batch with Id " + batchId);
   }

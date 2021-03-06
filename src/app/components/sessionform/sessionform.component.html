@@ -2,26 +2,30 @@
 <h3>New Session </h3>
 <form [formGroup] = "newSessionForm">
 
+  <mat-form-field style="display:none">
+    <input matInput placeholder="Batch Id" formControlName="batchId">
+  </mat-form-field>
+
   <mat-form-field>
     <input matInput placeholder="Session Name" formControlName="sessionName">
   </mat-form-field>
 
   <!-- [(ngModel)]="selectedValue" -->
 
-  <mat-form-field >
-    <mat-label>Trainer</mat-label>
-    <mat-select  name="trainer" formControlName="trainer">
+  <mat-form-field appearance="fill">
+    <mat-label> Trainer </mat-label>
+    <mat-select formControlName="trainer">
       <mat-option *ngFor="let trainer of Trainers" [value]="trainer">
-        {{trainer}}
+        {{trainer.trainerName}}
       </mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field >
     <mat-label>Time Slot</mat-label>
-    <mat-select  name="timeSlot" formControlName="timeSlot">
-      <mat-option value = "Morning"> Morning </mat-option>
-      <mat-option value = "Evening"> Evening </mat-option>
+    <mat-select  name="timeSlot" formControlName="daySlot">
+      <mat-option value = "M"> Morning </mat-option>
+      <mat-option value = "E"> Evening </mat-option>
     </mat-select>
   </mat-form-field>
 
@@ -36,10 +40,23 @@
     <mat-datepicker #startDate></mat-datepicker>
   </mat-form-field>
 
+  <mat-form-field>
+    <input
+      matInput
+      [matDatepicker]="endDate"
+      placeholder="End Date"
+      formControlName="endDate"
+    />
+    <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+    <mat-datepicker #endDate></mat-datepicker>
+  </mat-form-field>
+
 
 </form>
 
 <div>
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button (click) = "onSubmit()" mat-raised-button mat-dialog-close>Save</button>
+  <button mat-button mat-dialog-close color="warn">Cancel</button>
+  <button (click)="onSubmit()" mat-raised-button mat-dialog-close color="primary">
+    {{ dialogData.sessionDetails ? "Update" : "Save" }}
+  </button>
 </div>

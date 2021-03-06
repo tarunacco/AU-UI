@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 @Component({
@@ -14,30 +14,38 @@ export class SessionformComponent implements OnInit {
   newSessionForm : FormGroup;
 
   public Sessions : any = [];
+  batchId:number;
+  constructor(private fb: FormBuilder, private http: HttpClient, private dialogRef:MatDialogRef<SessionformComponent>,
+    @Inject(MAT_DIALOG_DATA) public dialogData){
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private dialogRef:MatDialogRef<SessionformComponent>){}
+      this.batchId = dialogData.batchId;
+    }
 
-  Trainers: any = ['Florida', 'South Dakota', 'Tennessee', 'Michigan']
+  Trainers: any = []
 
   ngOnInit() {
     this.newSessionForm = this.fb.group({
+      batchId: [this.batchId, [Validators.required]],
       sessionName: ['', [Validators.required]],
-      trainer:[''],
-      timeSlot:[''],
-      startDate:[''],
+      trainer:['', [Validators.required]],
+      daySlot:['', [Validators.required]],
+      startDate:['', [Validators.required]],
+      endDate:['', [Validators.required]],
     });
 
+    this.http
+    .get<any[]>('/api/trainer/all')
+    .subscribe((trainer) => (this.Trainers = trainer));
 
-    // trainers get api call
+    if (this.dialogData.sessionDetails) {
+      this.newSessionForm.patchValue(this.dialogData.sessionDetails);
+    }
   }
 
-  onSubmit() {
-    // this.http.post('/api/batch', this.newSessionForm.value).subscribe(() => this.dialogRef.close())
-    console.log(this.newSessionForm.value);
-    let result = this.newSessionForm.value;
-    this.Sessions.push(result);
-    sessionStorage.setItem('Sessions', JSON.stringify(this.Sessions));
 
+  onSubmit() {
+    console.log(this.newSessionForm.value);
+     this.http.post('api/session/add', this.newSessionForm.value).subscribe(() => this.dialogRef.close())
   }
 
 }

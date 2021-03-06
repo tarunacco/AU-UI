@@ -13,8 +13,6 @@ export class SessionComponent implements OnInit {
   @Input()
   batchId: number;
 
-  @Input()
-  batchName : String
 
   constructor(private dialog: MatDialog, private http: HttpClient) {}
 
@@ -23,19 +21,38 @@ export class SessionComponent implements OnInit {
     'Date',
     'Time',
     'Trainer',
+    'Actions',
   ];
-  //dataSource: any[] = [];
+  dataSource: any[] = [];
 
-  dataSource = JSON.parse(sessionStorage.getItem('Sessions'));
-  ngOnInit(): void {
+    ngOnInit(): void {
     this.http
-      .get<any[]>('api/session', { params: { batchId: `${this.batchId}` } })
+      .get<any[]>('api/session/all', { params: { batchId: `${this.batchId}` } })
       .subscribe((res) => (this.dataSource = res));
   }
 
-  openNewSessionDialog() {
-    this.dialog.open(SessionformComponent);
-// Session Name , Date, Time ( Mornign / Evening ), Trainer (dropdown select),
-    // this.dialog.open(BatchformComponent).afterClosed().subscribe();
+  openNewSessionDialog(session_) {
+    if (session_) {
+    this.dialog.open(SessionformComponent , {
+      data: {
+     batchId: this.batchId,
+     sessionDetails:session_,
+      }
+   })
+  }
+   else {
+    this.dialog.open(SessionformComponent, {
+      data: {
+        batchId: this.batchId
+      }
+    });
+  }
+
+  }
+
+  deleteSession(session_) {
+     let sessionId = session_.sessionId;
+     let url = "api/session/" + sessionId;
+     this.http.delete(url).subscribe(()=>"deleted successfully");
   }
 }

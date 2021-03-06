@@ -6,31 +6,32 @@
 </div>
 
  <mat-table
+  matSort
   [dataSource]="dataSource"
   style="margin: 20px"
   class="mat-elevation-z8">
 
 
   <ng-container matColumnDef="BatchName">
-    <mat-header-cell *matHeaderCellDef> Batch Name </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Batch Name </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{ element.batchName }} </mat-cell>
   </ng-container>
 
 
   <ng-container matColumnDef="StartDate">
-    <mat-header-cell *matHeaderCellDef> Start Date </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Start Date </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{ element.startDate }} </mat-cell>
   </ng-container>
 
 
   <ng-container matColumnDef="EndDate">
-    <mat-header-cell *matHeaderCellDef> End Date </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> End Date </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{ element.endDate }} </mat-cell>
   </ng-container>
 
 
   <ng-container matColumnDef="BatchSkypeId">
-    <mat-header-cell *matHeaderCellDef> Batch Skype Id </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Batch Skype Id </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{ element.commonSkypeId }} </mat-cell>
   </ng-container>
 
@@ -44,7 +45,7 @@
       <button mat-button (click)="openSkype(row.commonSkypeId)">
         <mat-icon> chat</mat-icon>
       </button>
-      <button mat-button color="warn">
+      <button mat-button color="warn" (click) = "deleteBatch(row)">
         <mat-icon>delete</mat-icon>
       </button>
 

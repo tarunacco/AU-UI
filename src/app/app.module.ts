@@ -73,6 +73,8 @@ import {MatSortModule} from '@angular/material/sort';
     FlexLayoutModule,
     HttpClientModule,
     MatTabsModule,
+    MatSortModule,
+
 
   ],
   exports: [MatTabsModule],

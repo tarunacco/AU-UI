@@ -1,11 +1,7 @@
 <h3>New Trainer</h3>
 <form [formGroup]="newTrainerForm">
   <mat-form-field>
-    <input matInput placeholder="First Name" formControlName="fName" />
-  </mat-form-field>
-
-  <mat-form-field>
-    <input matInput placeholder="Last Name" formControlName="lName" />
+    <input matInput placeholder="First Name" formControlName="trainerName" />
   </mat-form-field>
 
   <mat-form-field>
@@ -20,15 +16,15 @@
     <input
       matInput
       placeholder="Reporting Manager Email Id"
-      formControlName="reportManagerEmail"
+      formControlName="reportingManagerEmailId"
     />
   </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <mat-label>BU Head</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let bu of bu_heads" [value]="bu.bu_name">
-        {{bu.bu_name}}
+    <mat-label>BU </mat-label>
+    <mat-select formControlName="businessUnitId">
+      <mat-option *ngFor="let bu of bu_heads" [value]="bu.buId">
+        {{bu.buName}}
       </mat-option>
     </mat-select>
   </mat-form-field>
@@ -39,50 +35,4 @@
   <button (click)="onSubmit()" mat-raised-button>Save</button>
 </div>
 
-<!-- <mat-dialog-content>
-  <!DOCTYPE html>
-  <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Provide Batch Details</title>
-  </head>
-
-  <body>
-    <div class="container-fluid">
-      <h1 class="text-center"> Provide Batch Details </h1>
-
-      <form [formGroup]="newBatchForm">
-
-        <div class="form-group">
-          <label>Batch Name : </label>
-          <input type="text" formControlName="BatchName" class="form-control">
-        </div>
-
-
-        <div class="form-group">
-          <label>Start Date : </label>
-          <input type="date" formControlName="StartDate" class="form-control">
-        </div>
-
-
-        <div class="form-group">
-          <label>End Date : </label>
-          <input type="date" formControlName="EndDate" class="form-control">
-        </div>
-
-        <mat-dialog-actions>
-          <button mat-button mat-dialog-close class="btn btn-dark" type="submit" (click)="onSubmit()">Submit</button>
-        </mat-dialog-actions>
-      </form>
-
-
-
-    </div>
-
-  </body>
-
-  </html>
-</mat-dialog-content> -->
