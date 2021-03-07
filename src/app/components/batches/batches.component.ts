@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatSort} from '@angular/material/sort';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   FormGroup,
@@ -8,7 +8,7 @@ import {
   Validators,
   FormBuilder,
 } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { BatchformComponent } from '../batchform/batchform.component';
 import { BatchSchema } from '../batchform/batchSchema';
@@ -19,7 +19,7 @@ import { BatchSchema } from '../batchform/batchSchema';
   styleUrls: ['./batches.component.css'],
 })
 export class BatchesComponent implements OnInit {
-dataSource: any[] = [];
+  dataSource: any[] = [];
 
   displayedColumns: string[] = [
     'BatchName',
@@ -38,25 +38,28 @@ dataSource: any[] = [];
     private router: Router
   ) {}
 
-
-
   ngOnInit(): void {
+    this.getSessions();
+  }
 
+  getSessions() {
     this.http
       .get<any[]>('/api/batch/all')
       .subscribe((batches) => (this.dataSource = batches));
-      // this.dataSource.sort = this.sort;
-
   }
 
   openNewBatchDialog(batch) {
+    let dialogRef: MatDialogRef<BatchformComponent>;
     if (batch) {
-      this.dialog.open(BatchformComponent, {
+      dialogRef = this.dialog.open(BatchformComponent, {
         data: batch,
       });
     } else {
-      this.dialog.open(BatchformComponent);
+      dialogRef = this.dialog.open(BatchformComponent);
     }
+
+    dialogRef.afterClosed().subscribe(() => this.getSessions());
+
     // this.dialog.open(BatchformComponent).afterClosed().subscribe();
   }
 
@@ -65,7 +68,6 @@ dataSource: any[] = [];
     this.router.navigate(['/batch', batch.batchId]);
 
     //console.log("Data source array" + JSON.stringify(this.dataSource));
-
   }
 
   openSkype(skypeId) {
@@ -75,8 +77,7 @@ dataSource: any[] = [];
   deleteBatch(batch) {
     let batchId = batch.batchId;
     let url = 'api/batch/' + batchId;
-    this.http.delete(url).subscribe(() =>status = 'Delete successful');
-    console.log("Deleted Batch with Id " + batchId);
+    this.http.delete(url).subscribe(() => this.getSessions());
+    console.log('Deleted Batch with Id ' + batchId);
   }
-
 }
