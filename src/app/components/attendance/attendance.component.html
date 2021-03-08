@@ -1,14 +1,15 @@
 <div class=" example-container mat-elevation-z8 mat-elevation-z8">
   <mat-table matTableExporter
   #exporter="matTableExporter"
-  [dataSource]="data.attendanceData" style = "width: 100%;">
+  [dataSource]="attendanceData" style = "width: 100%;">
+
     <!-- Name Column -->
     <ng-container matColumnDef="Student" sticky>
       <mat-header-cell style="min-width: 160px;"  *matHeaderCellDef>Students</mat-header-cell>>
-      <mat-cell *matCellDef="let row">{{ row.student.name }}</mat-cell>>
+      <mat-cell *matCellDef="let row">{{ row.student.studentName }}</mat-cell>>
     </ng-container>
 
-    <ng-container *ngFor="let column of sessionHeaders" [matColumnDef]="column">
+    <ng-container *ngFor="let column of sessionHeaderName" [matColumnDef]="column">
       <mat-header-cell style="min-width: 50px;" *matHeaderCellDef>{{ column }}</mat-header-cell>>
       <mat-cell *matCellDef="let row">
         {{ getAttendance(row, column) }}
@@ -19,15 +20,15 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button
+           <button
             mat-menu-item
-            (click)="mark(row.student.id, row[column], true)"
+            (click)="mark(row.student.studentId, column, true)"
           >
             <span>Mark Present</span>
           </button>
           <button
             mat-menu-item
-            (click)="mark(row.student.id, row[column], false)"
+            (click)="mark(row.student.studentId, column, false)"
           >
             <span>Mark Absent</span>
           </button>
@@ -39,6 +40,7 @@
     <mat-row *matRowDef="let row; columns: headers"></mat-row>>
   </mat-table>
   <div>
+  <h3></h3>
   <button mat-raised-button (click)="exporter.exportTable('xlsx', {fileName:'test', sheet: 'sheet_name', Props: {Author: 'Talha'}})">Excel</button>
   <button mat-raised-button (click)="exporter.exportTable('csv')">Csv</button>
   <button mat-raised-button (click)="exporter.exportTable('json')">Json</button>
