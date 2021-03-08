@@ -35,12 +35,12 @@ import { MatSelect, MatSelectModule } from '@angular/material/select';
 import {MatSortModule} from '@angular/material/sort';
 import {MatMenuModule} from '@angular/material/menu';
 import { AttendanceComponent } from './components/attendance/attendance.component';
-import { AssignmentComponent } from './components/assignment/assignment.component';
 import { BulkaddstudentsComponent } from './components/bulkaddstudents/bulkaddstudents.component';
 //import {MatToolbarModule} from '@angular/material/toolbar';
 import { NgxCsvParserModule } from 'ngx-csv-parser';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { AssignmentsComponent } from './components/assignments/assignments.component';
 
 
 
@@ -59,8 +59,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     TrainersComponent,
     TrainerFormComponent,
     AttendanceComponent,
-    AssignmentComponent,
     BulkaddstudentsComponent,
+    AssignmentsComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 <div class=" example-container mat-elevation-z8 mat-elevation-z8">
   <mat-table matTableExporter
   #exporter="matTableExporter"
-  [dataSource]="attendanceData" style = "width: 100%;" >
+  [dataSource]="marksData" style = "width: 100%;" >
 
     <!-- Name Column -->
     <ng-container matColumnDef="Student" sticky>
@@ -9,10 +9,13 @@
       <mat-cell *matCellDef="let row">{{ row.student.studentName }}</mat-cell>>
     </ng-container>
 
+
+
+
     <ng-container *ngFor="let column of sessionHeaderName" [matColumnDef]="column">
       <mat-header-cell style="min-width: 50px;" *matHeaderCellDef>{{ column }}</mat-header-cell>>
-      <mat-cell *matCellDef="let row" [ngStyle] = "{'color': (getAttendance(row, column) == 'P') ? 'green' : (getAttendance(row, column) == 'A') ? 'red' : 'black'}">
-        {{ getAttendance(row, column) }}
+      <mat-cell *matCellDef="let row" >
+        {{ getMarks(row, column) }}
         <button
           mat-icon-button
           [matMenuTriggerFor]="menu"

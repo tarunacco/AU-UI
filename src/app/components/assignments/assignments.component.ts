@@ -1,52 +1,42 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { MatButtonToggleGroup } from '@angular/material/button-toggle';
-import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
-  selector: 'app-attendance',
-  templateUrl: './attendance.component.html',
-  styleUrls: ['./attendance.component.css'],
+  selector: 'app-assignments',
+  templateUrl: './assignments.component.html',
+  styleUrls: ['./assignments.component.css']
 })
+export class AssignmentsComponent implements OnInit {
 
-
-export class AttendanceComponent implements OnInit {
-
-  attend : any[] = [];
+  score : any[] = [];
   sessionHeaders = [];
   sessionHeaderName = [];
   headers = [];
-  attendanceData = [];
+  marksData = [];
 
   constructor(private http:HttpClient) {}
 
   ngOnInit() {
-    this.fetchAttendance();
+    this.fetchMarks();
   }
 
-  fetchAttendance() {
-    this.http.get<any[]>('/api/training/all', { params: { type: 'A'}})
-    .subscribe((attendance) => (this.attend = attendance,
-      this.sessionHeaders = attendance['sessions'],
+  fetchMarks() {
+    this.http.get<any[]>('/api/training/all', { params: { type: 'M'}})
+    .subscribe((marks) => (this.score = marks,
+      this.sessionHeaders = marks['sessions'],
       this.sessionHeaders.map((seshead) => {
         this.sessionHeaderName.push(seshead.sessionName);
       }),
       this.headers = ['Student', ...this.sessionHeaderName],
-      this.attendanceData = attendance['attendanceData'], console.log(attendance)));
+      this.marksData = marks['marksData'], console.log(marks)));
   }
 
-  getAttendance(row, column) {
+  getMarks(row, column) {
     const sessionId = `${this.sessionHeaders.find((session) => session.sessionName === column).sessionId}`;
     if (row[sessionId]) {
-      const current_att = row[sessionId].attendance;
-      if (current_att == 'A') {
-        return 'A';
-      }
-      else {
-        return 'P';
-      }
+      return row[sessionId].marks;
     }
-    return 'N/A';
+    return 0;
   }
 
   mark(studentId, sessionName_, markPresent) {
@@ -83,9 +73,10 @@ export class AttendanceComponent implements OnInit {
       this.sessionHeaders = [];
       this.sessionHeaderName = [];
       this.headers = [];
-      this.attendanceData = [];
-      this.fetchAttendance()
+      this.marksData = [];
+      this.fetchMarks()
     });
 
   }
+
 }
