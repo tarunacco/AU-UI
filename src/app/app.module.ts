@@ -33,7 +33,17 @@ import { TrainersComponent } from './components/trainers/trainers.component';
 import { TrainerFormComponent } from './components/trainer-form/trainer-form.component';
 import { MatSelect, MatSelectModule } from '@angular/material/select';
 import {MatSortModule} from '@angular/material/sort';
+import {MatMenuModule} from '@angular/material/menu';
 import { AttendanceComponent } from './components/attendance/attendance.component';
+import { AssignmentComponent } from './components/assignment/assignment.component';
+import { BulkaddstudentsComponent } from './components/bulkaddstudents/bulkaddstudents.component';
+//import {MatToolbarModule} from '@angular/material/toolbar';
+import { NgxCsvParserModule } from 'ngx-csv-parser';
+import { MatTableExporterModule } from 'mat-table-exporter';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
+
+
 
 @NgModule({
   declarations: [
@@ -49,6 +59,8 @@ import { AttendanceComponent } from './components/attendance/attendance.componen
     TrainersComponent,
     TrainerFormComponent,
     AttendanceComponent,
+    AssignmentComponent,
+    BulkaddstudentsComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,8 +88,10 @@ import { AttendanceComponent } from './components/attendance/attendance.componen
     HttpClientModule,
     MatTabsModule,
     MatSortModule,
-
-
+    MatMenuModule,
+    NgxCsvParserModule,
+    MatTableExporterModule,
+    MatSnackBarModule
   ],
   exports: [MatTabsModule],
 

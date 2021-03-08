@@ -12,7 +12,7 @@
   class="mat-elevation-z8">
 
 
-  <ng-container matColumnDef="BatchName">
+  <ng-container matColumnDef="BatchName" >
     <mat-header-cell *matHeaderCellDef mat-sort-header> Batch Name </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{ element.batchName }} </mat-cell>
   </ng-container>
@@ -54,79 +54,9 @@
       </button>
     </mat-cell>
   </ng-container>
+
 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row
     *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>
-
-
-<!-- Form without flex -->
-
-
-<!--
-
-<table mat-table
-  [dataSource]="dataSource"
-  style="margin: 20px"
-  class="mat-elevation-z8"
->
-
-
-
-  <ng-container matColumnDef="BatchName">
-    <th mat-header-cell *matHeaderCellDef> Batch Name </th>
-    <td mat-cell *matCellDef="let element"> {{ element.batchName }} </td>
-  </ng-container>
-
-
-  <ng-container matColumnDef="StartDate">
-    <th mat-header-cell *matHeaderCellDef> Start Date </th>
-    <td mat-cell *matCellDef="let element"> {{ element.startDate }} </td>
-  </ng-container>
-
-    <ng-container matColumnDef="EndDate">
-    <th mat-header-cell *matHeaderCellDef> End Date </th>
-    <td *matCellDef="let element"> {{ element.endDate }} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="BatchSkypeId">
-    <th mat-header-cell *matHeaderCellDef> Batch Skype Id </th>
-    <td mat-cell *matCellDef="let element"> {{ element.commonSkypeId }} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="Actions">
-    <th mat-header-cell *matHeaderCellDef>Actions</th>
-    <td mat-cell *matCellDef="let row">
-      <button mat-button (click)="openNewBatchDialog(row)" color = "accent">
-        <mat-icon>edit</mat-icon>
-      </button>
-      <button mat-button (click)="openSkype(row.commonSkypeId)">
-        <mat-icon> chat</mat-icon>
-      </button>
-      <button mat-button color="warn" (click) = "deleteBatch(row)">
-        <mat-icon>delete</mat-icon>
-      </button>
-
-      <button mat-icon-button  (click)="getBatch(row)" color = "primary">
-        <mat-icon>open_in_new</mat-icon>
-      </button>
-    </td>
-  </ng-container>
-
-
-
-
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row
-    *matRowDef="let row; columns: displayedColumns"></tr>
-</table>
-
-
--->
-
-
-
-
-
 

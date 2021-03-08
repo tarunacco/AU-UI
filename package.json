@@ -23,6 +23,9 @@
     "@angular/platform-browser": "~11.2.4",
     "@angular/platform-browser-dynamic": "~11.2.4",
     "@angular/router": "~11.2.4",
+    "angular-material-fileupload": "^3.0.2",
+    "mat-table-exporter": "^9.1.0",
+    "ngx-csv-parser": "0.0.7",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

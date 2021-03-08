@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {
@@ -13,13 +13,14 @@ import { Router } from '@angular/router';
 import { BatchformComponent } from '../batchform/batchform.component';
 import { BatchSchema } from '../batchform/batchSchema';
 
+
 @Component({
   selector: 'app-batches',
   templateUrl: './batches.component.html',
   styleUrls: ['./batches.component.css'],
 })
-export class BatchesComponent implements OnInit {
-  dataSource: any[] = [];
+export class BatchesComponent implements OnInit, AfterViewInit {
+  //dataSource: any[] = [];
 
   displayedColumns: string[] = [
     'BatchName',
@@ -29,8 +30,8 @@ export class BatchesComponent implements OnInit {
     'Actions',
   ];
 
-  // dataSource: MatTableDataSource<any[]> = new MatTableDataSource<any[]>([]);
-  // @ViewChild(MatSort, {static: false}) sort: MatSort;
+   dataSource: MatTableDataSource<any[]> = new MatTableDataSource<any[]>([]);
+   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   constructor(
     private dialog: MatDialog,
@@ -40,12 +41,19 @@ export class BatchesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSessions();
+    // this.dataSource.
+    // sort = this.sort;
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
 
   getSessions() {
     this.http
       .get<any[]>('/api/batch/all')
-      .subscribe((batches) => (this.dataSource = batches));
+      .subscribe((batches) => (this.dataSource.data = batches));
+      console.log("batch Datasource", this.dataSource.data)
   }
 
   openNewBatchDialog(batch) {
@@ -64,8 +72,8 @@ export class BatchesComponent implements OnInit {
   }
 
   getBatch(batch) {
-    console.log(batch);
-    this.router.navigate(['/batch', batch.batchId]);
+    console.log("Batch object = "+ batch.batchName);
+    this.router.navigate(['/batch', batch.batchId], {state : {batchName: batch.batchName}});
 
     //console.log("Data source array" + JSON.stringify(this.dataSource));
   }

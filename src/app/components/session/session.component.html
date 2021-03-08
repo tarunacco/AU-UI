@@ -1,5 +1,5 @@
 <div fxLayoutAlign="space-between center" style="margin: 0 20px">
-  <h1>Sessions</h1>
+  <h1>{{batchName}} Sessions </h1>
   <button mat-raised-button color="primary" (click)="openNewSessionDialog(null)">
     Create New Session
   </button>
@@ -33,7 +33,7 @@
   <!-- Created On Column -->
   <ng-container matColumnDef="Trainer">
     <mat-header-cell *matHeaderCellDef> Trainer </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{ element.trainerId }} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{ element.trainer.trainerName }} </mat-cell>
   </ng-container>
 
 

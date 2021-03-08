@@ -1,4 +1,4 @@
-<h3>New Batch</h3>
+<h3 style = "text-align: center; font-weight: bold;">Provide Batch Details</h3>
 <form [formGroup]="newBatchForm">
   <mat-form-field style="width: 100%;">
     <input matInput placeholder="Batch Name" formControlName="batchName" />
@@ -48,7 +48,7 @@
 
 <div>
   <button mat-button mat-dialog-close color="warn">Cancel</button>
-  <button (click)="onSubmit()" mat-raised-button mat-dialog-close color="primary">
+  <button (click)="onSubmit()" mat-raised-button color="primary">
     {{ dialogData ? "Update" : "Save" }}
   </button>
 </div>

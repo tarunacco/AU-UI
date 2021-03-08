@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { SessionformComponent } from '../sessionform/sessionform.component';
 
 @Component({
@@ -15,14 +16,16 @@ import { SessionformComponent } from '../sessionform/sessionform.component';
 export class StudentformComponent implements OnInit {
   newStudentForm: FormGroup;
 
-    batchId:number;
-
-  constructor(private fb: FormBuilder, private http: HttpClient, private dialogRef:MatDialogRef<SessionformComponent>,
-    @Inject(MAT_DIALOG_DATA) public dialogData){
+  batchId:number;
+  constructor(private fb: FormBuilder,
+    private http: HttpClient,
+    private dialogRef:MatDialogRef<StudentformComponent>,
+    @Inject(MAT_DIALOG_DATA) public dialogData,
+    private snackbar:MatSnackBar
+    ) {
 
       this.batchId = dialogData.batchId;
-      console.log(dialogData);
-  }
+    }
 
 
   ngOnInit() {
@@ -34,14 +37,21 @@ export class StudentformComponent implements OnInit {
 
     });
 
-
+    if (this.dialogData.studDetails) {
+      this.newStudentForm.patchValue(this.dialogData.studDetails);
+    }
   }
 
 
   onSubmit() {
-    console.log(this.newStudentForm.value);
-    // console.log("Student saved " + JSON.stringify(this.newStudentForm.value));
-     this.http.post('api/student/add', this.newStudentForm.value).subscribe(() => this.dialogRef.close())
+    if (this.newStudentForm.valid) {
+     this.http.post('/api/student/add', this.newStudentForm.value).subscribe(() => this.dialogRef.close())
+     this.snackbar.open("Student Added", '', {duration:3000})
+    }
+    else {
+      this.snackbar.open("There are validation errors", '', {
+        duration:5000
+      })
+    }
   }
-
 }

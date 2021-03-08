@@ -21,24 +21,36 @@ export class TrainersComponent implements OnInit {
     'Trainer Name',
     'Skype Id',
     'Email Id',
-    'Reporting Manager Email'
+    'Reporting Manager Email',
+    'Actions'
   ];
   dataSource: any[] = [];
 
   ngOnInit(): void {
+    this.getSessions();
+
+  }
+  getSessions() {
     this.http.get<any[]>('/api/trainer/all').subscribe((trainer)=> this.dataSource = trainer);
     console.log(this.dataSource);
   }
 
   openNewTrainerDialog(trainer_) {
-
+    let dialogRef: MatDialogRef<TrainerFormComponent>;
     if (trainer_) {
-      this.dialog.open(TrainerFormComponent, {
+      dialogRef = this.dialog.open(TrainerFormComponent, {
         data: trainer_,
       });
     } else {
-      this.dialog.open(TrainerFormComponent);
+      dialogRef = this.dialog.open(TrainerFormComponent);
     }
+    dialogRef.afterClosed().subscribe(() => this.getSessions());
     // this.dialog.open(BatchformComponent).afterClosed().subscribe();
   }
+
+  openSkype(skypeId) {
+    window.open(`skype:${skypeId}?chat`);
+  }
+
+
 }

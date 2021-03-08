@@ -1,9 +1,10 @@
-<h3>New Trainer</h3>
+<h3 style = "text-align: center; font-weight: bold;">New Trainer</h3>
 <form [formGroup]="newTrainerForm">
-  <mat-form-field>
+  <mat-form-field style="width: 100%;">
     <input matInput placeholder="First Name" formControlName="trainerName" />
   </mat-form-field>
 
+  <br/>
   <mat-form-field>
     <input matInput placeholder="Skype Id" formControlName="skypeId" />
   </mat-form-field>
@@ -11,6 +12,8 @@
   <mat-form-field>
     <input matInput placeholder="Email Id" formControlName="emailId" />
   </mat-form-field>
+
+  <br/>
 
   <mat-form-field>
     <input
@@ -20,7 +23,7 @@
     />
   </mat-form-field>
 
-  <mat-form-field appearance="fill">
+  <mat-form-field>
     <mat-label>BU </mat-label>
     <mat-select formControlName="businessUnitId">
       <mat-option *ngFor="let bu of bu_heads" [value]="bu.buId">
@@ -31,8 +34,8 @@
 </form>
 
 <div>
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button (click)="onSubmit()" mat-raised-button>Save</button>
+  <button mat-button mat-dialog-close color = "warn">Cancel</button>
+  <button (click)="onSubmit()" mat-raised-button color = "primary">Save</button>
 </div>
 
 

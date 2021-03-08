@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -15,8 +16,12 @@ export class SessionformComponent implements OnInit {
 
   public Sessions : any = [];
   batchId:number;
-  constructor(private fb: FormBuilder, private http: HttpClient, private dialogRef:MatDialogRef<SessionformComponent>,
-    @Inject(MAT_DIALOG_DATA) public dialogData){
+  constructor(private fb: FormBuilder,
+    private http: HttpClient,
+    private dialogRef:MatDialogRef<SessionformComponent>,
+    @Inject(MAT_DIALOG_DATA) public dialogData,
+    private snackbar:MatSnackBar
+    ){
 
       this.batchId = dialogData.batchId;
     }
@@ -27,7 +32,7 @@ export class SessionformComponent implements OnInit {
     this.newSessionForm = this.fb.group({
       batchId: [this.batchId, [Validators.required]],
       sessionName: ['', [Validators.required]],
-      trainer:['', [Validators.required]],
+      trainer:[{}, [Validators.required]],
       daySlot:['', [Validators.required]],
       startDate:['', [Validators.required]],
       endDate:['', [Validators.required]],
@@ -35,17 +40,42 @@ export class SessionformComponent implements OnInit {
 
     this.http
     .get<any[]>('/api/trainer/all')
-    .subscribe((trainer) => (this.Trainers = trainer));
+    .subscribe((trainer) => (this.Trainers = trainer, console.log(trainer)));
 
     if (this.dialogData.sessionDetails) {
+      console.log("Session Details From Table on click");
+      console.log(this.dialogData.sessionDetails);
       this.newSessionForm.patchValue(this.dialogData.sessionDetails);
+      console.log("Form");
+      console.log(this.newSessionForm.value);
     }
   }
 
 
   onSubmit() {
-    console.log(this.newSessionForm.value);
-     this.http.post('api/session/add', this.newSessionForm.value).subscribe(() => this.dialogRef.close())
+    // console.log("Final Submisson Form Details");
+    // console.log(this.newSessionForm.value);
+
+    // let tempDict={
+    //   "batchId": 1,
+    //   "daySlot": "A",
+    //   "endDate": "2021-03-23",
+    //   "sessionName": "3/3/2021",
+    //   "startDate": "2021-03-02",
+    //   "sessionId": 8,
+    //   "trainer":{
+    //     "trainerId": 4
+    //   }
+    // }
+
+    if (this.newSessionForm.valid) {
+      this.http.post('/api/session/add', this.newSessionForm.value).subscribe(() => this.dialogRef.close())
+      this.snackbar.open("Session Added", '', {duration:3000})
+    }
+     else {
+       this.snackbar.open("There are validation errors",  '', {duration:5000})
+      }
   }
+
 
 }

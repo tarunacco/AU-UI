@@ -1,18 +1,19 @@
 
-<h3>New Session </h3>
+<h3 style = "text-align: center; font-weight: bold;">Provide Session Details</h3>
 <form [formGroup] = "newSessionForm">
 
   <mat-form-field style="display:none">
     <input matInput placeholder="Batch Id" formControlName="batchId">
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field style="width: 100%;">
     <input matInput placeholder="Session Name" formControlName="sessionName">
   </mat-form-field>
 
+  <br/>
   <!-- [(ngModel)]="selectedValue" -->
 
-  <mat-form-field appearance="fill">
+  <mat-form-field>
     <mat-label> Trainer </mat-label>
     <mat-select formControlName="trainer">
       <mat-option *ngFor="let trainer of Trainers" [value]="trainer">
@@ -28,6 +29,8 @@
       <mat-option value = "E"> Evening </mat-option>
     </mat-select>
   </mat-form-field>
+
+  <br/>
 
   <mat-form-field>
     <input

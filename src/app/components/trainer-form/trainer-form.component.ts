@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-trainer-form',
@@ -19,7 +20,8 @@ export class TrainerFormComponent implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient,
     private dialogRef: MatDialogRef<TrainerFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public dialogData
+    @Inject(MAT_DIALOG_DATA) public dialogData,
+    private snackbar:MatSnackBar
   ) {}
 
   bu_heads: any[] =[];
@@ -45,9 +47,21 @@ export class TrainerFormComponent implements OnInit {
   // public batches : BatchSchema[] = [];
 
   onSubmit() {
-    console.log(this.newTrainerForm.value);
-    this.http
-      .post('/api/trainer/add', this.newTrainerForm.value)
-      .subscribe(() => this.dialogRef.close());
+    if (this.newTrainerForm.valid) {
+      let tempObj = this.newTrainerForm.value;
+      tempObj['businessUnit'] = {
+        "buId": tempObj['businessUnitId']
+      }
+      delete tempObj['businessUnitId'];
+      console.log(tempObj);
+      this.http
+        .post('/api/trainer/add', tempObj)
+        .subscribe(() => this.dialogRef.close());
+       this.snackbar.open("Trainer added", '', {duration:3000});
+    }
+
+    else {
+      this.snackbar.open("There are validation errors", '', {duration:5000})
+    }
   }
 }
