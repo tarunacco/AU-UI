@@ -23,6 +23,7 @@ export class AttendanceComponent implements OnInit {
   batchId: number;
 
   ngOnInit() {
+    console.log("Loaded Attendance Component")
     this.fetchAttendance();
   }
 

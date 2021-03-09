@@ -11,26 +11,37 @@ import { Router } from '@angular/router';
   templateUrl: './students.component.html',
   styleUrls: ['./students.component.css'],
 })
-
-
 export class StudentsComponent implements OnInit {
+  batchName: String;
 
-batchName:String
-  constructor(private dialog: MatDialog, private http: HttpClient, private router:Router) {
+  constructor(
+    private dialog: MatDialog,
+    private http: HttpClient,
+    private router: Router
+  ) {
     this.batchName = this.router.getCurrentNavigation().extras.state.batchName;
   }
 
-  displayedColumns: string[] = ['FirstName', 'LastName', 'Joining Date', 'emailId', 'skypeId', 'Location', 'Actions'];
+  displayedColumns: string[] = [
+    'FirstName',
+    'LastName',
+    'Joining Date',
+    'emailId',
+    'skypeId',
+    'Location',
+    'Actions',
+  ];
   dataSource: any[] = [];
 
   @Input()
   batchId: number;
 
   ngOnInit(): void {
-    this.getSessions();
+    console.log('Loaded Students Component');
+    this.getStudents();
   }
 
-  getSessions() {
+  getStudents() {
     this.http
       .get<any[]>('api/student/all', { params: { batchId: `${this.batchId}` } })
       .subscribe((res) => (this.dataSource = res));
@@ -39,42 +50,39 @@ batchName:String
   openNewStudentDialog(stud) {
     let dialogRef: MatDialogRef<StudentformComponent>;
     if (stud) {
-      dialogRef = this.dialog.open(StudentformComponent , {
-      data: {
-     batchId: this.batchId,
-     studDetails:stud,
-      }
-   })
-  }
-   else {
-    dialogRef = this.dialog.open(StudentformComponent, {
-      data: {
-        batchId: this.batchId
-      }
-    });
-  }
-  dialogRef.afterClosed().subscribe(() => this.getSessions());
-
+      dialogRef = this.dialog.open(StudentformComponent, {
+        data: {
+          batchId: this.batchId,
+          studDetails: stud,
+        },
+      });
+    } else {
+      dialogRef = this.dialog.open(StudentformComponent, {
+        data: {
+          batchId: this.batchId,
+        },
+      });
+    }
+    dialogRef.afterClosed().subscribe(() => this.getStudents());
   }
 
   deleteStudent(stud) {
     let studentId = stud.studentId;
     let url = 'api/student/' + studentId;
-    this.http.delete(url).subscribe(() => this.getSessions());
+    this.http.delete(url).subscribe(() => this.getStudents());
   }
 
   openBulkaddDialog() {
     let dialogRef: MatDialogRef<BulkaddstudentsComponent>;
     dialogRef = this.dialog.open(BulkaddstudentsComponent, {
       data: {
-        batchId: this.batchId
-      }
+        batchId: this.batchId,
+      },
     });
-    dialogRef.afterClosed().subscribe(() => this.getSessions());
+    dialogRef.afterClosed().subscribe(() => this.getStudents());
   }
 
   openSkype(skypeId) {
     window.open(`skype:${skypeId}?chat`);
   }
-
 }
