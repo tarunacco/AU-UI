@@ -31,6 +31,7 @@ export class SessionComponent implements OnInit {
     'Date',
     'Time',
     'Trainer',
+    'TrainerEmail',
     'Actions',
   ];
   dataSource: any[] = [];
