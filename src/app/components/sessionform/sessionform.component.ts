@@ -31,7 +31,7 @@ export class SessionformComponent implements OnInit {
   ngOnInit() {
     this.newSessionForm = this.fb.group({
       batchId: [this.batchId, [Validators.required]],
-      sessionId:['',[Validators.required]],
+      sessionId:[''],
       sessionName: ['', [Validators.required]],
       trainer:[{}, [Validators.required]],
       daySlot:['', [Validators.required]],
@@ -69,13 +69,19 @@ export class SessionformComponent implements OnInit {
     // }
 
     console.log(this.newSessionForm.valid);
-    // if (this.newSessionForm.valid) {
-      this.http.post('/api/session/add', this.newSessionForm.value).subscribe(() => this.dialogRef.close())
-      this.snackbar.open("Session Added", '', {duration:3000})
-    // }
-    //  else {
-    //    this.snackbar.open("There are validation errors",  '', {duration:5000})
-    //   }
+     if (this.newSessionForm.valid) {
+       if (this.dialogData.sessionDetails) {
+        this.http.post('/api/session/add', this.newSessionForm.value).subscribe(() => this.dialogRef.close())
+        this.snackbar.open("Session Updated", '', {duration:3000});
+       }
+       else {
+        this.http.post('/api/session/add', this.newSessionForm.value).subscribe(() => this.dialogRef.close())
+        this.snackbar.open("Session Added", '', {duration:3000})
+       }
+      }
+     else {
+       this.snackbar.open("There are validation errors",  '', {duration:5000})
+      }
   }
 
 

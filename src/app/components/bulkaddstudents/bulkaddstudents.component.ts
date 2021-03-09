@@ -56,7 +56,7 @@ export class BulkaddstudentsComponent implements OnInit {
       this.http.post('/api/student/bulkAdd', formData).subscribe((response) => {
         console.log(response);
         // show snackbar
-        //this.dialogRef.close();
+        this.dialogRef.close();
       });
     }
   }

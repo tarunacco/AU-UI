@@ -20,7 +20,7 @@ batchName:String
     this.batchName = this.router.getCurrentNavigation().extras.state.batchName;
   }
 
-  displayedColumns: string[] = ['FirstName', 'LastName', 'emailId', 'Actions'];
+  displayedColumns: string[] = ['FirstName', 'LastName', 'Joining Date', 'emailId', 'skypeId', 'Location', 'Actions'];
   dataSource: any[] = [];
 
   @Input()
@@ -72,4 +72,9 @@ batchName:String
     });
     dialogRef.afterClosed().subscribe(() => this.getSessions());
   }
+
+  openSkype(skypeId) {
+    window.open(`skype:${skypeId}?chat`);
+  }
+
 }

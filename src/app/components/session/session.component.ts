@@ -5,6 +5,7 @@ import { SessionformComponent } from '../sessionform/sessionform.component';
 import { BatchformComponent } from '../batchform/batchform.component';
 import { Router } from '@angular/router';
 import { BulkaddsessionsComponent } from '../bulkaddsessions/bulkaddsessions.component';
+import {TooltipPosition} from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-session',

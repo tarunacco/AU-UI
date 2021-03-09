@@ -42,6 +42,8 @@ import { MatTableExporterModule } from 'mat-table-exporter';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AssignmentsComponent } from './components/assignments/assignments.component';
 import { BulkaddsessionsComponent } from './components/bulkaddsessions/bulkaddsessions.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 
 
 
@@ -93,7 +95,8 @@ import { BulkaddsessionsComponent } from './components/bulkaddsessions/bulkaddse
     MatMenuModule,
     NgxCsvParserModule,
     MatTableExporterModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTooltipModule
   ],
   exports: [MatTabsModule],
 

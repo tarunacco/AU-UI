@@ -11,17 +11,30 @@
     <input matInput placeholder="Candidate Id" formControlName="studentId">
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field style = "width: 100%;">
     <input matInput placeholder="First Name" formControlName="firstName">
   </mat-form-field>
 
   <br/>
-  <mat-form-field>
+  <mat-form-field style = "width: 100%;">
     <input matInput placeholder="Last Name" formControlName="lastName">
   </mat-form-field>
   <br/>
   <mat-form-field>
     <input matInput placeholder="Email Id" formControlName="emailId">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Skype Id" formControlName="skypeId">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label> Trainer </mat-label>
+    <mat-select formControlName="location">
+      <mat-option *ngFor="let location of Location" [value]="location">
+        {{location}}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
 
 </form>
