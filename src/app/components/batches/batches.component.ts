@@ -13,7 +13,6 @@ import { Router } from '@angular/router';
 import { BatchformComponent } from '../batchform/batchform.component';
 import { BatchSchema } from '../batchform/batchSchema';
 
-
 @Component({
   selector: 'app-batches',
   templateUrl: './batches.component.html',
@@ -30,8 +29,9 @@ export class BatchesComponent implements OnInit, AfterViewInit {
     'Actions',
   ];
 
-   dataSource: MatTableDataSource<any[]> = new MatTableDataSource<any[]>([]);
-   @ViewChild(MatSort, {static: false}) sort: MatSort;
+  dataSource: MatTableDataSource<any[]> = new MatTableDataSource<any[]>([]);
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
+  //@ViewChild(MatSort) sort: MatSort;
 
   constructor(
     private dialog: MatDialog,
@@ -53,7 +53,7 @@ export class BatchesComponent implements OnInit, AfterViewInit {
     this.http
       .get<any[]>('/api/batch/all')
       .subscribe((batches) => (this.dataSource.data = batches));
-      console.log("batch Datasource", this.dataSource.data)
+    console.log('batch Datasource', this.dataSource.data);
   }
 
   openNewBatchDialog(batch) {
@@ -73,8 +73,10 @@ export class BatchesComponent implements OnInit, AfterViewInit {
   }
 
   getBatch(batch) {
-    console.log("Batch object = "+ batch.batchName);
-    this.router.navigate(['/batch', batch.batchId], {state : {batchName: batch.batchName}});
+    console.log('Batch object = ' + batch.batchName);
+    this.router.navigate(['/batch', batch.batchId], {
+      state: { batchName: batch.batchName },
+    });
 
     //console.log("Data source array" + JSON.stringify(this.dataSource));
   }
