@@ -76,10 +76,13 @@ export class SessionComponent implements OnInit {
   }
 
   openBulkSessionDialog() {
-    this.dialog.open(BulkaddsessionsComponent, {
+    let dialogRef: MatDialogRef<BulkaddsessionsComponent>;
+
+    dialogRef = this.dialog.open(BulkaddsessionsComponent, {
       data: {
         batchId: this.batchId
       }
     });
+    dialogRef.afterClosed().subscribe(() => this.getSessions());
   }
 }

@@ -3,7 +3,7 @@
     <div>
       <mat-toolbar>
         <!-- Display files names -->
-        <input matInput [(ngModel)]="fileAttr" readonly name="name" />
+        <input matInput [(ngModel)]="fileUpload" readonly name="name" />
 
         <!-- Browse Button -->
         <button mat-flat-button color="primary">Browse File</button>
@@ -21,17 +21,17 @@
 
       <input
         type="file"
-        #fileInput
-        id="uploadFile"
+        #fileAdd
+        id="uploadStudents"
         (change)="fileChangeListener($event)"
-        name="uploadFile"
+        name="uploadStudents"
         accept=".csv"
       />
     </div>
   </mat-form-field>
   <br />
   <button
-    (click)="uploadFileToServer()"
+    (click)="uploadStudentFileToServer()"
     mat-stroked-button
     color="primary"
     disabled="{{ isDisabled }}"

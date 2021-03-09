@@ -28,7 +28,7 @@ export class BulkaddstudentsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  fileAttr = 'Select File';
+  fileUpload = 'Select File';
   isDisabled = true;
   file = null;
   @ViewChild('fileImportInput') fileImportInput: any;
@@ -40,13 +40,13 @@ export class BulkaddstudentsComponent implements OnInit {
     this.isDisabled = false;
     if (studentsFile.size <= 10000000) {
       console.log('File type =' + typeof studentsFile);
-      this.fileAttr = 'Selected File :- ' + studentsFile.name;
+      this.fileUpload = 'Selected File :- ' + studentsFile.name;
     } else {
       // snack bar open for large file
     }
   }
 
-  uploadFileToServer(): void {
+  uploadStudentFileToServer(): void {
     if (this.file != null) {
       const studentsFile = this.file;
       let formData: FormData = new FormData();
@@ -56,6 +56,7 @@ export class BulkaddstudentsComponent implements OnInit {
       this.http.post('/api/student/bulkAdd', formData).subscribe((response) => {
         console.log(response);
         // show snackbar
+        //this.dialogRef.close();
       });
     }
   }

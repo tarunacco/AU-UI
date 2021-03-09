@@ -22,14 +22,16 @@ export class BulkaddsessionsComponent implements OnInit {
     this.batchId = dialogData.batchId;
   }
 
-  ngOnInit(): void {}
-
+  ngOnInit(): void { }
+  //clicked = false;
+  showdialog = false;
   fileAttr = 'Select File';
   isDisabled = true;
   file = null;
   @ViewChild('fileImportInput') fileImportInput: any;
 
   fileChangeListener($event: any): void {
+
     const files = $event.srcElement.files;
     this.file = files[0];
     const sessionsFile = files[0];
@@ -52,6 +54,7 @@ export class BulkaddsessionsComponent implements OnInit {
       this.http.post('/api/session/bulkAdd', formData).subscribe((response) => {
         console.log(response);
         // show snackbar
+        this.dialogRef.close();
       });
     }
   }

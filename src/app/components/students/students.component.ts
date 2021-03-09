@@ -64,10 +64,12 @@ batchName:String
   }
 
   openBulkaddDialog() {
-    this.dialog.open(BulkaddstudentsComponent, {
+    let dialogRef: MatDialogRef<BulkaddstudentsComponent>;
+    dialogRef = this.dialog.open(BulkaddstudentsComponent, {
       data: {
         batchId: this.batchId
       }
     });
+    dialogRef.afterClosed().subscribe(() => this.getSessions());
   }
 }

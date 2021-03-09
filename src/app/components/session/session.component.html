@@ -1,8 +1,10 @@
 <div fxLayoutAlign="space-between center" style="margin: 0 20px">
+
   <h1>{{batchName}} Sessions </h1>
+  <div fxLayoutGap = "15px">
   <button mat-raised-button color="primary" (click)="openNewSessionDialog(null)"> Create New Session </button>
   <button mat-raised-button color="primary" (click)="openBulkSessionDialog()"> Bulk add Session </button>
-
+</div>
 </div>
 
 <mat-table
