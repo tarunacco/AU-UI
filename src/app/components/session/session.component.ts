@@ -76,6 +76,10 @@ export class SessionComponent implements OnInit {
   }
 
   openBulkSessionDialog() {
-    this.dialog.open(BulkaddsessionsComponent);
+    this.dialog.open(BulkaddsessionsComponent, {
+      data: {
+        batchId: this.batchId
+      }
+    });
   }
 }
