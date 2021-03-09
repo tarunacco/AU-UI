@@ -5,7 +5,7 @@ import { SessionformComponent } from '../sessionform/sessionform.component';
 import { BatchformComponent } from '../batchform/batchform.component';
 import { Router } from '@angular/router';
 import { BulkaddsessionsComponent } from '../bulkaddsessions/bulkaddsessions.component';
-import {TooltipPosition} from '@angular/material/tooltip';
+import { TooltipPosition } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-session',
@@ -36,6 +36,7 @@ export class SessionComponent implements OnInit {
   dataSource: any[] = [];
 
   ngOnInit(): void {
+    console.log('Loaded Sessions Component');
     this.getSessions();
   }
 
@@ -71,9 +72,8 @@ export class SessionComponent implements OnInit {
   }
 
   sendEmail(session_) {
-
     let url = '/api/session/sendMail/' + session_.sessionId.toString();
-    this.http.post(url, "hello").subscribe();
+    this.http.post(url, 'hello').subscribe();
   }
 
   openBulkSessionDialog() {
@@ -81,8 +81,8 @@ export class SessionComponent implements OnInit {
 
     dialogRef = this.dialog.open(BulkaddsessionsComponent, {
       data: {
-        batchId: this.batchId
-      }
+        batchId: this.batchId,
+      },
     });
     dialogRef.afterClosed().subscribe(() => this.getSessions());
   }
