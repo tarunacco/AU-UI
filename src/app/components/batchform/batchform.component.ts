@@ -29,7 +29,6 @@ export class BatchformComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
-    private https: HttpClient,
     private dialogRef: MatDialogRef<BatchformComponent>,
     @Inject(MAT_DIALOG_DATA) public dialogData,
     private snackbar: MatSnackBar
@@ -53,8 +52,7 @@ export class BatchformComponent implements OnInit {
   onSubmit() {
     console.log(this.newBatchForm.get('batchName').value);
 
-
-    this.https
+    this.http
       .get<any>(
         'https://script.google.com/macros/s/AKfycbwRycXiB4o4G5bsLIiBwRcLhVrSCp5pk5feG9FPwNX-S2omV7fadGz0CYVey_yvXUzP/exec',
          { params: {
