@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatButtonToggleGroup } from '@angular/material/button-toggle';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -8,11 +8,8 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './attendance.component.html',
   styleUrls: ['./attendance.component.css'],
 })
-
-
 export class AttendanceComponent implements OnInit {
-
-  attend : any[] = [];
+  attend: any[] = [];
   sessionHeaders = [];
   sessionHeaderName = [];
   headers = [];
@@ -20,60 +17,75 @@ export class AttendanceComponent implements OnInit {
   finalAttendanceReport = {};
   total = 0;
 
-  constructor(private http:HttpClient) {}
+  constructor(private http: HttpClient) {}
+
+  @Input()
+  batchId: number;
 
   ngOnInit() {
     this.fetchAttendance();
   }
 
-  getTotalAttendance(column){
-    return this.finalAttendanceReport[column];
+  getTotalAttendance(column) {
+    if (column in this.finalAttendanceReport) {
+      return this.finalAttendanceReport[column];
+    }
+    return 0;
   }
 
   fetchAttendance() {
-    console.log("Inside fetchAttendance");
-
-    this.http.get<any[]>('/api/training/all', { params: { type: 'A'}})
-    .subscribe((attendance) => (this.attend = attendance,
-      this.sessionHeaders = attendance['sessions'],
-      this.sessionHeaders.map((seshead) => {
-        this.sessionHeaderName.push(seshead.sessionName);
-      }),
-      this.headers = ['Student', ...this.sessionHeaderName],
-      this.attendanceData = attendance['attendanceData'], console.log(attendance), this.updateReport()));
+    console.log('Inside fetchAttendance');
+    let url = '/api/training/all/' + this.batchId;
+    this.http
+      .get<any[]>(url, { params: { type: 'A' } })
+      .subscribe(
+        (attendance) => (
+          (this.attend = attendance),
+          (this.sessionHeaders = attendance['sessions']),
+          this.sessionHeaders.map((seshead) => {
+            this.sessionHeaderName.push(seshead.sessionName);
+          }),
+          (this.headers = ['Student', ...this.sessionHeaderName]),
+          (this.attendanceData = attendance['attendanceData']),
+          console.log(attendance),
+          this.updateReport()
+        )
+      );
   }
 
-  updateReport(){
+  updateReport() {
     let copyOfFinalAttendanceReport = this.finalAttendanceReport;
-      for(let i = 0 ; i < this.attendanceData.length ; i++){
-        let currData = this.attendanceData[i];
-        for(let key in currData){
-          if(key == "student"){
-            continue;
-          }
-          else{
-            if(currData[key]['sessionName'] in copyOfFinalAttendanceReport){
-              copyOfFinalAttendanceReport[currData[key]['sessionName']] += currData[key]['attendance'] == 'P' ? 1 : 0;
-            }
-            else{
-              copyOfFinalAttendanceReport[currData[key]['sessionName']] = currData[key]['attendance'] == 'P' ? 1 : 0;
-            }
+    for (let i = 0; i < this.attendanceData.length; i++) {
+      let currData = this.attendanceData[i];
+      for (let key in currData) {
+        if (key == 'student') {
+          continue;
+        } else {
+          if (currData[key]['sessionName'] in copyOfFinalAttendanceReport) {
+            copyOfFinalAttendanceReport[currData[key]['sessionName']] +=
+              currData[key]['attendance'] == 'P' ? 1 : 0;
+          } else {
+            copyOfFinalAttendanceReport[currData[key]['sessionName']] =
+              currData[key]['attendance'] == 'P' ? 1 : 0;
           }
         }
       }
-      this.finalAttendanceReport = copyOfFinalAttendanceReport;
-      this.total = this.attendanceData.length;
+    }
+    this.finalAttendanceReport = copyOfFinalAttendanceReport;
+    this.total = this.attendanceData.length;
   }
 
   getAttendance(row, column) {
     //console.log(row);
-    const sessionId = `${this.sessionHeaders.find((session) => session.sessionName === column).sessionId}`;
+    const sessionId = `${
+      this.sessionHeaders.find((session) => session.sessionName === column)
+        .sessionId
+    }`;
     if (row[sessionId]) {
       const current_att = row[sessionId].attendance;
       if (current_att == 'A') {
         return 'A';
-      }
-      else {
+      } else {
         return 'P';
       }
     }
@@ -83,50 +95,50 @@ export class AttendanceComponent implements OnInit {
   mark(studentId, sessionName_, row, markPresent) {
     let attendanceStatus = 'N/A';
     if (markPresent === true) {
-        attendanceStatus = 'P';
-    }
-    else if (markPresent === false) {
-        attendanceStatus = 'A';
-    }
-    else {
+      attendanceStatus = 'P';
+    } else if (markPresent === false) {
+      attendanceStatus = 'A';
+    } else {
       attendanceStatus = 'N/A';
     }
 
-    const sessionId = `${this.sessionHeaders.find((session) => session.sessionName === sessionName_).sessionId}`;
+    const sessionId = `${
+      this.sessionHeaders.find(
+        (session) => session.sessionName === sessionName_
+      ).sessionId
+    }`;
     if (row[sessionId]) {
       row[sessionId]['attendance'] = attendanceStatus;
-    }
-    else{
+    } else {
       row[sessionId] = {
-        "sessionName": sessionName_,
-        "attendance": attendanceStatus
-      }
+        sessionName: sessionName_,
+        attendance: attendanceStatus,
+      };
       // console.log("New");
       // console.log(row[sessionId])
     }
 
     let sessId;
     this.sessionHeaders.forEach((session) => {
-        if (session.sessionName === sessionName_) {
-          sessId = parseInt(session.sessionId);
-          //console.log(sessId);
-          return;
-        }
-    })
-
-
-
-    const markAttendance = {
-      "attendanceId": {
-          "sessionId": sessId,
-          "studentId": studentId,
-      },
-      "status": attendanceStatus,
-    }
-
-    this.http.post('api/training/markAttendance', markAttendance).subscribe((res) => {
-      //console.log(res);
+      if (session.sessionName === sessionName_) {
+        sessId = parseInt(session.sessionId);
+        //console.log(sessId);
+        return;
+      }
     });
 
+    const markAttendance = {
+      attendanceId: {
+        sessionId: sessId,
+        studentId: studentId,
+      },
+      status: attendanceStatus,
+    };
+
+    this.http
+      .post('api/training/markAttendance', markAttendance)
+      .subscribe((res) => {
+        //console.log(res);
+      });
   }
 }

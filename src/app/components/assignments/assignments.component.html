@@ -3,12 +3,12 @@
 
     <!-- Name Column -->
     <ng-container matColumnDef="Student" sticky>
-      <mat-header-cell style="min-width: 160px;" *matHeaderCellDef>Students</mat-header-cell>>
+      <mat-header-cell style="width: 100px;" *matHeaderCellDef>Students</mat-header-cell>>
       <mat-cell *matCellDef="let row">{{ row.student.studentName }}</mat-cell>>
     </ng-container>
 
     <ng-container *ngFor="let column of sessionHeaderName" [matColumnDef]="column">
-      <mat-header-cell style="min-width: 50px;" *matHeaderCellDef>{{ column }}
+      <mat-header-cell style="width: 50px;" *matHeaderCellDef>{{ column }}
         <br>
         {{ getTotalMarksAverage(column) }} / 100
 

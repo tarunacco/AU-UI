@@ -15,23 +15,24 @@ import { SessionformComponent } from '../sessionform/sessionform.component';
 
 export class StudentformComponent implements OnInit {
   newStudentForm: FormGroup;
+  //updateStudentForm: FormGroup;
 
-  batchId:number;
+  batchId: number;
   constructor(private fb: FormBuilder,
     private http: HttpClient,
-    private dialogRef:MatDialogRef<StudentformComponent>,
+    private dialogRef: MatDialogRef<StudentformComponent>,
     @Inject(MAT_DIALOG_DATA) public dialogData,
-    private snackbar:MatSnackBar
-    ) {
+    private snackbar: MatSnackBar
+  ) {
 
-      this.batchId = dialogData.batchId;
-    }
+    this.batchId = dialogData.batchId;
+  }
 
-
+  update = false;;
   ngOnInit() {
     this.newStudentForm = this.fb.group({
       batchId: [this.batchId, [Validators.required]],
-      studentId: ['', [Validators.required]],
+      studentId: [''],
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       emailId: ['', [Validators.required]]
@@ -40,29 +41,33 @@ export class StudentformComponent implements OnInit {
 
     if (this.dialogData.studDetails) {
       this.newStudentForm.patchValue(this.dialogData.studDetails);
-
+      this.update = true;
     }
   }
 
 
   onSubmit() {
+
     if (this.newStudentForm.valid) {
-     this.http.post('/api/student/add', this.newStudentForm.value).subscribe(() => this.dialogRef.close())
-     if (this.dialogData) {
-       this.snackbar.open("Updated Student", '', {
-         duration: 2000
-       });
-     }
-     else {
-      this.snackbar.open("Added Student", '', {
-        duration: 2000
-      });
-     }
+      console.log("Student valid")
+      if (this.dialogData.studDetails) {
+        this.http.post('/api/student/add', this.newStudentForm.value).subscribe(() => this.dialogRef.close())
+          this.snackbar.open("Updated Student", '', {
+            duration: 2000
+          });
+        }
+        else {
+          this.http.post('/api/student/add', this.newStudentForm.value).subscribe(() => this.dialogRef.close())
+          this.snackbar.open("Added Student", '', {
+            duration: 2000
+          });
+        }
+      }
+        else {
+          this.snackbar.open('There are validation errors', '', {
+            duration: 5000,
+          });
+        }
     }
-    else {
-      this.snackbar.open("There are validation errors", '', {
-        duration:5000
-      })
-    }
-  }
 }
+

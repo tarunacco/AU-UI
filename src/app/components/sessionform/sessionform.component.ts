@@ -69,13 +69,13 @@ export class SessionformComponent implements OnInit {
     // }
 
     console.log(this.newSessionForm.valid);
-    if (this.newSessionForm.valid) {
+    // if (this.newSessionForm.valid) {
       this.http.post('/api/session/add', this.newSessionForm.value).subscribe(() => this.dialogRef.close())
       this.snackbar.open("Session Added", '', {duration:3000})
-    }
-     else {
-       this.snackbar.open("There are validation errors",  '', {duration:5000})
-      }
+    // }
+    //  else {
+    //    this.snackbar.open("There are validation errors",  '', {duration:5000})
+    //   }
   }
 
 

@@ -6,6 +6,8 @@ import {
   FormControl,
   FormBuilder,
   Validators,
+  ValidatorFn,
+  ValidationErrors,
 } from '@angular/forms';
 import {
   MatDialog,
@@ -20,7 +22,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./batchform.component.css'],
 })
 export class BatchformComponent implements OnInit {
-
   newBatchForm: FormGroup;
   constructor(
     private fb: FormBuilder,
@@ -32,7 +33,7 @@ export class BatchformComponent implements OnInit {
 
   ngOnInit() {
     this.newBatchForm = this.fb.group({
-      batchId: ['', Validators.required],
+      batchId: [''],
       batchName: ['', [Validators.required]],
       startDate: ['', [Validators.required]],
       endDate: ['', [Validators.required]],
@@ -46,16 +47,23 @@ export class BatchformComponent implements OnInit {
   }
 
   onSubmit() {
-      if (this.newBatchForm.valid) {
-
-         this.http.post('/api/batch/add', this.newBatchForm.value).subscribe(() => this.dialogRef.close());
-         this.snackbar.open("Batch Added", '', {duration:3000});
+    if (this.newBatchForm.valid) {
+      if (this.dialogData) {
+        this.http
+          .post('/api/batch/add', this.newBatchForm.value)
+          .subscribe(() => this.dialogRef.close());
+        this.snackbar.open('Batch Updated', '', { duration: 3000 });
+      } else {
+        this.http
+          .post('/api/batch/add', this.newBatchForm.value)
+          .subscribe(() => this.dialogRef.close());
+        this.snackbar.open('Batch Added', '', { duration: 3000 });
       }
-      else {
-        this.snackbar.open('There are validation errors', '', {
-          duration:5000
-        });
-      }
+    } else {
+      this.snackbar.open('There are validation errors', '', {
+        duration: 5000,
+      });
+    }
 
     //this.http.post('api/batch/add', this.newBatchForm.value).subscribe(()=>this.dialogRef.close());
   }

@@ -57,6 +57,7 @@ export class BatchesComponent implements OnInit, AfterViewInit {
   }
 
   openNewBatchDialog(batch) {
+    console.log(batch);
     let dialogRef: MatDialogRef<BatchformComponent>;
     if (batch) {
       dialogRef = this.dialog.open(BatchformComponent, {

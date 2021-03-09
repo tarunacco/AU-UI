@@ -6,7 +6,7 @@ import { BatchesComponent } from './components/batches/batches.component';
 
 const routes: Routes = [
   {
-    path: 'batches',
+    path: '',
     component: BatchesComponent,
   },
 

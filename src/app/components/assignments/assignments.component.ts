@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-assignments',
@@ -17,12 +17,16 @@ export class AssignmentsComponent implements OnInit {
   total = 0;
   constructor(private http:HttpClient) {}
 
+  @Input()
+  batchId:number;
+
   ngOnInit() {
     this.fetchMarks();
   }
 
   fetchMarks() {
-    this.http.get<any[]>('/api/training/all', { params: { type: 'M'}})
+    let url = '/api/training/all/' + this.batchId;
+    this.http.get<any[]>(url, { params: { type: 'M'}})
     .subscribe((marks) => (this.score = marks,
       this.sessionHeaders = marks['sessions'],
       this.sessionHeaders.map((seshead) => {
@@ -32,8 +36,11 @@ export class AssignmentsComponent implements OnInit {
       this.marksData = marks['marksData'], this.updateReport()));
   }
 
-  getTotalMarksAverage(column){
-    return parseFloat(this.finalAverageReport[column]) / this.total;
+  getTotalMarksAverage(column) {
+    if (column in this.finalAverageReport) {
+      return parseFloat(this.finalAverageReport[column]) / this.total;
+    }
+    return 0;
   }
 
   updateReport(){

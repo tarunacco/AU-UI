@@ -1,25 +1,8 @@
-import {
-  Component,
-  ElementRef,
-  Inject,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
-import { CSVRecord } from './CSVRecord';
-import {
-  NgxCsvParser,
-  NgxCSVParserError,
-  NgxCsvParserModule,
-} from 'ngx-csv-parser';
-import {
-  HttpClient,
-  HttpEvent,
-  HttpHeaders,
-  HttpRequest,
-} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { StudentformComponent } from '../studentform/studentform.component';
-import { Observable } from 'rxjs';
+import { NgxCsvParser } from 'ngx-csv-parser';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-bulkaddstudents',
@@ -30,7 +13,6 @@ export class BulkaddstudentsComponent implements OnInit {
   csvRecords: any[] = [];
   header: boolean = true;
   batchId: number;
-
   constructor(
     private ngxCsvParser: NgxCsvParser,
     private http: HttpClient,
@@ -71,13 +53,11 @@ export class BulkaddstudentsComponent implements OnInit {
       formData.append('studentsFile', studentsFile, studentsFile.name);
       formData.append('batchId', this.batchId.toString());
       console.log('sending file');
-      this.http
-        .post('/api/student/bulkAdd', formData)
-        .subscribe((response) => {
-          console.log(response);
-          // show snackbar
-        });
+      this.http.post('/api/student/bulkAdd', formData).subscribe((response) => {
+        console.log(response);
+        // show snackbar
+      });
     }
   }
-
 }
+
