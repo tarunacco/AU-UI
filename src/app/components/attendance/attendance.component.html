@@ -26,17 +26,20 @@
         </button>
         <mat-menu #menu="matMenu">
            <button
+           *ngIf="getAttendance(row, column) == 'A' || getAttendance(row, column) == 'N/A'"
             mat-menu-item
-            (click)="mark(row.student.studentId, column, row, true)"
+            (click)="mark(row.student.studentId, column, row,  getAttendance(row, column), true)"
           >
             <span>Mark Present</span>
           </button>
           <button
+          *ngIf="getAttendance(row, column) == 'P' || getAttendance(row, column) == 'N/A'"
             mat-menu-item
-            (click)="mark(row.student.studentId, column, row, false)"
+            (click)="mark(row.student.studentId, column, row,  getAttendance(row, column), false)"
           >
             <span>Mark Absent</span>
           </button>
+
         </mat-menu>
       </mat-cell>>
     </ng-container>

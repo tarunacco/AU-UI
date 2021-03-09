@@ -93,7 +93,7 @@ export class AttendanceComponent implements OnInit {
     return 'N/A';
   }
 
-  mark(studentId, sessionName_, row, markPresent) {
+  mark(studentId, sessionName_, row, previousStatus, markPresent) {
     let attendanceStatus = 'N/A';
     if (markPresent === true) {
       attendanceStatus = 'P';
@@ -108,6 +108,24 @@ export class AttendanceComponent implements OnInit {
         (session) => session.sessionName === sessionName_
       ).sessionId
     }`;
+
+    if(previousStatus == 'N/A' || previousStatus == 'A'){
+      if(attendanceStatus == 'P'){
+        if(sessionName_ in this.finalAttendanceReport){
+          this.finalAttendanceReport[sessionName_] += 1;
+        }
+        else{
+          this.finalAttendanceReport[sessionName_] = 1;
+        }
+      }
+    }
+    else{
+      if(attendanceStatus == 'A'){
+        this.finalAttendanceReport[sessionName_] -= 1;
+      }
+    }
+
+    this.attendanceData
     if (row[sessionId]) {
       row[sessionId]['attendance'] = attendanceStatus;
     } else {

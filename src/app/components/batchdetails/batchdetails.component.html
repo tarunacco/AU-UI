@@ -9,21 +9,16 @@
     </mat-tab>
 
     <mat-tab label="Candidates">
-      <ng-template matTabContent>
+
         <app-students [batchId]="batchId"> </app-students>
-      </ng-template>
     </mat-tab>
 
     <mat-tab label="Attendance">
-      <ng-template matTabContent>
         <app-attendance [batchId]="batchId"></app-attendance>
-      </ng-template>
     </mat-tab>
 
     <mat-tab label="Assignment">
-      <ng-template matTabContent
         ><app-assignments [batchId]="batchId"> </app-assignments>
-      </ng-template>
     </mat-tab>
   </mat-tab-group>
 </div>

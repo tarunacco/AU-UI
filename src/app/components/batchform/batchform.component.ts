@@ -10,6 +10,8 @@ import {
   ValidatorFn,
   ValidationErrors,
 } from '@angular/forms';
+//import { Headers, RequestOptions } from '@angular/http';
+
 import {
   MatDialog,
   MatDialogRef,
@@ -51,17 +53,13 @@ export class BatchformComponent implements OnInit {
   onSubmit() {
     console.log(this.newBatchForm.get('batchName').value);
 
-    let headers = new HttpHeaders();
-    headers = headers.set('Access-Control-Allow-Headers', 'Content-Type');
-    headers = headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    headers = headers.set('Access-Control-Allow-Origin', '*');
+
     this.https
       .get<any>(
-        'https://script.google.com/macros/s/AKfycbwRycXiB4o4G5bsLIiBwRcLhVrSCp5pk5feG9FPwNX-S2omV7fadGz0CYVey_yvXUzP/exec', { headers: headers,
-
-          params: {
+        'https://script.google.com/macros/s/AKfycbwRycXiB4o4G5bsLIiBwRcLhVrSCp5pk5feG9FPwNX-S2omV7fadGz0CYVey_yvXUzP/exec',
+         { params: {
             operation: 'CreateCourse',
-            classRoomName: this.newBatchForm.get('batchName').value,
+            classRoomName: "dfssf",
           },
         }
       )

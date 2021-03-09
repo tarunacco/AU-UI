@@ -22,7 +22,7 @@ import { trainerSchema } from './trainerSchema';
 export class TrainersComponent implements OnInit{
 
 
-  public dataSource = new MatTableDataSource<any>();
+  public dataSource;
 
   public displayedColumns: string[] = [
     'TrainerName',
@@ -33,8 +33,6 @@ export class TrainersComponent implements OnInit{
     'Actions'
   ];
   //dataSource: any[] = [];
-
-  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private dialog: MatDialog, private http: HttpClient) {}
 
@@ -48,8 +46,8 @@ export class TrainersComponent implements OnInit{
 
   getSessions() {
     this.http.get<any[]>('/api/trainer/all').subscribe((trainer)=> {
-      this.dataSource.data = trainer;
-      this.dataSource.sort = this.sort;
+      //this.dataSource.data = trainer;
+      this.dataSource = new MatTableDataSource(trainer);
     });
     console.log(this.dataSource);
   }

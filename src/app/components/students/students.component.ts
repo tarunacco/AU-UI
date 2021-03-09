@@ -12,14 +12,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./students.component.css'],
 })
 export class StudentsComponent implements OnInit {
-  batchName: String;
 
   constructor(
     private dialog: MatDialog,
     private http: HttpClient,
     private router: Router
   ) {
-    this.batchName = this.router.getCurrentNavigation().extras.state.batchName;
+    console.log("Constructor Of Students Loaded")
   }
 
   displayedColumns: string[] = [
@@ -42,6 +41,7 @@ export class StudentsComponent implements OnInit {
   }
 
   getStudents() {
+    console.log(this.dataSource);
     this.http
       .get<any[]>('api/student/all', { params: { batchId: `${this.batchId}` } })
       .subscribe((res) => (this.dataSource = res));

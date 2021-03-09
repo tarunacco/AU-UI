@@ -35,7 +35,7 @@ export class AssignmentsComponent implements OnInit {
           this.sessionHeaders.map((seshead) => {
             this.sessionHeaderName.push(seshead.sessionName);
           }),
-          (this.headers = ['Student', ...this.sessionHeaderName]),
+          (this.headers = ['Student', ...this.sessionHeaderName, 'Average']),
           (this.marksData = marks['marksData']),
           this.updateReport()
         )
@@ -43,34 +43,34 @@ export class AssignmentsComponent implements OnInit {
   }
 
   getTotalMarksAverage(column) {
+    column = column.student.studentId;
     if (column in this.finalAverageReport) {
-      return parseFloat(this.finalAverageReport[column]) / this.total;
+      return ((parseFloat(this.finalAverageReport[column]) / this.total).toFixed(2)).toString();
     }
-    return 0;
+    return "0";
   }
+
+  studentmap = {};
+  arraylistassignment = {};
 
   updateReport() {
     let copyOfFinalAverageReport = this.finalAverageReport;
     for (let i = 0; i < this.marksData.length; i++) {
       let currData = this.marksData[i];
+      let currentStudentId = currData['student']['studentId'];
+      copyOfFinalAverageReport[currentStudentId] = 0;
       for (let key in currData) {
         if (key == 'student') {
           continue;
         } else {
-          if (currData[key]['sessionName'] in copyOfFinalAverageReport) {
-            copyOfFinalAverageReport[currData[key]['sessionName']] += parseInt(
-              currData[key]['marks']
-            );
-          } else {
-            copyOfFinalAverageReport[currData[key]['sessionName']] = parseInt(
-              currData[key]['marks']
-            );
-          }
+          copyOfFinalAverageReport[currentStudentId] += parseInt(
+            currData[key]['marks']
+          );
         }
       }
     }
     this.finalAverageReport = copyOfFinalAverageReport;
-    this.total = this.marksData.length;
+    this.total = this.sessionHeaderName.length;
   }
 
   getMarks(row, column) {
@@ -84,7 +84,7 @@ export class AssignmentsComponent implements OnInit {
     return;
   }
 
-  mark(studentId, sessionName_, marks) {
+  mark(row, studentId, sessionName_, previousMarks, marks) {
     let sessId;
     this.sessionHeaders.forEach((session) => {
       if (session.sessionName === sessionName_) {
@@ -93,6 +93,13 @@ export class AssignmentsComponent implements OnInit {
       }
     });
 
+    // Update Marks Logic
+    this.finalAverageReport[studentId] -= parseInt(previousMarks);
+    this.finalAverageReport[studentId] += parseInt(marks);
+    if (row[sessId]) {
+      return row[sessId]['marks'] = marks;
+    }
+
     const markAttendance = {
       attendanceId: {
         sessionId: sessId,
@@ -100,6 +107,8 @@ export class AssignmentsComponent implements OnInit {
       },
       marks: marks,
     };
+
+    console.log(markAttendance);
 
     this.http
       .post('api/training/assignMarks', markAttendance)
