@@ -1,10 +1,18 @@
-<div fxLayoutAlign="space-between center" style="margin: 0 20px">
-
-  <h1>{{batchName}} Sessions </h1>
-  <div fxLayoutGap = "15px">
-  <button mat-raised-button color="primary" (click)="openNewSessionDialog(null)"> Create New Session </button>
-  <button mat-raised-button color="primary" (click)="openBulkSessionDialog()"> Bulk add Session </button>
-</div>
+<div fxLayoutAlign="space-between center" style="padding: 20px">
+  <div></div>
+  <div fxLayoutGap="20px">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="openNewSessionDialog(null)"
+    >
+      <mat-icon>add_circle</mat-icon>&nbsp;&nbsp;Create New Session
+    </button>
+    &nbsp;&nbsp;
+    <button mat-raised-button color="primary" (click)="openBulkSessionDialog()">
+      <mat-icon>cloud_upload</mat-icon>&nbsp;&nbsp;Bulk add Session
+    </button>
+  </div>
 </div>
 
 <mat-table
@@ -28,14 +36,16 @@
   <ng-container matColumnDef="Time">
     <mat-header-cell *matHeaderCellDef> Time Slot </mat-header-cell>
     <mat-cell *matCellDef="let element">
-      {{ (element.daySlot == 'M') ? 'Morning' : 'Evening' }}
+      {{ element.daySlot == "M" ? "Morning" : "Evening" }}
     </mat-cell>
   </ng-container>
 
   <!-- Created On Column -->
   <ng-container matColumnDef="Trainer">
     <mat-header-cell *matHeaderCellDef> Trainer </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{ element.trainer.trainerName }} </mat-cell>
+    <mat-cell *matCellDef="let element">
+      {{ element.trainer.trainerName }}
+    </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="TrainerEmail">
@@ -43,21 +53,38 @@
     <mat-cell *matCellDef="let element"> {{ element.trainer.emailId }} </mat-cell>
   </ng-container>
 
-
   <!-- Actions -->
   <ng-container matColumnDef="Actions">
     <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
     <mat-cell *matCellDef="let row">
-
-      <button mat-button matTooltip ="Send Mail" matTooltipPosition="above" color="warn" (click)="sendEmail(row)" color = "primary">
+      <button
+        mat-button
+        matTooltip="Send Mail"
+        matTooltipPosition="above"
+        color="warn"
+        (click)="sendEmail(row)"
+        color="primary"
+      >
         <mat-icon>email</mat-icon>
       </button>
 
-      <button mat-button matTooltip ="Update Session"  matTooltipPosition="above" (click)="openNewSessionDialog(row)" color = "accent">
+      <button
+        mat-button
+        matTooltip="Update Session"
+        matTooltipPosition="above"
+        (click)="openNewSessionDialog(row)"
+        color="accent"
+      >
         <mat-icon>edit</mat-icon>
       </button>
 
-      <button mat-button matTooltip = "Delete Session" matTooltipPosition="above" color="warn" (click) = "deleteSession(row)">
+      <button
+        mat-button
+        matTooltip="Delete Session"
+        matTooltipPosition="above"
+        color="warn"
+        (click)="deleteSession(row)"
+      >
         <mat-icon>delete</mat-icon>
       </button>
     </mat-cell>
