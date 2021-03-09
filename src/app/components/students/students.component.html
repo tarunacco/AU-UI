@@ -35,7 +35,7 @@
   <ng-container matColumnDef="Joining Date">
     <mat-header-cell *matHeaderCellDef> Joining Date </mat-header-cell>
     <mat-cell *matCellDef="let element">
-      {{ element.createdOn | date: "shortDate" }}
+      {{ element.createdOn | date: "mediumDate" }}
     </mat-cell>
   </ng-container>
 

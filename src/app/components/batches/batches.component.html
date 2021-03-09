@@ -25,14 +25,14 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>
       Start Date
     </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{ element.startDate }} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{ element.startDate | date: "mediumDate" }} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="EndDate">
     <mat-header-cell *matHeaderCellDef mat-sort-header>
       End Date
     </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{ element.endDate }} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{ element.endDate | date: "mediumDate"  }} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="BatchSkypeId">
@@ -68,6 +68,7 @@
         <mat-icon> chat</mat-icon>
       </button>
 
+      <mat-divider vertical style="height:20px"></mat-divider>
       <button
         mat-button
         matTooltip="Update Batch"

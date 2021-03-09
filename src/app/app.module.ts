@@ -43,6 +43,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AssignmentsComponent } from './components/assignments/assignments.component';
 import { BulkaddsessionsComponent } from './components/bulkaddsessions/bulkaddsessions.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 
@@ -96,9 +97,10 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     NgxCsvParserModule,
     MatTableExporterModule,
     MatSnackBarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDividerModule
   ],
-  exports: [MatTabsModule],
+  exports: [MatTabsModule, MatSortModule],
 
   providers: [],
   bootstrap: [AppComponent],

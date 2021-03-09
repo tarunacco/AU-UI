@@ -6,32 +6,51 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TrainerFormComponent } from '../trainer-form/trainer-form.component';
+import { MatSort } from '@angular/material/sort';
+import { ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { trainerSchema } from './trainerSchema';
+
 
 @Component({
   selector: 'app-trainers',
   templateUrl: './trainers.component.html',
   styleUrls: ['./trainers.component.css'],
 })
-export class TrainersComponent implements OnInit {
-  constructor(private dialog: MatDialog, private http: HttpClient) {}
+export class TrainersComponent implements OnInit{
 
-  displayedColumns: string[] = [
-    'Trainer Name',
-    'Skype Id',
-    'Email Id',
-    'Reporting Manager Email',
+
+  public dataSource = new MatTableDataSource<any>();
+
+  public displayedColumns: string[] = [
+    'TrainerName',
+    'BusinessUnit',
+    'SkypeId',
+    'EmailId',
+    'ReportingManagerEmail',
     'Actions'
   ];
-  dataSource: any[] = [];
+  //dataSource: any[] = [];
+
+  @ViewChild(MatSort) sort: MatSort;
+
+  constructor(private dialog: MatDialog, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.getSessions();
-
   }
+
+  ngAfterViewInit(): void {
+    //this.dataSource.sort = this.sort;
+  }
+
   getSessions() {
-    this.http.get<any[]>('/api/trainer/all').subscribe((trainer)=> this.dataSource = trainer);
+    this.http.get<any[]>('/api/trainer/all').subscribe((trainer)=> {
+      this.dataSource.data = trainer;
+      this.dataSource.sort = this.sort;
+    });
     console.log(this.dataSource);
   }
 

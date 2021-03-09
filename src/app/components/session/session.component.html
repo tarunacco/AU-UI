@@ -20,16 +20,10 @@
   style="margin: 20px"
   class="mat-elevation-z8"
 >
-  <!-- Session Name Column -->
-  <ng-container matColumnDef="SessionName">
-    <mat-header-cell *matHeaderCellDef> Session Name </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{ element.sessionName }} </mat-cell>
-  </ng-container>
-
   <!-- Session Start Date Column -->
   <ng-container matColumnDef="Date">
     <mat-header-cell *matHeaderCellDef> Start Date </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{ element.startDate }} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{ element.startDate | date: "mediumDate"  }} </mat-cell>
   </ng-container>
 
   <!-- Time Slot Column -->
@@ -38,6 +32,12 @@
     <mat-cell *matCellDef="let element">
       {{ element.daySlot == "M" ? "Morning" : "Evening" }}
     </mat-cell>
+  </ng-container>
+
+  <!-- Session Name Column -->
+  <ng-container matColumnDef="SessionName">
+    <mat-header-cell *matHeaderCellDef> Session Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.sessionName }} </mat-cell>
   </ng-container>
 
   <!-- Created On Column -->
@@ -50,7 +50,9 @@
 
   <ng-container matColumnDef="TrainerEmail">
     <mat-header-cell *matHeaderCellDef> Trainer EmailId </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{ element.trainer.emailId }} </mat-cell>
+    <mat-cell *matCellDef="let element">
+      {{ element.trainer.emailId }}
+    </mat-cell>
   </ng-container>
 
   <!-- Actions -->

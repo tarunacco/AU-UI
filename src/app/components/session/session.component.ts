@@ -27,9 +27,9 @@ export class SessionComponent implements OnInit {
   }
 
   displayedColumns: string[] = [
-    'SessionName',
     'Date',
     'Time',
+    'SessionName',
     'Trainer',
     'TrainerEmail',
     'Actions',
