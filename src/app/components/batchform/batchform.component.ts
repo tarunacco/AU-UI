@@ -32,6 +32,7 @@ export class BatchformComponent implements OnInit {
 
   ngOnInit() {
     this.newBatchForm = this.fb.group({
+      batchId: ['', Validators.required],
       batchName: ['', [Validators.required]],
       startDate: ['', [Validators.required]],
       endDate: ['', [Validators.required]],

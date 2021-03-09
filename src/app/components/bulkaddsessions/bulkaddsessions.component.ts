@@ -1,50 +1,29 @@
-import {
-  Component,
-  ElementRef,
-  Inject,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
-import { CSVRecord } from './CSVRecord';
-import {
-  NgxCsvParser,
-  NgxCSVParserError,
-  NgxCsvParserModule,
-} from 'ngx-csv-parser';
-import {
-  HttpClient,
-  HttpEvent,
-  HttpHeaders,
-  HttpRequest,
-} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { StudentformComponent } from '../studentform/studentform.component';
-import { Observable } from 'rxjs';
+// import { _SnackBarContainer } from '@angular/material/snack-bar';
+import { NgxCsvParser } from 'ngx-csv-parser';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+
 
 @Component({
-  selector: 'app-bulkaddstudents',
-  templateUrl: './bulkaddstudents.component.html',
-  styleUrls: ['./bulkaddstudents.component.css'],
+  selector: 'app-bulkaddsessions',
+  templateUrl: './bulkaddsessions.component.html',
+  styleUrls: ['./bulkaddsessions.component.css']
 })
-export class BulkaddstudentsComponent implements OnInit {
+export class BulkaddsessionsComponent implements OnInit {
   csvRecords: any[] = [];
   header: boolean = true;
   batchId: number;
-
-  constructor(
-    private ngxCsvParser: NgxCsvParser,
+  constructor(private ngxCsvParser: NgxCsvParser,
     private http: HttpClient,
-    private dialogRef: MatDialogRef<BulkaddstudentsComponent>,
-    @Inject(MAT_DIALOG_DATA) public dialogData
-  ) {
-    this.batchId = dialogData.batchId;
+    private dialogRef: MatDialogRef<BulkaddsessionsComponent>,
+    @Inject(MAT_DIALOG_DATA) public dialogData,
+    private snackbar: MatSnackBar)
+     { }
+
+  ngOnInit(): void {
   }
-
-  // selectFile(event) {
-  //   this.selectedFiles = event.target.files;
-  // }
-
-  ngOnInit(): void {}
 
   fileAttr = 'Select File';
   isDisabled = true;
@@ -60,11 +39,14 @@ export class BulkaddstudentsComponent implements OnInit {
       console.log('File type =' + typeof studentsFile);
       this.fileAttr = 'Selected File :- ' + studentsFile.name;
     } else {
-      // snack bar open for large file
+        this.snackbar.open("File size is too large", '', {
+          duration:2000
+        });
     }
   }
 
   uploadFileToServer(): void {
+    console.log('aagye');
     if (this.file != null) {
       const studentsFile = this.file;
       let formData: FormData = new FormData();
@@ -75,9 +57,10 @@ export class BulkaddstudentsComponent implements OnInit {
         .post('/api/student/bulkAdd', formData)
         .subscribe((response) => {
           console.log(response);
-          // show snackbar
+          this.snackbar.open("Sessions will be added", '', {
+            duration:2000
+          })
         });
     }
   }
-
 }

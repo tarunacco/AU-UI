@@ -28,6 +28,7 @@ export class TrainerFormComponent implements OnInit {
 
   ngOnInit() {
     this.newTrainerForm = this.fb.group({
+      trainerId: ['',[Validators.required]],
       trainerName: ['', [Validators.required]],
       skypeId: ['', [Validators.required]],
       emailId: ['', [Validators.required]],

@@ -31,11 +31,11 @@ export class SessionformComponent implements OnInit {
   ngOnInit() {
     this.newSessionForm = this.fb.group({
       batchId: [this.batchId, [Validators.required]],
+      sessionId:['',[Validators.required]],
       sessionName: ['', [Validators.required]],
       trainer:[{}, [Validators.required]],
       daySlot:['', [Validators.required]],
       startDate:['', [Validators.required]],
-      endDate:['', [Validators.required]],
     });
 
     this.http
@@ -68,6 +68,7 @@ export class SessionformComponent implements OnInit {
     //   }
     // }
 
+    console.log(this.newSessionForm.valid);
     if (this.newSessionForm.valid) {
       this.http.post('/api/session/add', this.newSessionForm.value).subscribe(() => this.dialogRef.close())
       this.snackbar.open("Session Added", '', {duration:3000})

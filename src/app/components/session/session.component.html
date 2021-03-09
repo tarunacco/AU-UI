@@ -1,8 +1,8 @@
 <div fxLayoutAlign="space-between center" style="margin: 0 20px">
   <h1>{{batchName}} Sessions </h1>
-  <button mat-raised-button color="primary" (click)="openNewSessionDialog(null)">
-    Create New Session
-  </button>
+  <button mat-raised-button color="primary" (click)="openNewSessionDialog(null)"> Create New Session </button>
+  <button mat-raised-button color="primary" (click)="openBulkSessionDialog()"> Bulk add Session </button>
+
 </div>
 
 <mat-table
@@ -43,6 +43,9 @@
     <mat-cell *matCellDef="let row">
       <button mat-button (click)="openNewSessionDialog(row)" color = "accent">
         <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-button color="warn" (click)="sendEmail(row)" color = "primary">
+        <mat-icon>email</mat-icon>
       </button>
       <button mat-button color="warn" (click) = "deleteSession(row)">
         <mat-icon>delete</mat-icon>

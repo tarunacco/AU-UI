@@ -1,5 +1,9 @@
 <h3 style = "text-align: center; font-weight: bold;">Provide Batch Details</h3>
 <form [formGroup]="newBatchForm">
+  <mat-form-field style="width: 100%;" style="display: none;">
+    <input matInput placeholder="Batch Id" formControlName="batchId" />
+  </mat-form-field>
+
   <mat-form-field style="width: 100%;">
     <input matInput placeholder="Batch Name" formControlName="batchName" />
   </mat-form-field>

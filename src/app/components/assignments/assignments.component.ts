@@ -13,7 +13,8 @@ export class AssignmentsComponent implements OnInit {
   sessionHeaderName = [];
   headers = [];
   marksData = [];
-
+  finalAverageReport = {};
+  total = 0;
   constructor(private http:HttpClient) {}
 
   ngOnInit() {
@@ -28,34 +29,49 @@ export class AssignmentsComponent implements OnInit {
         this.sessionHeaderName.push(seshead.sessionName);
       }),
       this.headers = ['Student', ...this.sessionHeaderName],
-      this.marksData = marks['marksData'], console.log(marks)));
+      this.marksData = marks['marksData'], this.updateReport()));
   }
+
+  getTotalMarksAverage(column){
+    return parseFloat(this.finalAverageReport[column]) / this.total;
+  }
+
+  updateReport(){
+    let copyOfFinalAverageReport = this.finalAverageReport;
+      for(let i = 0 ; i < this.marksData.length ; i++){
+        let currData = this.marksData[i];
+        for(let key in currData){
+          if(key == "student"){
+            continue;
+          }
+          else{
+            if(currData[key]['sessionName'] in copyOfFinalAverageReport){
+              copyOfFinalAverageReport[currData[key]['sessionName']] += parseInt(currData[key]['marks']);
+            }
+            else{
+              copyOfFinalAverageReport[currData[key]['sessionName']] = parseInt(currData[key]['marks']);
+            }
+          }
+        }
+      }
+      this.finalAverageReport = copyOfFinalAverageReport;
+      this.total = this.marksData.length;
+  }
+
 
   getMarks(row, column) {
     const sessionId = `${this.sessionHeaders.find((session) => session.sessionName === column).sessionId}`;
     if (row[sessionId]) {
       return row[sessionId].marks;
     }
-    return 0;
+    return;
   }
 
-  mark(studentId, sessionName_, markPresent) {
-    let attendanceStatus = 'N/A';
-    if (markPresent === true) {
-        attendanceStatus = 'P';
-    }
-    else if (markPresent === false) {
-        attendanceStatus = 'A';
-    }
-    else {
-      attendanceStatus = 'N/A';
-    }
-
+  mark(studentId, sessionName_, marks) {
     let sessId;
     this.sessionHeaders.forEach((session) => {
         if (session.sessionName === sessionName_) {
           sessId = parseInt(session.sessionId);
-          console.log(sessId);
           return;
         }
     })
@@ -66,15 +82,11 @@ export class AssignmentsComponent implements OnInit {
           "sessionId": sessId,
           "studentId": studentId,
       },
-      "status": attendanceStatus,
+      "marks": marks,
     }
 
-    this.http.post('api/training/markAttendance', markAttendance).subscribe(() => {
-      this.sessionHeaders = [];
-      this.sessionHeaderName = [];
-      this.headers = [];
-      this.marksData = [];
-      this.fetchMarks()
+    this.http.post('api/training/assignMarks', markAttendance).subscribe((res) => {
+      //console.log(res);
     });
 
   }

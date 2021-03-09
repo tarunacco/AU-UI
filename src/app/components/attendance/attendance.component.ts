@@ -17,6 +17,8 @@ export class AttendanceComponent implements OnInit {
   sessionHeaderName = [];
   headers = [];
   attendanceData = [];
+  finalAttendanceReport = {};
+  total = 0;
 
   constructor(private http:HttpClient) {}
 
@@ -24,7 +26,13 @@ export class AttendanceComponent implements OnInit {
     this.fetchAttendance();
   }
 
+  getTotalAttendance(column){
+    return this.finalAttendanceReport[column];
+  }
+
   fetchAttendance() {
+    console.log("Inside fetchAttendance");
+
     this.http.get<any[]>('/api/training/all', { params: { type: 'A'}})
     .subscribe((attendance) => (this.attend = attendance,
       this.sessionHeaders = attendance['sessions'],
@@ -32,10 +40,33 @@ export class AttendanceComponent implements OnInit {
         this.sessionHeaderName.push(seshead.sessionName);
       }),
       this.headers = ['Student', ...this.sessionHeaderName],
-      this.attendanceData = attendance['attendanceData'], console.log(attendance)));
+      this.attendanceData = attendance['attendanceData'], console.log(attendance), this.updateReport()));
+  }
+
+  updateReport(){
+    let copyOfFinalAttendanceReport = this.finalAttendanceReport;
+      for(let i = 0 ; i < this.attendanceData.length ; i++){
+        let currData = this.attendanceData[i];
+        for(let key in currData){
+          if(key == "student"){
+            continue;
+          }
+          else{
+            if(currData[key]['sessionName'] in copyOfFinalAttendanceReport){
+              copyOfFinalAttendanceReport[currData[key]['sessionName']] += currData[key]['attendance'] == 'P' ? 1 : 0;
+            }
+            else{
+              copyOfFinalAttendanceReport[currData[key]['sessionName']] = currData[key]['attendance'] == 'P' ? 1 : 0;
+            }
+          }
+        }
+      }
+      this.finalAttendanceReport = copyOfFinalAttendanceReport;
+      this.total = this.attendanceData.length;
   }
 
   getAttendance(row, column) {
+    //console.log(row);
     const sessionId = `${this.sessionHeaders.find((session) => session.sessionName === column).sessionId}`;
     if (row[sessionId]) {
       const current_att = row[sessionId].attendance;
@@ -49,7 +80,7 @@ export class AttendanceComponent implements OnInit {
     return 'N/A';
   }
 
-  mark(studentId, sessionName_, markPresent) {
+  mark(studentId, sessionName_, row, markPresent) {
     let attendanceStatus = 'N/A';
     if (markPresent === true) {
         attendanceStatus = 'P';
@@ -61,14 +92,28 @@ export class AttendanceComponent implements OnInit {
       attendanceStatus = 'N/A';
     }
 
+    const sessionId = `${this.sessionHeaders.find((session) => session.sessionName === sessionName_).sessionId}`;
+    if (row[sessionId]) {
+      row[sessionId]['attendance'] = attendanceStatus;
+    }
+    else{
+      row[sessionId] = {
+        "sessionName": sessionName_,
+        "attendance": attendanceStatus
+      }
+      // console.log("New");
+      // console.log(row[sessionId])
+    }
+
     let sessId;
     this.sessionHeaders.forEach((session) => {
         if (session.sessionName === sessionName_) {
           sessId = parseInt(session.sessionId);
-          console.log(sessId);
+          //console.log(sessId);
           return;
         }
     })
+
 
 
     const markAttendance = {
@@ -79,12 +124,8 @@ export class AttendanceComponent implements OnInit {
       "status": attendanceStatus,
     }
 
-    this.http.post('api/training/markAttendance', markAttendance).subscribe(() => {
-      this.sessionHeaders = [];
-      this.sessionHeaderName = [];
-      this.headers = [];
-      this.attendanceData = [];
-      this.fetchAttendance()
+    this.http.post('api/training/markAttendance', markAttendance).subscribe((res) => {
+      //console.log(res);
     });
 
   }

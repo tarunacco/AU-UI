@@ -6,6 +6,10 @@
     <input matInput placeholder="Batch Id" formControlName="batchId">
   </mat-form-field>
 
+  <mat-form-field style="display:none">
+    <input matInput placeholder="Session Id" formControlName="sessionId">
+  </mat-form-field>
+
   <mat-form-field style="width: 100%;">
     <input matInput placeholder="Session Name" formControlName="sessionName">
   </mat-form-field>
@@ -36,14 +40,14 @@
     <input
       matInput
       [matDatepicker]="startDate"
-      placeholder="Start Date"
+      placeholder="Date"
       formControlName="startDate"
     />
     <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
     <mat-datepicker #startDate></mat-datepicker>
   </mat-form-field>
-
-  <mat-form-field>
+<!--
+  <mat-form-field style="display:none">
     <input
       matInput
       [matDatepicker]="endDate"
@@ -52,7 +56,7 @@
     />
     <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
     <mat-datepicker #endDate></mat-datepicker>
-  </mat-form-field>
+  </mat-form-field> -->
 
 
 </form>

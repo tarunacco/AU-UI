@@ -1,39 +1,32 @@
 <div class=" example-container mat-elevation-z8 mat-elevation-z8">
-  <mat-table matTableExporter
-  #exporter="matTableExporter"
-  [dataSource]="marksData" style = "width: 100%;" >
+  <mat-table matTableExporter #exporter="matTableExporter" [dataSource]="marksData" style="width: 100%;">
 
     <!-- Name Column -->
     <ng-container matColumnDef="Student" sticky>
-      <mat-header-cell style="min-width: 160px;"  *matHeaderCellDef>Students</mat-header-cell>>
+      <mat-header-cell style="min-width: 160px;" *matHeaderCellDef>Students</mat-header-cell>>
       <mat-cell *matCellDef="let row">{{ row.student.studentName }}</mat-cell>>
     </ng-container>
 
-
-
-
     <ng-container *ngFor="let column of sessionHeaderName" [matColumnDef]="column">
-      <mat-header-cell style="min-width: 50px;" *matHeaderCellDef>{{ column }}</mat-header-cell>>
-      <mat-cell *matCellDef="let row" >
-        {{ getMarks(row, column) }}
-        <button
-          mat-icon-button
-          [matMenuTriggerFor]="menu"
-        >
+      <mat-header-cell style="min-width: 50px;" *matHeaderCellDef>{{ column }}
+        <br>
+        {{ getTotalMarksAverage(column) }} / 100
+
+    </mat-header-cell>>
+      <mat-cell *matCellDef="let row">
+
+        <mat-form-field style="width: 25px;" class="example-form-field">
+          <input matInput type="number" min="0" max="100" #marksValue value="{{getMarks(row, column)}}">
+        </mat-form-field>
+
+        &nbsp; / 100
+
+        <button mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-           <button
-            mat-menu-item
-            (click)="mark(row.student.studentId, column, true)"
-          >
-            <span>Mark Present</span>
-          </button>
-          <button
-            mat-menu-item
-            (click)="mark(row.student.studentId, column, false)"
-          >
-            <span>Mark Absent</span>
+          <button mat-menu-item (click)="mark(row.student.studentId, column, marksValue.value)">
+            <span>Save</span>
           </button>
         </mat-menu>
       </mat-cell>>
@@ -43,10 +36,11 @@
     <mat-row *matRowDef="let row; columns: headers"></mat-row>>
   </mat-table>
   <div>
-  <h3></h3>
-  <button mat-raised-button (click)="exporter.exportTable('xlsx', {fileName:'test', sheet: 'sheet_name', Props: {Author: 'Talha'}})">Excel</button>
-  <button mat-raised-button (click)="exporter.exportTable('csv')">Csv</button>
-  <button mat-raised-button (click)="exporter.exportTable('json')">Json</button>
-  <button mat-raised-button (click)="exporter.exportTable('txt')">Txt</button>
+    <h3></h3>
+    <button mat-raised-button
+      (click)="exporter.exportTable('xlsx', {fileName:'test', sheet: 'sheet_name', Props: {Author: 'Talha'}})">Excel</button>
+    <button mat-raised-button (click)="exporter.exportTable('csv')">Csv</button>
+    <button mat-raised-button (click)="exporter.exportTable('json')">Json</button>
+    <button mat-raised-button (click)="exporter.exportTable('txt')">Txt</button>
   </div>
 </div>

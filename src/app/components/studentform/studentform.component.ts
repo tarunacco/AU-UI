@@ -31,6 +31,7 @@ export class StudentformComponent implements OnInit {
   ngOnInit() {
     this.newStudentForm = this.fb.group({
       batchId: [this.batchId, [Validators.required]],
+      studentId: ['', [Validators.required]],
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       emailId: ['', [Validators.required]]
@@ -39,6 +40,7 @@ export class StudentformComponent implements OnInit {
 
     if (this.dialogData.studDetails) {
       this.newStudentForm.patchValue(this.dialogData.studDetails);
+
     }
   }
 
@@ -46,7 +48,16 @@ export class StudentformComponent implements OnInit {
   onSubmit() {
     if (this.newStudentForm.valid) {
      this.http.post('/api/student/add', this.newStudentForm.value).subscribe(() => this.dialogRef.close())
-     this.snackbar.open("Student Added", '', {duration:3000})
+     if (this.dialogData) {
+       this.snackbar.open("Updated Student", '', {
+         duration: 2000
+       });
+     }
+     else {
+      this.snackbar.open("Added Student", '', {
+        duration: 2000
+      });
+     }
     }
     else {
       this.snackbar.open("There are validation errors", '', {

@@ -1,5 +1,12 @@
 <h3 style = "text-align: center; font-weight: bold;">New Trainer</h3>
 <form [formGroup]="newTrainerForm">
+
+
+  <mat-form-field style="width: 100%;" style = "display: none;">
+    <input matInput placeholder="TrainerId" formControlName="TrainerId" />
+  </mat-form-field>
+
+
   <mat-form-field style="width: 100%;">
     <input matInput placeholder="First Name" formControlName="trainerName" />
   </mat-form-field>

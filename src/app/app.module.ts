@@ -41,6 +41,7 @@ import { NgxCsvParserModule } from 'ngx-csv-parser';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AssignmentsComponent } from './components/assignments/assignments.component';
+import { BulkaddsessionsComponent } from './components/bulkaddsessions/bulkaddsessions.component';
 
 
 
@@ -61,6 +62,7 @@ import { AssignmentsComponent } from './components/assignments/assignments.compo
     AttendanceComponent,
     BulkaddstudentsComponent,
     AssignmentsComponent,
+    BulkaddsessionsComponent,
   ],
   imports: [
     BrowserModule,
