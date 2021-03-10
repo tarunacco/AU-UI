@@ -23,6 +23,7 @@ export class SessionComponent implements OnInit {
 
   batchName: String;
   isLoading= true;
+
   constructor(
     private dialog: MatDialog,
     private http: HttpClient,

@@ -18,6 +18,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class BatchformComponent implements OnInit {
   newBatchForm: FormGroup;
+  isProgressLoading = false;
+  loadText = 'Loading ...';
+
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
@@ -47,8 +50,8 @@ export class BatchformComponent implements OnInit {
     // console.log('Created new batch');
     // console.log(this.newBatchForm.value);
     if (this.newBatchForm.valid) {
+      this.isProgressLoading = true;
       if (this.dialogData) {
-
         let updateForm = this.newBatchForm.value;
 
         updateForm['commonClassroomId'] = this.batchObject.commonClassroomId;
@@ -56,13 +59,15 @@ export class BatchformComponent implements OnInit {
         updateForm['courseGroupEmail'] = this.batchObject.courseGroupEmail;
         updateForm['classroomName'] = this.batchObject.classroomName;
 
-        console.log("Update Form Batch")
+        console.log('Update Form Batch');
         console.log(updateForm);
-        this.http
-          .post('/api/batch/add', updateForm)
-          .subscribe(() => this.dialogRef.close());
+        this.http.post('/api/batch/add', updateForm).subscribe(() => {
+          this.dialogRef.close();
+          this.isProgressLoading = false;
+        });
         this.snackbar.open('Batch Updated', '', { duration: 5000 });
       } else {
+        this.loadText = 'Creating Google Classroom Course...';
         let tempForm = this.newBatchForm.value;
 
         this.http
@@ -84,9 +89,12 @@ export class BatchformComponent implements OnInit {
             tempForm['courseGroupEmail'] = val['courseGroupEmail'];
             tempForm['classroomName'] = val['name'];
             // console.log(tempForm);
-            this.http
-              .post('/api/batch/add', tempForm)
-              .subscribe(() => this.dialogRef.close());
+            this.loadText = 'Creating Batch...';
+            this.http.post('/api/batch/add', tempForm).subscribe(() => {
+              this.dialogRef.close();
+              this.isProgressLoading = false;
+              this.loadText = 'Loading...';
+            });
             this.snackbar.open('Batch Added', '', { duration: 5000 });
           });
       }

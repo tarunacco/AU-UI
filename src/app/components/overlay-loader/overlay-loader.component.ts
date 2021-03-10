@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-overlay-loader',
@@ -9,10 +9,10 @@ export class OverlayLoaderComponent implements OnInit {
 
   constructor() { }
 
-  loadText = "Loading..."
+  @Input() loadText;
   loaderActiveClass = "loading-overlay is-active"
   loaderClass = "loading-overlay"
-  
+
   ngOnInit(): void {
   }
 
