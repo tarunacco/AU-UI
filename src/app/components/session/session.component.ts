@@ -123,4 +123,7 @@ export class SessionComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(() => this.getSessions());
   }
+  applyFilter(filterValue:string) {
+    this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
+  }
 }

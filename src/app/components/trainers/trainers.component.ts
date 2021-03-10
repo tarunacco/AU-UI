@@ -80,5 +80,8 @@ export class TrainersComponent implements OnInit{
     window.open(`skype:${skypeId}?chat`);
   }
 
+  applyFilter(filterValue:string) {
+    this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
+  }
 
 }

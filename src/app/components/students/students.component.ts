@@ -112,4 +112,9 @@ export class StudentsComponent implements OnInit {
   openSkype(skypeId) {
     window.open(`skype:${skypeId}?chat`);
   }
+
+  applyFilter(filterValue:string) {
+    this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
+  }
+
 }

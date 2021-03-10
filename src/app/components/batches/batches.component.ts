@@ -114,4 +114,7 @@ export class BatchesComponent implements OnInit, AfterViewInit {
       duration: 5000
     });
   }
+  applyFilter(filterValue:string) {
+    this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
+  }
 }
