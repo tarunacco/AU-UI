@@ -17,7 +17,7 @@ export class SessionComponent implements OnInit {
   batchId: number;
 
   batchName: String;
-
+isLoading= true;
   constructor(
     private dialog: MatDialog,
     private http: HttpClient,
@@ -44,7 +44,7 @@ export class SessionComponent implements OnInit {
   getSessions() {
     this.http
       .get<any[]>('api/session/all', { params: { batchId: `${this.batchId}` } })
-      .subscribe((res) => (this.dataSource = res));
+      .subscribe((res) => (this.dataSource = res, this.isLoading = false));
   }
 
   openNewSessionDialog(session_) {

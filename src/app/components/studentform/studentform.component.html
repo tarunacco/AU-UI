@@ -1,47 +1,49 @@
-
-<h3 style="text-align: center; font-weight: bold;">New Student </h3>
+<h3 style="text-align: center; font-weight: bold">New Student</h3>
 <form [formGroup]="newStudentForm">
-
-  <mat-form-field style="display:none">
-    <input matInput placeholder="Batch Id" formControlName="batchId">
+  <mat-form-field style="display: none">
+    <input matInput placeholder="Batch Id" formControlName="batchId" />
   </mat-form-field>
-  <br/>
+  <br />
 
-  <mat-form-field style="display:none">
-    <input matInput placeholder="Candidate Id" formControlName="studentId">
-  </mat-form-field>
-
-  <mat-form-field style = "width: 100%;">
-    <input matInput placeholder="First Name" formControlName="firstName">
+  <mat-form-field style="display: none">
+    <input matInput placeholder="Candidate Id" formControlName="studentId" />
   </mat-form-field>
 
-  <br/>
-  <mat-form-field style = "width: 100%;">
-    <input matInput placeholder="Last Name" formControlName="lastName">
+  <mat-form-field style="width: 100%">
+    <input matInput placeholder="First Name" formControlName="firstName" />
   </mat-form-field>
-  <br/>
+
+  <br />
+  <mat-form-field style="width: 100%">
+    <input matInput placeholder="Last Name" formControlName="lastName" />
+  </mat-form-field>
+  <br />
   <mat-form-field>
-    <input matInput placeholder="Email Id" formControlName="emailId">
-  </mat-form-field>
-
-  <mat-form-field>
-    <input matInput placeholder="Skype Id" formControlName="skypeId">
+    <input matInput placeholder="Email Id" formControlName="emailId" />
   </mat-form-field>
 
   <mat-form-field>
-    <mat-label> Trainer </mat-label>
+    <input matInput placeholder="Skype Id" formControlName="skypeId" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label> Location </mat-label>
     <mat-select formControlName="location">
       <mat-option *ngFor="let location of Location" [value]="location">
-        {{location}}
+        {{ location }}
       </mat-option>
     </mat-select>
   </mat-form-field>
-
 </form>
 
 <div>
-  <button mat-button mat-dialog-close color = "warn">Cancel</button>
-  <button (click)="onSubmit()" mat-raised-button mat-dialog-close color = "primary">
+  <button mat-button mat-dialog-close color="warn">Cancel</button>
+  <button
+    (click)="onSubmit()"
+    mat-raised-button
+    mat-dialog-close
+    color="primary"
+  >
     {{ dialogData.studDetails ? "Update" : "Save" }}
   </button>
 </div>

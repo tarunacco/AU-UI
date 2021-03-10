@@ -34,7 +34,7 @@ export class StudentsComponent implements OnInit {
 
   @Input()
   batchId: number;
-
+  isLoading= true;
   ngOnInit(): void {
     console.log('Loaded Students Component');
     this.getStudents();
@@ -44,7 +44,7 @@ export class StudentsComponent implements OnInit {
     console.log(this.dataSource);
     this.http
       .get<any[]>('api/student/all', { params: { batchId: `${this.batchId}` } })
-      .subscribe((res) => (this.dataSource = res));
+      .subscribe((res) => (this.dataSource = res, this.isLoading = false));
   }
 
   openNewStudentDialog(stud) {

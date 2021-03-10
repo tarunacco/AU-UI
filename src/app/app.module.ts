@@ -32,22 +32,19 @@ import { StudentformComponent } from './components/studentform/studentform.compo
 import { TrainersComponent } from './components/trainers/trainers.component';
 import { TrainerFormComponent } from './components/trainer-form/trainer-form.component';
 import { MatSelect, MatSelectModule } from '@angular/material/select';
-import {MatSortModule} from '@angular/material/sort';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatSortModule } from '@angular/material/sort';
+import { MatMenuModule } from '@angular/material/menu';
 import { AttendanceComponent } from './components/attendance/attendance.component';
 import { BulkaddstudentsComponent } from './components/bulkaddstudents/bulkaddstudents.component';
 //import {MatToolbarModule} from '@angular/material/toolbar';
 import { NgxCsvParserModule } from 'ngx-csv-parser';
 import { MatTableExporterModule } from 'mat-table-exporter';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AssignmentsComponent } from './components/assignments/assignments.component';
 import { BulkaddsessionsComponent } from './components/bulkaddsessions/bulkaddsessions.component';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatDividerModule} from '@angular/material/divider';
-
-
-
-
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -98,7 +95,8 @@ import {MatDividerModule} from '@angular/material/divider';
     MatTableExporterModule,
     MatSnackBarModule,
     MatTooltipModule,
-    MatDividerModule
+    MatDividerModule,
+    MatProgressSpinnerModule,
   ],
   exports: [MatTabsModule, MatSortModule],
 

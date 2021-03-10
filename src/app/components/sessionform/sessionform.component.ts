@@ -1,88 +1,98 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  FormGroup,
+  FormControl,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
 
 @Component({
   selector: 'app-sessionform',
   templateUrl: './sessionform.component.html',
-  styleUrls: ['./sessionform.component.css']
+  styleUrls: ['./sessionform.component.css'],
 })
 export class SessionformComponent implements OnInit {
+  newSessionForm: FormGroup;
 
-  newSessionForm : FormGroup;
+  public Sessions: any = [];
+  batchId: number;
+  batchData: {};
 
-  public Sessions : any = [];
-  batchId:number;
-  constructor(private fb: FormBuilder,
+  constructor(
+    private fb: FormBuilder,
     private http: HttpClient,
-    private dialogRef:MatDialogRef<SessionformComponent>,
+    private dialogRef: MatDialogRef<SessionformComponent>,
     @Inject(MAT_DIALOG_DATA) public dialogData,
-    private snackbar:MatSnackBar
-    ){
+    private snackbar: MatSnackBar
+  ) {
+    this.batchId = dialogData.batchId;
+  }
 
-      this.batchId = dialogData.batchId;
-    }
-
-  Trainers: any = []
+  Trainers: any = [];
 
   ngOnInit() {
     this.newSessionForm = this.fb.group({
       batchId: [this.batchId, [Validators.required]],
-      sessionId:[''],
+      sessionId: [''],
       sessionName: ['', [Validators.required]],
-      trainer:[{}, [Validators.required]],
-      daySlot:['', [Validators.required]],
-      startDate:['', [Validators.required]],
+      trainer: [{}, [Validators.required]],
+      daySlot: ['', [Validators.required]],
+      startDate: ['', [Validators.required]],
     });
 
     this.http
-    .get<any[]>('/api/trainer/all')
-    .subscribe((trainer) => (this.Trainers = trainer, console.log(trainer)));
+      .get<any[]>('/api/trainer/all')
+      .subscribe(
+        (trainer) => ((this.Trainers = trainer), console.log(trainer))
+      );
 
     if (this.dialogData.sessionDetails) {
-      console.log("Session Details From Table on click");
+      console.log('Session Details From Table on click');
       console.log(this.dialogData.sessionDetails);
       this.newSessionForm.patchValue(this.dialogData.sessionDetails);
-      console.log("Form");
+      console.log('Form');
       console.log(this.newSessionForm.value);
     }
   }
 
-
   onSubmit() {
-    // console.log("Final Submisson Form Details");
-    // console.log(this.newSessionForm.value);
+    console.log(this.newSessionForm.value);
+    if (this.newSessionForm.valid) {
+      let tempForm = this.newSessionForm.value;
 
-    // let tempDict={
-    //   "batchId": 1,
-    //   "daySlot": "A",
-    //   "endDate": "2021-03-23",
-    //   "sessionName": "3/3/2021",
-    //   "startDate": "2021-03-02",
-    //   "sessionId": 8,
-    //   "trainer":{
-    //     "trainerId": 4
-    //   }
-    // }
-
-    console.log(this.newSessionForm.valid);
-     if (this.newSessionForm.valid) {
-       if (this.dialogData.sessionDetails) {
-        this.http.post('/api/session/add', this.newSessionForm.value).subscribe(() => this.dialogRef.close())
-        this.snackbar.open("Session Updated", '', {duration:3000});
-       }
-       else {
-        this.http.post('/api/session/add', this.newSessionForm.value).subscribe(() => this.dialogRef.close())
-        this.snackbar.open("Session Added", '', {duration:3000})
-       }
-      }
-     else {
-       this.snackbar.open("There are validation errors",  '', {duration:5000})
-      }
+      this.http
+        .get<any>(
+          'https://script.google.com/macros/s/AKfycbwRycXiB4o4G5bsLIiBwRcLhVrSCp5pk5feG9FPwNX-S2omV7fadGz0CYVey_yvXUzP/exec',
+          {
+            params: {
+              operation: 'CreateTopic',
+              courseId: '294807139540',
+              trainerName: this.newSessionForm.get('trainer').value.trainerName,
+              trainerEmail: this.newSessionForm.get('trainer').value.emailId,
+              topicName: this.newSessionForm.get('sessionName').value,
+            },
+          }
+        )
+        .subscribe((val) => {
+          // whatever is there in the submit put here
+          tempForm['classroomTopicId'] = val['createdTopic']['topicId'];
+          tempForm['classroomTopicName'] = val['createdTopic']['name'];
+          tempForm['calendarInviteLink'] = val['sentCalInvite']['htmlLink'];
+          console.log(tempForm);
+          this.http
+            .post('/api/session/add', this.newSessionForm.value)
+            .subscribe(() => this.dialogRef.close());
+          this.snackbar.open('Session Updated', '', { duration: 3000 });
+        });
+    } else {
+      this.snackbar.open('There are validation errors', '', { duration: 5000 });
+    }
   }
-
-
 }

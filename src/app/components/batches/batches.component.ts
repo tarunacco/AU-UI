@@ -30,8 +30,9 @@ export class BatchesComponent implements OnInit, AfterViewInit {
   ];
 
   dataSource: MatTableDataSource<any[]> = new MatTableDataSource<any[]>([]);
-  @ViewChild(MatSort, { static: false }) sort: MatSort;
-  //@ViewChild(MatSort) sort: MatSort;
+  isLoading = true;
+  //@ViewChild(MatSort, { static: false }) sort: MatSort;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(
     private dialog: MatDialog,
@@ -46,13 +47,18 @@ export class BatchesComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
+    //this.dataSource.sort = this.sort;
+    this.sort.sortChange.subscribe(() => console.log('ok'));
   }
 
   getSessions() {
     this.http
       .get<any[]>('/api/batch/all')
-      .subscribe((batches) => (this.dataSource.data = batches));
+      .subscribe(
+        (batches) => (
+          (this.dataSource.data = batches), (this.isLoading = false)
+        )
+      );
     console.log('batch Datasource', this.dataSource.data);
   }
 

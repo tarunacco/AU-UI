@@ -4,13 +4,9 @@ import { Inject } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
-  FormControl,
   FormBuilder,
   Validators,
-  ValidatorFn,
-  ValidationErrors,
 } from '@angular/forms';
-//import { Headers, RequestOptions } from '@angular/http';
 
 import {
   MatDialog,
@@ -50,41 +46,37 @@ export class BatchformComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.newBatchForm.get('batchName').value);
+    if (this.newBatchForm.valid) {
+      let tempForm = this.newBatchForm.value;
 
-    this.http
-      .get<any>(
-        'https://script.google.com/macros/s/AKfycbwRycXiB4o4G5bsLIiBwRcLhVrSCp5pk5feG9FPwNX-S2omV7fadGz0CYVey_yvXUzP/exec',
-         { params: {
-            operation: 'CreateCourse',
-            classRoomName: "dfssf",
-          },
-        }
-      )
-      .subscribe((val) => {
-        // whatever is there in the submit put here
-        console.log(val);
-        console.log('done');
+      this.http
+        .get<any>(
+          'https://script.google.com/macros/s/AKfycbwRycXiB4o4G5bsLIiBwRcLhVrSCp5pk5feG9FPwNX-S2omV7fadGz0CYVey_yvXUzP/exec',
+          {
+            params: {
+              operation: 'CreateCourse',
+              classRoomName: this.newBatchForm.get('batchName').value,
+            },
+          }
+        )
+        .subscribe((val) => {
+          // whatever is there in the submit put here
+          console.log(val);
+          console.log(typeof val);
+          tempForm['commonClassroomId'] = val['id'];
+          tempForm['classroomLink'] = val['alternateLink'];
+          tempForm['courseGroupEmail'] = val['courseGroupEmail'];
+          tempForm['classroomName'] = val['name'];
+          // console.log(tempForm);
+          this.http
+            .post('/api/batch/add', tempForm)
+            .subscribe(() => this.dialogRef.close());
+          this.snackbar.open('Batch Added', '', { duration: 3000 });
+        });
+    } else {
+      this.snackbar.open('There are validation errors', '', {
+        duration: 5000,
       });
-
-    // if (this.newBatchForm.valid) {
-    //   if (this.dialogData) {
-    //     this.http
-    //       .post('/api/batch/add', this.newBatchForm.value)
-    //       .subscribe(() => this.dialogRef.close());
-    //     this.snackbar.open('Batch Updated', '', { duration: 3000 });
-    //   } else {
-    //     this.http
-    //       .post('/api/batch/add', this.newBatchForm.value)
-    //       .subscribe(() => this.dialogRef.close());
-    //     this.snackbar.open('Batch Added', '', { duration: 3000 });
-    //   }
-    // } else {
-    //   this.snackbar.open('There are validation errors', '', {
-    //     duration: 5000,
-    //   });
-    // }
-
-    //this.http.post('api/batch/add', this.newBatchForm.value).subscribe(()=>this.dialogRef.close());
+    }
   }
 }

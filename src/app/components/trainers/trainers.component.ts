@@ -23,7 +23,7 @@ export class TrainersComponent implements OnInit{
 
 
   public dataSource;
-
+  isLoading= true;
   public displayedColumns: string[] = [
     'TrainerName',
     'BusinessUnit',
@@ -47,6 +47,7 @@ export class TrainersComponent implements OnInit{
   getSessions() {
     this.http.get<any[]>('/api/trainer/all').subscribe((trainer)=> {
       //this.dataSource.data = trainer;
+      this.isLoading = false
       this.dataSource = new MatTableDataSource(trainer);
     });
     console.log(this.dataSource);

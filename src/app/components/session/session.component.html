@@ -23,7 +23,9 @@
   <!-- Session Start Date Column -->
   <ng-container matColumnDef="Date">
     <mat-header-cell *matHeaderCellDef> Start Date </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{ element.startDate | date: "mediumDate"  }} </mat-cell>
+    <mat-cell *matCellDef="let element">
+      {{ element.startDate | date: "mediumDate" }}
+    </mat-cell>
   </ng-container>
 
   <!-- Time Slot Column -->
@@ -95,3 +97,19 @@
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>
+<div
+  class="spinner-container"
+  style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2%;
+  "
+  *ngIf="isLoading"
+>
+  <mat-progress-spinner
+    mode="indeterminate"
+    diameter="50"
+    strokeWidth="10"
+  ></mat-progress-spinner>
+</div>
