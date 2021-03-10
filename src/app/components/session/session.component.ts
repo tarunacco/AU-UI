@@ -126,4 +126,9 @@ export class SessionComponent implements OnInit {
   applyFilter(filterValue:string) {
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
   }
+
+  openCalendar(link) {
+    window.open(link);
+  }
+
 }

@@ -28,7 +28,7 @@ export class TrainerFormComponent implements OnInit {
 
   ngOnInit() {
     this.newTrainerForm = this.fb.group({
-      trainerId: ['',[Validators.required]],
+      trainerId: [''],
       trainerName: ['', [Validators.required]],
       skypeId: ['', [Validators.required]],
       emailId: ['', [Validators.required]],
@@ -55,12 +55,19 @@ export class TrainerFormComponent implements OnInit {
       }
       delete tempObj['businessUnitId'];
       console.log(tempObj);
-      this.http
+      if (this.dialogData) {
+        this.http
+        .post('/api/trainer/add', tempObj)
+        .subscribe(() => this.dialogRef.close());
+       this.snackbar.open("Trainer updated", '', {duration:3000});
+      }
+      else {
+        this.http
         .post('/api/trainer/add', tempObj)
         .subscribe(() => this.dialogRef.close());
        this.snackbar.open("Trainer added", '', {duration:3000});
+      }
     }
-
     else {
       this.snackbar.open("There are validation errors", '', {duration:5000})
     }

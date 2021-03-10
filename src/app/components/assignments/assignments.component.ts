@@ -14,7 +14,7 @@ export class AssignmentsComponent implements OnInit {
   marksData = [];
   finalAverageReport = {};
   total = 0;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   @Input()
   batchId: number;
@@ -35,7 +35,7 @@ export class AssignmentsComponent implements OnInit {
           this.sessionHeaders.map((seshead) => {
             this.sessionHeaderName.push(seshead.sessionName);
           }),
-          (this.headers = ['Student', ...this.sessionHeaderName, 'Average']),
+          (this.headers = ['First Name', 'Last Name', 'Email Address', ...this.sessionHeaderName, 'Average']),
           (this.marksData = marks['marksData']),
           this.updateReport(),
           console.log(marks['marksData'])
@@ -75,10 +75,9 @@ export class AssignmentsComponent implements OnInit {
   }
 
   getMarks(row, column) {
-    const sessionId = `${
-      this.sessionHeaders.find((session) => session.sessionName === column)
+    const sessionId = `${this.sessionHeaders.find((session) => session.sessionName === column)
         .sessionId
-    }`;
+      }`;
     if (row[sessionId]) {
       return row[sessionId].marks;
     }
@@ -95,11 +94,11 @@ export class AssignmentsComponent implements OnInit {
     });
 
     // Update Marks Logic
-    if(previousMarks){
+    if (previousMarks) {
       this.finalAverageReport[studentId] -= parseInt(previousMarks);
       this.finalAverageReport[studentId] += parseInt(marks);
     }
-    else{
+    else {
       this.finalAverageReport[studentId] += parseInt(marks);
     }
     if (row[sessId]) {

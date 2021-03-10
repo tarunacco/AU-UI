@@ -46,7 +46,7 @@ export class AttendanceComponent implements OnInit {
           this.sessionHeaders.map((seshead) => {
             this.sessionHeaderName.push(seshead.sessionName);
           }),
-          (this.headers = ['Student', ...this.sessionHeaderName]),
+          (this.headers = ['First Name', 'Last Name', 'Email Address', ...this.sessionHeaderName]),
           (this.attendanceData = attendance['attendanceData']),
           //console.log(attendance),
           this.updateReport()

@@ -31,8 +31,8 @@
   </ng-container>
 
   <ng-container matColumnDef="createdOn">
-    <mat-header-cell style="max-width: 100px;" mat-sort-header *matHeaderCellDef> Joining Date </mat-header-cell>
-    <mat-cell style="max-width: 100px;" *matCellDef="let element">
+    <mat-header-cell style="min-width: 100px;" mat-sort-header *matHeaderCellDef> Joining Date </mat-header-cell>
+    <mat-cell style="min-width: 100px;" *matCellDef="let element">
       {{ element.createdOn | date: "mediumDate" }}
     </mat-cell>
   </ng-container>

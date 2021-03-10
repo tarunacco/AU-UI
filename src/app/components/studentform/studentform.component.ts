@@ -53,9 +53,11 @@ export class StudentformComponent implements OnInit {
     if (this.newStudentForm.valid) {
       console.log("Student valid")
       if (this.dialogData.studDetails) {
+        let tempForm = this.newStudentForm.value;
+        tempForm['createdOn'] = this.dialogData.studDetails.createdOn;
         console.log("Updating Student");
-        console.log(this.dialogData.studDetails);
-        this.http.post('/api/student/add', this.newStudentForm.value).subscribe(() => this.dialogRef.close())
+        console.log(tempForm);
+        this.http.post('/api/student/add',tempForm).subscribe(() => this.dialogRef.close())
           this.snackbar.open("Updated Student", '', {
             duration: 2000
           });

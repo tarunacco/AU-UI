@@ -26,7 +26,7 @@ export class BatchesComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = [
     'batchName',
     'startDate',
-    'EndDate',
+    'endDate',
     'BatchSkypeId',
     'Actions',
   ];
@@ -116,5 +116,9 @@ export class BatchesComponent implements OnInit, AfterViewInit {
   }
   applyFilter(filterValue:string) {
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
+  }
+
+  openClassroom(link) {
+    window.open(link);
   }
 }

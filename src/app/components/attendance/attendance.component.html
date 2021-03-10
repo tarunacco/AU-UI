@@ -1,4 +1,69 @@
 <div class="example-container mat-elevation-z8 mat-elevation-z8">
+  <div
+  fxlayout="row"
+  fxLayoutAlign="space-between center"
+  style="margin-left: 30%; padding-top: 3%"
+>
+  <div fxLayoutGap="35px">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="
+        exporter.exportTable('xlsx', {
+          fileName: 'Student_Attendance_Report',
+          sheet: 'Student_Attendance_Report',
+          Props: { Author: 'Abhinav' }
+        })
+      "
+    >
+      <mat-icon>cloud_download</mat-icon>&nbsp;&nbsp;Export As EXCEL
+    </button>
+
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="
+        exporter.exportTable('csv', {
+          fileName: 'Student_Attendance_Report',
+          sheet: 'Student_Attendance_Report',
+          Props: { Author: 'Abhinav' }
+        })
+      "
+    >
+      <mat-icon>cloud_download</mat-icon>&nbsp;&nbsp;Export As CSV
+    </button>
+
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="
+        exporter.exportTable('json', {
+          fileName: 'Student_Attendance_Report',
+          sheet: 'Student_Attendance_Report',
+          Props: { Author: 'Abhinav' }
+        })
+      "
+    >
+      <mat-icon>cloud_download</mat-icon>&nbsp;&nbsp;Export As JSON
+    </button>
+
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="
+        exporter.exportTable('txt', {
+          fileName: 'Student_Attendance_Report',
+          sheet: 'Student_Attendance_Report',
+          Props: { Author: 'Abhinav' }
+        })
+      "
+    >
+      <mat-icon>cloud_download</mat-icon>&nbsp;&nbsp;Export As TEXT
+    </button>
+  </div>
+
+</div>
+  <br/>
   <mat-table
     matTableExporter
     #exporter="matTableExporter"
@@ -6,11 +71,25 @@
     style="width: 100%"
   >
     <!-- Name Column -->
-    <ng-container matColumnDef="Student" sticky>
-      <mat-header-cell style="min-width: 160px" *matHeaderCellDef
-        >Students</mat-header-cell
-      >> <mat-cell *matCellDef="let row">{{ row.student.studentName }}</mat-cell
-      >>
+    <ng-container matColumnDef="First Name" sticky>
+      <mat-header-cell style="width: 100px" *matHeaderCellDef
+        >First Name</mat-header-cell
+      >
+      <mat-cell *matCellDef="let row">{{ row.student.studentFirstName }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Last Name" sticky>
+      <mat-header-cell style="width: 100px" *matHeaderCellDef
+        >Last Name</mat-header-cell
+      >
+      <mat-cell *matCellDef="let row">{{ row.student.studentLastName }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Email Address" sticky>
+      <mat-header-cell style="width: 100px" *matHeaderCellDef
+        >Email Address</mat-header-cell
+      >
+      <mat-cell *matCellDef="let row">{{ row.student.studentEmail }}</mat-cell>
     </ng-container>
 
     <ng-container
@@ -90,66 +169,3 @@
 <!-- <button mat-raised-button (click)="exporter.exportTable('json')">Json</button>
 <button mat-raised-button (click)="exporter.exportTable('txt')">Txt</button> -->
 
-<div
-  fxlayout="row"
-  fxLayoutAlign="space-between center"
-  style="margin-left: 30%; padding-top: 3%"
->
-  <div fxLayoutGap="35px">
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="
-        exporter.exportTable('xlsx', {
-          fileName: 'Student_Attendance_Report',
-          sheet: 'Student_Attendance_Report',
-          Props: { Author: 'Abhinav' }
-        })
-      "
-    >
-      <mat-icon>cloud_download</mat-icon>&nbsp;&nbsp;Export As EXCEL
-    </button>
-
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="
-        exporter.exportTable('csv', {
-          fileName: 'Student_Attendance_Report',
-          sheet: 'Student_Attendance_Report',
-          Props: { Author: 'Abhinav' }
-        })
-      "
-    >
-      <mat-icon>cloud_download</mat-icon>&nbsp;&nbsp;Export As CSV
-    </button>
-
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="
-        exporter.exportTable('json', {
-          fileName: 'Student_Attendance_Report',
-          sheet: 'Student_Attendance_Report',
-          Props: { Author: 'Abhinav' }
-        })
-      "
-    >
-      <mat-icon>cloud_download</mat-icon>&nbsp;&nbsp;Export As JSON
-    </button>
-
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="
-        exporter.exportTable('txt', {
-          fileName: 'Student_Attendance_Report',
-          sheet: 'Student_Attendance_Report',
-          Props: { Author: 'Abhinav' }
-        })
-      "
-    >
-      <mat-icon>cloud_download</mat-icon>&nbsp;&nbsp;Export As TEXT
-    </button>
-  </div>
-</div>
