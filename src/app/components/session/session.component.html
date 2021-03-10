@@ -15,14 +15,18 @@
   </div>
 </div>
 
+<div class="mat-elevation-z8">
 <mat-table
+  matSort
+  matSortActive="id"
+  matSortDirection="asc"
   [dataSource]="dataSource"
   style="margin: 20px"
-  class="mat-elevation-z8"
+
 >
   <!-- Session Start Date Column -->
-  <ng-container matColumnDef="Date">
-    <mat-header-cell *matHeaderCellDef> Start Date </mat-header-cell>
+  <ng-container matColumnDef="startDate">
+    <mat-header-cell mat-sort-header *matHeaderCellDef> Start Date </mat-header-cell>
     <mat-cell *matCellDef="let element">
       {{ element.startDate | date: "mediumDate" }}
     </mat-cell>
@@ -37,21 +41,21 @@
   </ng-container>
 
   <!-- Session Name Column -->
-  <ng-container matColumnDef="SessionName">
-    <mat-header-cell *matHeaderCellDef> Session Name </mat-header-cell>
+  <ng-container matColumnDef="sessionName">
+    <mat-header-cell mat-sort-header *matHeaderCellDef> Session Name </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{ element.sessionName }} </mat-cell>
   </ng-container>
 
   <!-- Created On Column -->
   <ng-container matColumnDef="Trainer">
-    <mat-header-cell *matHeaderCellDef> Trainer </mat-header-cell>
+    <mat-header-cell mat-sort-header *matHeaderCellDef> Trainer </mat-header-cell>
     <mat-cell *matCellDef="let element">
       {{ element.trainer.trainerName }}
     </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="TrainerEmail">
-    <mat-header-cell *matHeaderCellDef> Trainer EmailId </mat-header-cell>
+    <mat-header-cell mat-sort-header *matHeaderCellDef> Trainer EmailId </mat-header-cell>
     <mat-cell *matCellDef="let element">
       {{ element.trainer.emailId }}
     </mat-cell>
@@ -71,7 +75,7 @@
       >
         <mat-icon>email</mat-icon>
       </button>
-
+      <mat-divider vertical style="height: 20px"></mat-divider>
       <button
         mat-button
         matTooltip="Update Session"
@@ -81,6 +85,7 @@
       >
         <mat-icon>edit</mat-icon>
       </button>
+
 
       <button
         mat-button
@@ -97,6 +102,11 @@
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>
+<mat-paginator [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>
+</div>
 <div
   class="spinner-container"
   style="

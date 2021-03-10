@@ -12,7 +12,6 @@ import { SessionformComponent } from '../sessionform/sessionform.component';
 })
 
 
-
 export class StudentformComponent implements OnInit {
   newStudentForm: FormGroup;
   //updateStudentForm: FormGroup;
@@ -54,12 +53,17 @@ export class StudentformComponent implements OnInit {
     if (this.newStudentForm.valid) {
       console.log("Student valid")
       if (this.dialogData.studDetails) {
+        console.log("Updating Student");
+        console.log(this.dialogData.studDetails);
         this.http.post('/api/student/add', this.newStudentForm.value).subscribe(() => this.dialogRef.close())
           this.snackbar.open("Updated Student", '', {
             duration: 2000
           });
         }
         else {
+          console.log("Adding Student");
+          console.log(this.newStudentForm.value);
+
           this.http.post('/api/student/add', this.newStudentForm.value).subscribe(() => this.dialogRef.close())
           this.snackbar.open("Added Student", '', {
             duration: 2000

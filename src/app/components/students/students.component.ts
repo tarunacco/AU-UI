@@ -5,6 +5,7 @@ import { StudentformComponent } from '../studentform/studentform.component';
 import { SessionformComponent } from '../sessionform/sessionform.component';
 import { BulkaddstudentsComponent } from '../bulkaddstudents/bulkaddstudents.component';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-students',
@@ -16,7 +17,8 @@ export class StudentsComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private snackbar:MatSnackBar
   ) {
     console.log("Constructor Of Students Loaded")
   }
@@ -44,7 +46,7 @@ export class StudentsComponent implements OnInit {
     console.log(this.dataSource);
     this.http
       .get<any[]>('api/student/all', { params: { batchId: `${this.batchId}` } })
-      .subscribe((res) => (this.dataSource = res, this.isLoading = false));
+      .subscribe((res) => (this.dataSource = res, this.isLoading = false, console.log(res)));
   }
 
   openNewStudentDialog(stud) {
@@ -70,6 +72,9 @@ export class StudentsComponent implements OnInit {
     let studentId = stud.studentId;
     let url = 'api/student/' + studentId;
     this.http.delete(url).subscribe(() => this.getStudents());
+    this.snackbar.open("Student Deleted", '' ,{
+      duration: 5000
+    });
   }
 
   openBulkaddDialog() {

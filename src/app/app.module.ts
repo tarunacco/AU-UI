@@ -45,6 +45,8 @@ import { BulkaddsessionsComponent } from './components/bulkaddsessions/bulkaddse
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 
 @NgModule({
   declarations: [
@@ -97,6 +99,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatTooltipModule,
     MatDividerModule,
     MatProgressSpinnerModule,
+    MatPaginatorModule
   ],
   exports: [MatTabsModule, MatSortModule],
 

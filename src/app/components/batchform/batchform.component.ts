@@ -2,11 +2,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { Inject } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import {
   MatDialog,
@@ -30,6 +26,7 @@ export class BatchformComponent implements OnInit {
     private snackbar: MatSnackBar
   ) {}
 
+  batchObject;
   ngOnInit() {
     this.newBatchForm = this.fb.group({
       batchId: [''],
@@ -41,38 +38,58 @@ export class BatchformComponent implements OnInit {
     });
 
     if (this.dialogData) {
+      this.batchObject = this.dialogData;
       this.newBatchForm.patchValue(this.dialogData);
     }
   }
 
   onSubmit() {
+    // console.log('Created new batch');
+    // console.log(this.newBatchForm.value);
     if (this.newBatchForm.valid) {
-      let tempForm = this.newBatchForm.value;
+      if (this.dialogData) {
 
-      this.http
-        .get<any>(
-          'https://script.google.com/macros/s/AKfycbwRycXiB4o4G5bsLIiBwRcLhVrSCp5pk5feG9FPwNX-S2omV7fadGz0CYVey_yvXUzP/exec',
-          {
-            params: {
-              operation: 'CreateCourse',
-              classRoomName: this.newBatchForm.get('batchName').value,
-            },
-          }
-        )
-        .subscribe((val) => {
-          // whatever is there in the submit put here
-          console.log(val);
-          console.log(typeof val);
-          tempForm['commonClassroomId'] = val['id'];
-          tempForm['classroomLink'] = val['alternateLink'];
-          tempForm['courseGroupEmail'] = val['courseGroupEmail'];
-          tempForm['classroomName'] = val['name'];
-          // console.log(tempForm);
-          this.http
-            .post('/api/batch/add', tempForm)
-            .subscribe(() => this.dialogRef.close());
-          this.snackbar.open('Batch Added', '', { duration: 3000 });
-        });
+        let updateForm = this.newBatchForm.value;
+
+        updateForm['commonClassroomId'] = this.batchObject.commonClassroomId;
+        updateForm['classroomLink'] = this.batchObject.classroomLink;
+        updateForm['courseGroupEmail'] = this.batchObject.courseGroupEmail;
+        updateForm['classroomName'] = this.batchObject.classroomName;
+
+        console.log("Update Form Batch")
+        console.log(updateForm);
+        this.http
+          .post('/api/batch/add', updateForm)
+          .subscribe(() => this.dialogRef.close());
+        this.snackbar.open('Batch Updated', '', { duration: 5000 });
+      } else {
+        let tempForm = this.newBatchForm.value;
+
+        this.http
+          .get<any>(
+            'https://script.google.com/macros/s/AKfycbwRycXiB4o4G5bsLIiBwRcLhVrSCp5pk5feG9FPwNX-S2omV7fadGz0CYVey_yvXUzP/exec',
+            {
+              params: {
+                operation: 'CreateCourse',
+                classRoomName: this.newBatchForm.get('batchName').value,
+              },
+            }
+          )
+          .subscribe((val) => {
+            // whatever is there in the submit put here
+            console.log(val);
+            console.log(typeof val);
+            tempForm['commonClassroomId'] = val['id'];
+            tempForm['classroomLink'] = val['alternateLink'];
+            tempForm['courseGroupEmail'] = val['courseGroupEmail'];
+            tempForm['classroomName'] = val['name'];
+            // console.log(tempForm);
+            this.http
+              .post('/api/batch/add', tempForm)
+              .subscribe(() => this.dialogRef.close());
+            this.snackbar.open('Batch Added', '', { duration: 5000 });
+          });
+      }
     } else {
       this.snackbar.open('There are validation errors', '', {
         duration: 5000,

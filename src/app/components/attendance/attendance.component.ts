@@ -23,7 +23,7 @@ export class AttendanceComponent implements OnInit {
   batchId: number;
 
   ngOnInit() {
-    console.log("Loaded Attendance Component")
+    //console.log("Loaded Attendance Component")
     this.fetchAttendance();
   }
 
@@ -35,7 +35,7 @@ export class AttendanceComponent implements OnInit {
   }
 
   fetchAttendance() {
-    console.log('Inside fetchAttendance');
+    //console.log('Inside fetchAttendance');
     let url = '/api/training/all/' + this.batchId;
     this.http
       .get<any[]>(url, { params: { type: 'A' } })
@@ -48,7 +48,7 @@ export class AttendanceComponent implements OnInit {
           }),
           (this.headers = ['Student', ...this.sessionHeaderName]),
           (this.attendanceData = attendance['attendanceData']),
-          console.log(attendance),
+          //console.log(attendance),
           this.updateReport()
         )
       );
@@ -73,11 +73,13 @@ export class AttendanceComponent implements OnInit {
       }
     }
     this.finalAttendanceReport = copyOfFinalAttendanceReport;
+    //console.log(this.finalAttendanceReport);
     this.total = this.attendanceData.length;
   }
 
   getAttendance(row, column) {
     //console.log(row);
+
     const sessionId = `${
       this.sessionHeaders.find((session) => session.sessionName === column)
         .sessionId
@@ -125,7 +127,7 @@ export class AttendanceComponent implements OnInit {
       }
     }
 
-    this.attendanceData
+    //this.attendanceData
     if (row[sessionId]) {
       row[sessionId]['attendance'] = attendanceStatus;
     } else {

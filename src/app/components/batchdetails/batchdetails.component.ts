@@ -8,7 +8,8 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 })
 export class BatchdetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router) {
-    this.batchName = this.router.getCurrentNavigation().extras.state.batchName;
+    this.batchName = this.router.getCurrentNavigation().extras.state.batchObject.batchName;
+
   }
 
   public batchId: number;

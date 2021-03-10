@@ -12,6 +12,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { BatchformComponent } from '../batchform/batchform.component';
 import { BatchSchema } from '../batchform/batchSchema';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-batches',
@@ -37,7 +38,8 @@ export class BatchesComponent implements OnInit, AfterViewInit {
   constructor(
     private dialog: MatDialog,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private snackbar:MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -59,11 +61,11 @@ export class BatchesComponent implements OnInit, AfterViewInit {
           (this.dataSource.data = batches), (this.isLoading = false)
         )
       );
-    console.log('batch Datasource', this.dataSource.data);
+    //console.log('batch Datasource', this.dataSource.data);
   }
 
   openNewBatchDialog(batch) {
-    console.log(batch);
+    //console.log(batch);
     let dialogRef: MatDialogRef<BatchformComponent>;
     if (batch) {
       dialogRef = this.dialog.open(BatchformComponent, {
@@ -79,10 +81,16 @@ export class BatchesComponent implements OnInit, AfterViewInit {
   }
 
   getBatch(batch) {
-    console.log('Batch object = ' + batch.batchName);
+    //console.log('Batch object = ' + batch.batchName);
     this.router.navigate(['/batch', batch.batchId], {
-      state: { batchName: batch.batchName },
+      state: { batchObject: batch },
     });
+
+    // getBatch(batch) {
+    //   console.log('Batch object = ' + batch.batchName);
+    //   this.router.navigate(['/batch', batch.batchId], {
+    //     state: { batchName: batch.batchName },
+    //   });
 
     //console.log("Data source array" + JSON.stringify(this.dataSource));
   }
@@ -95,6 +103,9 @@ export class BatchesComponent implements OnInit, AfterViewInit {
     let batchId = batch.batchId;
     let url = 'api/batch/' + batchId;
     this.http.delete(url).subscribe(() => this.getSessions());
-    console.log('Deleted Batch with Id ' + batchId);
+    //console.log('Deleted Batch with Id ' + batchId);
+    this.snackbar.open("Batch Deleted", '' ,{
+      duration: 5000
+    });
   }
 }
