@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { StudentformComponent } from '../studentform/studentform.component';
@@ -6,6 +6,9 @@ import { SessionformComponent } from '../sessionform/sessionform.component';
 import { BulkaddstudentsComponent } from '../bulkaddstudents/bulkaddstudents.component';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-students',
@@ -24,15 +27,22 @@ export class StudentsComponent implements OnInit {
   }
 
   displayedColumns: string[] = [
-    'FirstName',
-    'LastName',
-    'Joining Date',
+    'firstName',
+    'lastName',
+    'createdOn',
     'emailId',
     'skypeId',
-    'Location',
+    'location',
     'Actions',
   ];
-  dataSource: any[] = [];
+  dataSource = new MatTableDataSource<any>();
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+
+  @ViewChild(MatSort, { static: true })
+  sort!: MatSort;
+
 
   @Input()
   batchId: number;
@@ -43,11 +53,23 @@ export class StudentsComponent implements OnInit {
   }
 
   getStudents() {
-    console.log(this.dataSource);
     this.http
       .get<any[]>('api/student/all', { params: { batchId: `${this.batchId}` } })
-      .subscribe((res) => (this.dataSource = res, this.isLoading = false, console.log(res)));
+      .subscribe((res) => {
+        this.dataSource.data = res;
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+        this.isLoading = false;
+      }
+    );
   }
+
+  // getStudents() {
+  //   console.log(this.dataSource);
+  //   this.http
+  //     .get<any[]>('api/student/all', { params: { batchId: `${this.batchId}` } })
+  //     .subscribe((res) => (this.dataSource = res, this.isLoading = false, console.log(res)));
+  // }
 
   openNewStudentDialog(stud) {
     let dialogRef: MatDialogRef<StudentformComponent>;

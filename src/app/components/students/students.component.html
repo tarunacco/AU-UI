@@ -16,24 +16,25 @@
 </div>
 
 <mat-table
+  matSort
   [dataSource]="dataSource"
   style="margin: 20px"
   class="mat-elevation-z8"
 >
   <!-- Student first Name Column -->
-  <ng-container matColumnDef="FirstName">
-    <mat-header-cell style="max-width: 100px;" *matHeaderCellDef> First Name </mat-header-cell>
+  <ng-container matColumnDef="firstName">
+    <mat-header-cell style="max-width: 100px;" mat-sort-header *matHeaderCellDef> First Name </mat-header-cell>
     <mat-cell style="max-width: 100px;" *matCellDef="let element"> {{ element.firstName }} </mat-cell>
   </ng-container>
 
   <!-- Student LastName Column -->
-  <ng-container matColumnDef="LastName">
-    <mat-header-cell style="max-width: 100px;" *matHeaderCellDef> Last Name </mat-header-cell>
+  <ng-container matColumnDef="lastName">
+    <mat-header-cell style="max-width: 100px;" mat-sort-header *matHeaderCellDef> Last Name </mat-header-cell>
     <mat-cell style="max-width: 100px;" *matCellDef="let element"> {{ element.lastName }} </mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="Joining Date">
-    <mat-header-cell style="max-width: 100px;" *matHeaderCellDef> Joining Date </mat-header-cell>
+  <ng-container matColumnDef="createdOn">
+    <mat-header-cell style="max-width: 100px;" mat-sort-header *matHeaderCellDef> Joining Date </mat-header-cell>
     <mat-cell style="max-width: 100px;" *matCellDef="let element">
       {{ element.createdOn | date: "mediumDate" }}
     </mat-cell>
@@ -50,8 +51,8 @@
     <mat-cell style="max-width: 100px;" *matCellDef="let element"> {{ element.skypeId }} </mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="Location">
-    <mat-header-cell style="max-width: 100px;" *matHeaderCellDef> Location </mat-header-cell>
+  <ng-container matColumnDef="location">
+    <mat-header-cell style="max-width: 100px;" mat-sort-header *matHeaderCellDef> Location </mat-header-cell>
     <mat-cell style="max-width: 100px;" *matCellDef="let element"> {{ element.location }} </mat-cell>
   </ng-container>
 
@@ -92,6 +93,13 @@
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>
+
+<mat-paginator [length]="100"
+              [pageSize]="5"
+              [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>
+
+
 <div
   class="spinner-container"
   style="

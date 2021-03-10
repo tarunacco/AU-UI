@@ -12,6 +12,7 @@ import { MatSort } from '@angular/material/sort';
 import { ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { trainerSchema } from './trainerSchema';
+import { MatPaginator } from '@angular/material/paginator';
 
 
 @Component({
@@ -22,10 +23,10 @@ import { trainerSchema } from './trainerSchema';
 export class TrainersComponent implements OnInit{
 
 
-  public dataSource;
+
   isLoading= true;
   public displayedColumns: string[] = [
-    'TrainerName',
+    'trainerName',
     'BusinessUnit',
     'SkypeId',
     'EmailId',
@@ -44,13 +45,22 @@ export class TrainersComponent implements OnInit{
     //this.dataSource.sort = this.sort;
   }
 
+  dataSource = new MatTableDataSource<any>();
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+
+  @ViewChild(MatSort, { static: true })
+  sort!: MatSort;
+
+
   getSessions() {
     this.http.get<any[]>('/api/trainer/all').subscribe((trainer)=> {
-      //this.dataSource.data = trainer;
-      this.isLoading = false
-      this.dataSource = new MatTableDataSource(trainer);
+      this.dataSource.data = trainer;
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+        this.isLoading = false;
     });
-    console.log(this.dataSource);
   }
 
   openNewTrainerDialog(trainer_) {

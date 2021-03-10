@@ -37,7 +37,8 @@ export class AssignmentsComponent implements OnInit {
           }),
           (this.headers = ['Student', ...this.sessionHeaderName, 'Average']),
           (this.marksData = marks['marksData']),
-          this.updateReport()
+          this.updateReport(),
+          console.log(marks['marksData'])
         )
       );
   }
@@ -94,10 +95,15 @@ export class AssignmentsComponent implements OnInit {
     });
 
     // Update Marks Logic
-    this.finalAverageReport[studentId] -= parseInt(previousMarks);
-    this.finalAverageReport[studentId] += parseInt(marks);
+    if(previousMarks){
+      this.finalAverageReport[studentId] -= parseInt(previousMarks);
+      this.finalAverageReport[studentId] += parseInt(marks);
+    }
+    else{
+      this.finalAverageReport[studentId] += parseInt(marks);
+    }
     if (row[sessId]) {
-      return row[sessId]['marks'] = marks;
+      row[sessId]['marks'] = marks;
     }
 
     const markAttendance = {

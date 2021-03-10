@@ -17,14 +17,14 @@
   style="margin: 20px"
   class="mat-elevation-z8"
 >
-  <ng-container matColumnDef="BatchName">
+  <ng-container matColumnDef="batchName">
     <mat-header-cell *matHeaderCellDef mat-sort-header>
       Batch Name
     </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{ element.batchName }} </mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="StartDate">
+  <ng-container matColumnDef="startDate">
     <mat-header-cell *matHeaderCellDef mat-sort-header>
       Start Date
     </mat-header-cell>
@@ -98,6 +98,12 @@
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>
+
+<mat-paginator [length]="100"
+              [pageSize]="5"
+              [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>
+
 <div
   class="spinner-container"
   style="

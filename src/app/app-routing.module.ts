@@ -1,3 +1,4 @@
+import { HomeComponent } from './components/home/home.component';
 import { TrainersComponent } from './components/trainers/trainers.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -7,6 +8,10 @@ import { BatchesComponent } from './components/batches/batches.component';
 const routes: Routes = [
   {
     path: '',
+    component: HomeComponent,
+  },
+  {
+    path: 'batches',
     component: BatchesComponent,
   },
 

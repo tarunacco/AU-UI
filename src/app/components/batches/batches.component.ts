@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 import { BatchformComponent } from '../batchform/batchform.component';
 import { BatchSchema } from '../batchform/batchSchema';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-batches',
@@ -23,18 +24,21 @@ export class BatchesComponent implements OnInit, AfterViewInit {
   //dataSource: any[] = [];
 
   displayedColumns: string[] = [
-    'BatchName',
-    'StartDate',
+    'batchName',
+    'startDate',
     'EndDate',
     'BatchSkypeId',
     'Actions',
   ];
 
-  dataSource: MatTableDataSource<any[]> = new MatTableDataSource<any[]>([]);
-  isLoading = true;
-  //@ViewChild(MatSort, { static: false }) sort: MatSort;
-  @ViewChild(MatSort) sort: MatSort;
+  dataSource = new MatTableDataSource<any>();
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+
+  @ViewChild(MatSort, { static: true })
+  sort!: MatSort;
+  isLoading = true;
   constructor(
     private dialog: MatDialog,
     private http: HttpClient,
@@ -50,18 +54,20 @@ export class BatchesComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     //this.dataSource.sort = this.sort;
-    this.sort.sortChange.subscribe(() => console.log('ok'));
+    //this.sort.sortChange.subscribe(() => console.log('ok'));
   }
+
 
   getSessions() {
     this.http
       .get<any[]>('/api/batch/all')
-      .subscribe(
-        (batches) => (
-          (this.dataSource.data = batches), (this.isLoading = false)
-        )
-      );
-    //console.log('batch Datasource', this.dataSource.data);
+      .subscribe((res) => {
+        this.dataSource.data = res;
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+        this.isLoading = false;
+      }
+    );
   }
 
   openNewBatchDialog(batch) {

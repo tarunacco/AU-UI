@@ -15,14 +15,15 @@
 
 <table
   mat-table
+  matSort
   [dataSource]="dataSource"
   matSort
   style="margin: 20px"
   class="mat-elevation-z8"
 >
   <!-- Trainer first Name Column -->
-  <ng-container matColumnDef="TrainerName">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Trainer Name</th>
+  <ng-container matColumnDef="trainerName">
+    <th mat-header-cell mat-sort-header *matHeaderCellDef mat-sort-header>Trainer Name</th>
     <td mat-cell *matCellDef="let element">{{ element.trainerName }}</td>
   </ng-container>
 
@@ -94,6 +95,13 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
+
+<mat-paginator [length]="100"
+              [pageSize]="5"
+              [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>
+
+
 <div
   class="spinner-container"
   style="
