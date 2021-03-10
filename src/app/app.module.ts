@@ -45,6 +45,7 @@ import { BulkaddsessionsComponent } from './components/bulkaddsessions/bulkaddse
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { HomeComponent } from './components/./home/home.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     BulkaddstudentsComponent,
     AssignmentsComponent,
     BulkaddsessionsComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
