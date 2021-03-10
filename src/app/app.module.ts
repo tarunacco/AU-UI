@@ -47,6 +47,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { HomeComponent } from './components/./home/home.component';
+import { OverlayLoaderComponent } from './components/overlay-loader/overlay-loader.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { HomeComponent } from './components/./home/home.component';
     AssignmentsComponent,
     BulkaddsessionsComponent,
     HomeComponent,
+    OverlayLoaderComponent,
   ],
   imports: [
     BrowserModule,
