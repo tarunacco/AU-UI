@@ -21,10 +21,10 @@ export class TrainerFormComponent implements OnInit {
     private http: HttpClient,
     private dialogRef: MatDialogRef<TrainerFormComponent>,
     @Inject(MAT_DIALOG_DATA) public dialogData,
-    private snackbar:MatSnackBar
-  ) {}
+    private snackbar: MatSnackBar
+  ) { }
 
-  bu_heads: any[] =[];
+  bu_heads: any[] = [];
 
   ngOnInit() {
     this.newTrainerForm = this.fb.group({
@@ -45,8 +45,6 @@ export class TrainerFormComponent implements OnInit {
       .subscribe((all_bu) => (this.bu_heads = all_bu));
   }
 
-  // public batches : BatchSchema[] = [];
-
   onSubmit() {
     if (this.newTrainerForm.valid) {
       let tempObj = this.newTrainerForm.value;
@@ -57,19 +55,19 @@ export class TrainerFormComponent implements OnInit {
       console.log(tempObj);
       if (this.dialogData) {
         this.http
-        .post('/api/trainer/add', tempObj)
-        .subscribe(() => this.dialogRef.close());
-       this.snackbar.open("Trainer updated", '', {duration:3000});
+          .post('/api/trainer/add', tempObj)
+          .subscribe(() => this.dialogRef.close());
+        this.snackbar.open("Trainer updated", '', { duration: 3000 });
       }
       else {
         this.http
-        .post('/api/trainer/add', tempObj)
-        .subscribe(() => this.dialogRef.close());
-       this.snackbar.open("Trainer added", '', {duration:3000});
+          .post('/api/trainer/add', tempObj)
+          .subscribe(() => this.dialogRef.close());
+        this.snackbar.open("Trainer added", '', { duration: 3000 });
       }
     }
     else {
-      this.snackbar.open("There are validation errors", '', {duration:5000})
+      this.snackbar.open("There are validation errors", '', { duration: 5000 })
     }
   }
 }

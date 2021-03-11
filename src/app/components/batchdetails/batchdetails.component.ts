@@ -1,5 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  ActivatedRoute,
+  Router,
+  ParamMap
+} from '@angular/router';
 
 @Component({
   selector: 'app-batchdetails',

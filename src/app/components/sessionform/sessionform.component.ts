@@ -37,8 +37,6 @@ export class SessionformComponent implements OnInit {
   ) {
     this.batchId = dialogData.batchId;
     this.batchObject = dialogData.batchObj;
-    // console.log("BatchObj sessionform component")
-    // console.log(this.dialogData)
   }
 
   Trainers: any = [];
@@ -62,23 +60,10 @@ export class SessionformComponent implements OnInit {
       );
 
     this.batchObject = this.dialogData.batchObj;
-    console.log('Batch object inside sessionform');
-    console.log(this.batchObject);
-
     this.sessionObject = this.dialogData.sessionDetails;
-    console.log('Session Object');
-    console.log(this.sessionObject);
 
     if (this.dialogData.sessionDetails) {
-      console.log('Session Details From Table on click');
-      console.log(this.dialogData.sessionDetails);
-
       this.newSessionForm.patchValue(this.dialogData.sessionDetails);
-      // this.newSessionForm.value.trainer.patchValue(
-      //   this.dialogData.sessionDetails.trainer.trainerName
-      // );
-      console.log('Form');
-      console.log(this.newSessionForm.value);
     }
   }
 
@@ -120,21 +105,15 @@ export class SessionformComponent implements OnInit {
             }
           )
           .subscribe((val) => {
-            // whatever is there in the submit put here
             tempForm['classroomTopicId'] = val['createdTopic']['topicId'];
             tempForm['classroomTopicName'] = val['createdTopic']['name'];
             tempForm['calendarInviteLink'] = val['sentCalInvite']['htmlLink'];
 
-            console.log('Got the New Form');
-            console.log(tempForm);
-            console.log('------------------');
             this.loadText = 'Creating Session...';
             this.http.post('/api/session/add', tempForm).subscribe(() => {
-              //console.log("Response Got from My API")
               this.dialogRef.close();
               this.isProgressLoading = false;
               this.loadText = 'Loading...';
-              //console.log("Dialog Closed");
             });
             this.snackbar.open('Session Created', '', { duration: 3000 });
           });

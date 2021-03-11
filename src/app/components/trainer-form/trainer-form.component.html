@@ -1,8 +1,8 @@
-<h3 style = "text-align: center; font-weight: bold;">New Trainer</h3>
+<h3 style="text-align: center; font-weight: bold;">New Trainer</h3>
 <form [formGroup]="newTrainerForm">
 
 
-  <mat-form-field style="width: 100%;" style = "display: none;">
+  <mat-form-field style="width: 100%;" style="display: none;">
     <input matInput placeholder="TrainerId" formControlName="trainerId" />
   </mat-form-field>
 
@@ -11,7 +11,7 @@
     <input matInput placeholder="First Name" formControlName="trainerName" />
   </mat-form-field>
 
-  <br/>
+  <br />
   <mat-form-field>
     <input matInput placeholder="Skype Id" formControlName="skypeId" />
   </mat-form-field>
@@ -20,14 +20,10 @@
     <input matInput placeholder="Trainer's Email Id" formControlName="emailId" />
   </mat-form-field>
 
-  <br/>
+  <br />
 
   <mat-form-field>
-    <input
-      matInput
-      placeholder="Reporting Manager Email Id"
-      formControlName="reportingManagerEmailId"
-    />
+    <input matInput placeholder="Reporting Manager Email Id" formControlName="reportingManagerEmailId" />
   </mat-form-field>
 
   <mat-form-field>
@@ -41,8 +37,6 @@
 </form>
 
 <div>
-  <button mat-button mat-dialog-close color = "warn">Cancel</button>
-  <button (click)="onSubmit()" mat-raised-button color = "primary">Save</button>
+  <button mat-button mat-dialog-close color="warn">Cancel</button>
+  <button (click)="onSubmit()" mat-raised-button color="primary">Save</button>
 </div>
-
-

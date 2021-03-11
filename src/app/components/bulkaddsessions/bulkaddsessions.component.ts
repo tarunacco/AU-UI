@@ -23,7 +23,6 @@ export class BulkaddsessionsComponent implements OnInit {
   }
 
   ngOnInit(): void { }
-  //clicked = false;
   showdialog = false;
   fileAttr = 'Select File';
   isDisabled = true;
@@ -39,8 +38,6 @@ export class BulkaddsessionsComponent implements OnInit {
     if (sessionsFile.size <= 10000000) {
       console.log('File type =' + typeof sessionsFile);
       this.fileAttr = 'Selected File :- ' + sessionsFile.name;
-    } else {
-      // snack bar open for large file
     }
   }
 

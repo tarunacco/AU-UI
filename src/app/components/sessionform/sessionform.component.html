@@ -1,6 +1,6 @@
 <app-overlay-loader *ngIf="isProgressLoading" [loadText]="loadText"></app-overlay-loader>
-<h3 style = "text-align: center; font-weight: bold;">Provide Session Details</h3>
-<form [formGroup] = "newSessionForm">
+<h3 style="text-align: center; font-weight: bold;">Provide Session Details</h3>
+<form [formGroup]="newSessionForm">
 
   <mat-form-field style="display:none">
     <input matInput placeholder="Batch Id" formControlName="batchId">
@@ -14,7 +14,7 @@
     <input matInput placeholder="Session Name" formControlName="sessionName">
   </mat-form-field>
 
-  <br/>
+  <br />
   <!-- [(ngModel)]="selectedValue" -->
 
   <mat-form-field>
@@ -26,27 +26,22 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field >
+  <mat-form-field>
     <mat-label>Time Slot</mat-label>
-    <mat-select  name="timeSlot" formControlName="daySlot">
-      <mat-option value = "M"> Morning </mat-option>
-      <mat-option value = "E"> Evening </mat-option>
+    <mat-select name="timeSlot" formControlName="daySlot">
+      <mat-option value="M"> Morning </mat-option>
+      <mat-option value="E"> Evening </mat-option>
     </mat-select>
   </mat-form-field>
 
-  <br/>
+  <br />
 
   <mat-form-field style="width: 100%;">
-    <input
-      matInput
-      [matDatepicker]="startDate"
-      placeholder="Date"
-      formControlName="startDate"
-    />
+    <input matInput [matDatepicker]="startDate" placeholder="Date" formControlName="startDate" />
     <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
     <mat-datepicker #startDate></mat-datepicker>
   </mat-form-field>
-<!--
+  <!--
   <mat-form-field style="display:none">
     <input
       matInput
@@ -63,7 +58,7 @@
 
 <div>
   <button mat-button mat-dialog-close color="warn">Cancel</button>
-  <button (click)="onSubmit()" mat-raised-button  color="primary">
+  <button (click)="onSubmit()" mat-raised-button color="primary">
     {{ dialogData.sessionDetails ? "Update" : "Save" }}
   </button>
 </div>

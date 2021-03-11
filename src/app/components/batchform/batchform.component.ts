@@ -1,8 +1,14 @@
-import { HttpHeaders } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { Inject } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators
+} from '@angular/forms';
 
 import {
   MatDialog,
@@ -16,6 +22,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './batchform.component.html',
   styleUrls: ['./batchform.component.css'],
 })
+
 export class BatchformComponent implements OnInit {
   newBatchForm: FormGroup;
   isProgressLoading = false;
@@ -27,7 +34,7 @@ export class BatchformComponent implements OnInit {
     private dialogRef: MatDialogRef<BatchformComponent>,
     @Inject(MAT_DIALOG_DATA) public dialogData,
     private snackbar: MatSnackBar
-  ) {}
+  ) { }
 
   batchObject;
   ngOnInit() {
@@ -47,18 +54,14 @@ export class BatchformComponent implements OnInit {
   }
 
   onSubmit() {
-    // console.log('Created new batch');
-    // console.log(this.newBatchForm.value);
     if (this.newBatchForm.valid) {
       this.isProgressLoading = true;
       if (this.dialogData) {
         let updateForm = this.newBatchForm.value;
-
         updateForm['commonClassroomId'] = this.batchObject.commonClassroomId;
         updateForm['classroomLink'] = this.batchObject.classroomLink;
         updateForm['courseGroupEmail'] = this.batchObject.courseGroupEmail;
         updateForm['classroomName'] = this.batchObject.classroomName;
-
         console.log('Update Form Batch');
         console.log(updateForm);
         this.http.post('/api/batch/add', updateForm).subscribe(() => {
@@ -81,14 +84,12 @@ export class BatchformComponent implements OnInit {
             }
           )
           .subscribe((val) => {
-            // whatever is there in the submit put here
             console.log(val);
             console.log(typeof val);
             tempForm['commonClassroomId'] = val['id'];
             tempForm['classroomLink'] = val['alternateLink'];
             tempForm['courseGroupEmail'] = val['courseGroupEmail'];
             tempForm['classroomName'] = val['name'];
-            // console.log(tempForm);
             this.loadText = 'Creating Batch...';
             this.http.post('/api/batch/add', tempForm).subscribe(() => {
               this.dialogRef.close();

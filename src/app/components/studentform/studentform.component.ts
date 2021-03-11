@@ -37,7 +37,7 @@ export class StudentformComponent implements OnInit {
       lastName: ['', [Validators.required]],
       emailId: ['', [Validators.required]],
       skypeId: ['', [Validators.required]],
-      location:['', [Validators.required]]
+      location: ['', [Validators.required]]
 
     });
 
@@ -47,36 +47,28 @@ export class StudentformComponent implements OnInit {
     }
   }
 
-
   onSubmit() {
-
     if (this.newStudentForm.valid) {
-      console.log("Student valid")
       if (this.dialogData.studDetails) {
         let tempForm = this.newStudentForm.value;
         tempForm['createdOn'] = this.dialogData.studDetails.createdOn;
-        console.log("Updating Student");
-        console.log(tempForm);
-        this.http.post('/api/student/add',tempForm).subscribe(() => this.dialogRef.close())
-          this.snackbar.open("Updated Student", '', {
-            duration: 2000
-          });
-        }
-        else {
-          console.log("Adding Student");
-          console.log(this.newStudentForm.value);
-
-          this.http.post('/api/student/add', this.newStudentForm.value).subscribe(() => this.dialogRef.close())
-          this.snackbar.open("Added Student", '', {
-            duration: 2000
-          });
-        }
+        this.http.post('/api/student/add', tempForm).subscribe(() => this.dialogRef.close())
+        this.snackbar.open("Updated Student", '', {
+          duration: 2000
+        });
       }
-        else {
-          this.snackbar.open('There are validation errors', '', {
-            duration: 5000,
-          });
-        }
+      else {
+        this.http.post('/api/student/add', this.newStudentForm.value).subscribe(() => this.dialogRef.close())
+        this.snackbar.open("Added Student", '', {
+          duration: 2000
+        });
+      }
     }
+    else {
+      this.snackbar.open('There are validation errors', '', {
+        duration: 5000,
+      });
+    }
+  }
 }
 

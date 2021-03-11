@@ -1,5 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit
+} from '@angular/core';
 
 @Component({
   selector: 'app-assignments',
@@ -35,7 +39,13 @@ export class AssignmentsComponent implements OnInit {
           this.sessionHeaders.map((seshead) => {
             this.sessionHeaderName.push(seshead.sessionName);
           }),
-          (this.headers = ['First Name', 'Last Name', 'Email Address', ...this.sessionHeaderName, 'Average']),
+          (this.headers = [
+            'First Name',
+            'Last Name',
+            'Email Address',
+            ...this.sessionHeaderName,
+            'Average',
+          ]),
           (this.marksData = marks['marksData']),
           this.updateReport(),
           console.log(marks['marksData'])
@@ -46,9 +56,11 @@ export class AssignmentsComponent implements OnInit {
   getTotalMarksAverage(column) {
     column = column.student.studentId;
     if (column in this.finalAverageReport) {
-      return ((parseFloat(this.finalAverageReport[column]) / this.total).toFixed(2)).toString();
+      return (parseFloat(this.finalAverageReport[column]) / this.total)
+        .toFixed(2)
+        .toString();
     }
-    return "0";
+    return '0';
   }
 
   studentmap = {};
@@ -76,7 +88,7 @@ export class AssignmentsComponent implements OnInit {
 
   getMarks(row, column) {
     const sessionId = `${this.sessionHeaders.find((session) => session.sessionName === column)
-        .sessionId
+      .sessionId
       }`;
     if (row[sessionId]) {
       return row[sessionId].marks;
@@ -93,12 +105,10 @@ export class AssignmentsComponent implements OnInit {
       }
     });
 
-    // Update Marks Logic
     if (previousMarks) {
       this.finalAverageReport[studentId] -= parseInt(previousMarks);
       this.finalAverageReport[studentId] += parseInt(marks);
-    }
-    else {
+    } else {
       this.finalAverageReport[studentId] += parseInt(marks);
     }
     if (row[sessId]) {
@@ -117,8 +127,6 @@ export class AssignmentsComponent implements OnInit {
 
     this.http
       .post('api/training/assignMarks', markAttendance)
-      .subscribe((res) => {
-        //console.log(res);
-      });
+      .subscribe((res) => { });
   }
 }

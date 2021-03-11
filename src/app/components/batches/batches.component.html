@@ -5,11 +5,7 @@
 <div fxlayout="row" fxLayoutAlign="space-between center" style="padding: 20px">
   <div>
     <mat-form-field>
-      <input
-        (keyup)="applyFilter($event.target.value)"
-        matInput
-        placeholder="Search"
-      />
+      <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Search" />
     </mat-form-field>
   </div>
 
@@ -18,14 +14,8 @@
   </button>
 </div>
 
-<mat-table
-  matSort
-  matSortDirection="asc"
-  matSortDisableClear
-  [dataSource]="dataSource"
-  style="margin: 20px"
-  class="mat-elevation-z8"
->
+<mat-table matSort matSortDirection="asc" matSortDisableClear [dataSource]="dataSource" style="margin: 20px"
+  class="mat-elevation-z8">
   <ng-container matColumnDef="batchName">
     <mat-header-cell style="max-width: 250px;" *matHeaderCellDef mat-sort-header>
       Batch Name
@@ -68,46 +58,22 @@
   <ng-container matColumnDef="Actions">
     <mat-header-cell style="min-width: 250px;" *matHeaderCellDef>Actions</mat-header-cell>
     <mat-cell style="min-width: 200px;" *matCellDef="let row">
-      <button
-        mat-icon-button
-        matTooltip="Open Batch"
-        (click)="getBatch(row)"
-        color="primary"
-      >
+      <button mat-icon-button matTooltip="Open Batch" (click)="getBatch(row)" color="primary">
         <mat-icon>open_in_new</mat-icon>
       </button>
-      <button
-        mat-button
-        matTooltip="Chat"
-        (click)="openSkype(row.commonSkypeId)"
-      >
+      <button mat-button matTooltip="Chat" (click)="openSkype(row.commonSkypeId)">
         <mat-icon> chat</mat-icon>
       </button>
 
-      <button
-        mat-icon-button
-        matTooltip="Go to Classroom"
-        matTooltipPosition="above"
-        (click)="openClassroom(row.classroomLink)"
-        color="primary"
-      >
+      <button mat-icon-button matTooltip="Go to Classroom" matTooltipPosition="above"
+        (click)="openClassroom(row.classroomLink)" color="primary">
         <mat-icon>class</mat-icon>
       </button>
       <mat-divider vertical style="height: 20px"></mat-divider>
-      <button
-        mat-button
-        matTooltip="Update Batch"
-        (click)="openNewBatchDialog(row)"
-        color="accent"
-      >
+      <button mat-button matTooltip="Update Batch" (click)="openNewBatchDialog(row)" color="accent">
         <mat-icon>edit</mat-icon>
       </button>
-      <button
-        mat-button
-        matTooltip="Delete Batch"
-        color="warn"
-        (click)="deleteBatch(row)"
-      >
+      <button mat-button matTooltip="Delete Batch" color="warn" (click)="deleteBatch(row)">
         <mat-icon>delete</mat-icon>
       </button>
     </mat-cell>
@@ -117,26 +83,14 @@
   <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>
 
-<mat-paginator
-  [length]="100"
-  [pageSize]="5"
-  [pageSizeOptions]="[5, 10, 25, 100]"
->
+<mat-paginator [length]="100" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
 </mat-paginator>
 
-<div
-  class="spinner-container"
-  style="
+<div class="spinner-container" style="
     display: flex;
     justify-content: center;
     align-items: center;
     padding-top: 2%;
-  "
-  *ngIf="isLoading"
->
-  <mat-progress-spinner
-    mode="indeterminate"
-    diameter="50"
-    strokeWidth="10"
-  ></mat-progress-spinner>
+  " *ngIf="isLoading">
+  <mat-progress-spinner mode="indeterminate" diameter="50" strokeWidth="10"></mat-progress-spinner>
 </div>

@@ -17,7 +17,7 @@ export class AttendanceComponent implements OnInit {
   finalAttendanceReport = {};
   total = 0;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   @Input()
   batchId: number;
@@ -72,6 +72,7 @@ export class AttendanceComponent implements OnInit {
         }
       }
     }
+
     this.finalAttendanceReport = copyOfFinalAttendanceReport;
     //console.log(this.finalAttendanceReport);
     this.total = this.attendanceData.length;
@@ -80,10 +81,9 @@ export class AttendanceComponent implements OnInit {
   getAttendance(row, column) {
     //console.log(row);
 
-    const sessionId = `${
-      this.sessionHeaders.find((session) => session.sessionName === column)
-        .sessionId
-    }`;
+    const sessionId = `${this.sessionHeaders.find((session) => session.sessionName === column)
+      .sessionId
+      }`;
     if (row[sessionId]) {
       const current_att = row[sessionId].attendance;
       if (current_att == 'A') {
@@ -105,24 +105,23 @@ export class AttendanceComponent implements OnInit {
       attendanceStatus = 'N/A';
     }
 
-    const sessionId = `${
-      this.sessionHeaders.find(
-        (session) => session.sessionName === sessionName_
-      ).sessionId
-    }`;
+    const sessionId = `${this.sessionHeaders.find(
+      (session) => session.sessionName === sessionName_
+    ).sessionId
+      }`;
 
-    if(previousStatus == 'N/A' || previousStatus == 'A'){
-      if(attendanceStatus == 'P'){
-        if(sessionName_ in this.finalAttendanceReport){
+    if (previousStatus == 'N/A' || previousStatus == 'A') {
+      if (attendanceStatus == 'P') {
+        if (sessionName_ in this.finalAttendanceReport) {
           this.finalAttendanceReport[sessionName_] += 1;
         }
-        else{
+        else {
           this.finalAttendanceReport[sessionName_] = 1;
         }
       }
     }
-    else{
-      if(attendanceStatus == 'A'){
+    else {
+      if (attendanceStatus == 'A') {
         this.finalAttendanceReport[sessionName_] -= 1;
       }
     }

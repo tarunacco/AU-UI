@@ -1,8 +1,15 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  Component,
+  Inject,
+  OnInit,
+  ViewChild
+} from '@angular/core';
+import {
+  MatDialogRef,
+  MAT_DIALOG_DATA
+} from '@angular/material/dialog';
 import { NgxCsvParser } from 'ngx-csv-parser';
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-bulkaddstudents',
@@ -22,11 +29,7 @@ export class BulkaddstudentsComponent implements OnInit {
     this.batchId = dialogData.batchId;
   }
 
-  // selectFile(event) {
-  //   this.selectedFiles = event.target.files;
-  // }
-
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   fileUpload = 'Select File';
   isDisabled = true;
@@ -41,8 +44,6 @@ export class BulkaddstudentsComponent implements OnInit {
     if (studentsFile.size <= 10000000) {
       console.log('File type =' + typeof studentsFile);
       this.fileUpload = 'Selected File :- ' + studentsFile.name;
-    } else {
-      // snack bar open for large file
     }
   }
 
@@ -55,7 +56,6 @@ export class BulkaddstudentsComponent implements OnInit {
       console.log('sending file');
       this.http.post('/api/student/bulkAdd', formData).subscribe((response) => {
         console.log(response);
-        // show snackbar
         this.dialogRef.close();
       });
     }

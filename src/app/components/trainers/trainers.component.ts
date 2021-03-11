@@ -1,12 +1,16 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {
-  FormGroup,
-  FormControl,
-  FormBuilder,
-  Validators,
-} from '@angular/forms';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+  Component,
+  OnInit,
+  AfterViewInit
+} from '@angular/core';
+import {
+  MatDialog,
+  MatDialogRef
+} from '@angular/material/dialog';
+import {
+  HttpClient,
+  HttpClientModule
+} from '@angular/common/http';
 import { TrainerFormComponent } from '../trainer-form/trainer-form.component';
 import { MatSort } from '@angular/material/sort';
 import { ViewChild } from '@angular/core';
@@ -14,52 +18,40 @@ import { MatTableDataSource } from '@angular/material/table';
 import { trainerSchema } from './trainerSchema';
 import { MatPaginator } from '@angular/material/paginator';
 
-
 @Component({
   selector: 'app-trainers',
   templateUrl: './trainers.component.html',
   styleUrls: ['./trainers.component.css'],
 })
-export class TrainersComponent implements OnInit{
-
-
-
-  isLoading= true;
+export class TrainersComponent implements OnInit {
+  isLoading = true;
   public displayedColumns: string[] = [
     'trainerName',
     'BusinessUnit',
     'SkypeId',
     'EmailId',
     'ReportingManagerEmail',
-    'Actions'
+    'Actions',
   ];
-  //dataSource: any[] = [];
 
-  constructor(private dialog: MatDialog, private http: HttpClient) {}
+  constructor(private dialog: MatDialog, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.getSessions();
   }
 
-  ngAfterViewInit(): void {
-    //this.dataSource.sort = this.sort;
-  }
+  ngAfterViewInit(): void { }
 
   dataSource = new MatTableDataSource<any>();
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
-
-  @ViewChild(MatSort, { static: true })
-  sort!: MatSort;
-
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
   getSessions() {
-    this.http.get<any[]>('/api/trainer/all').subscribe((trainer)=> {
+    this.http.get<any[]>('/api/trainer/all').subscribe((trainer) => {
       this.dataSource.data = trainer;
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
-        this.isLoading = false;
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+      this.isLoading = false;
     });
   }
 
@@ -73,15 +65,13 @@ export class TrainersComponent implements OnInit{
       dialogRef = this.dialog.open(TrainerFormComponent);
     }
     dialogRef.afterClosed().subscribe(() => this.getSessions());
-    // this.dialog.open(BatchformComponent).afterClosed().subscribe();
   }
 
   openSkype(skypeId) {
     window.open(`skype:${skypeId}?chat`);
   }
 
-  applyFilter(filterValue:string) {
+  applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
   }
-
 }
