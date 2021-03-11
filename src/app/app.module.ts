@@ -18,15 +18,64 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
+import { MatTabsModule } from '@angular/material/tabs';
+import { BatchdetailsComponent } from './components/batchdetails/batchdetails.component';
+import { SessionComponent } from './components/session/session.component';
+import { SessionformComponent } from './components/sessionform/sessionform.component';
+import { StudentsComponent } from './components/students/students.component';
+import { StudentformComponent } from './components/studentform/studentform.component';
+import { TrainersComponent } from './components/trainers/trainers.component';
+import { TrainerFormComponent } from './components/trainer-form/trainer-form.component';
+import { MatSelect, MatSelectModule } from '@angular/material/select';
+import { MatSortModule } from '@angular/material/sort';
+import { MatMenuModule } from '@angular/material/menu';
+import { AttendanceComponent } from './components/attendance/attendance.component';
+import { BulkaddstudentsComponent } from './components/bulkaddstudents/bulkaddstudents.component';
+//import {MatToolbarModule} from '@angular/material/toolbar';
+import { NgxCsvParserModule } from 'ngx-csv-parser';
+import { MatTableExporterModule } from 'mat-table-exporter';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AssignmentsComponent } from './components/assignments/assignments.component';
+import { BulkaddsessionsComponent } from './components/bulkaddsessions/bulkaddsessions.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { HomeComponent } from './components/./home/home.component';
+import { OverlayLoaderComponent } from './components/overlay-loader/overlay-loader.component';
 
 @NgModule({
-  declarations: [AppComponent, BatchesComponent, BatchformComponent, SideNavComponent],
+  declarations: [
+    AppComponent,
+    BatchesComponent,
+    BatchformComponent,
+    SideNavComponent,
+    BatchdetailsComponent,
+    SessionComponent,
+    SessionformComponent,
+    StudentsComponent,
+    StudentformComponent,
+    TrainersComponent,
+    TrainerFormComponent,
+    AttendanceComponent,
+    BulkaddstudentsComponent,
+    AssignmentsComponent,
+    BulkaddsessionsComponent,
+    HomeComponent,
+    OverlayLoaderComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSliderModule,
+    MatSelectModule,
+    MatSortModule,
     MatDialogModule,
     MatInputModule,
     MatButtonModule,
@@ -38,9 +87,25 @@ import {MatTableModule} from '@angular/material/table';
     MatIconModule,
     MatListModule,
     FormsModule,
-      ReactiveFormsModule,
-      MatTableModule
+    ReactiveFormsModule,
+    MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FlexLayoutModule,
+    HttpClientModule,
+    MatTabsModule,
+    MatSortModule,
+    MatMenuModule,
+    NgxCsvParserModule,
+    MatTableExporterModule,
+    MatSnackBarModule,
+    MatTooltipModule,
+    MatDividerModule,
+    MatProgressSpinnerModule,
+    MatPaginatorModule
   ],
+  exports: [MatTabsModule, MatSortModule],
+
   providers: [],
   bootstrap: [AppComponent],
 })

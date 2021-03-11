@@ -16,6 +16,6 @@ export class SideNavComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver) { }
 
 }
