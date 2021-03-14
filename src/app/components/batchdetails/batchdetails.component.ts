@@ -20,7 +20,7 @@ export class BatchdetailsComponent implements OnInit {
   }
 
   public batchId: number;
-  public batchName: String;
+  public batchName: string;
 
   ngOnInit(): void {
     let id = parseInt(this.route.snapshot.paramMap.get('batchId'));

@@ -1,6 +1,6 @@
 h1 {
   color: #333;
-  font-family: 'lato';
+  font-family: lato, sans-serif;
   font-size: 3rem;
   font-weight: 500;
   line-height: 1.5;
@@ -19,7 +19,7 @@ h1 span {
 }
 
 .typed {
-  font-family: 'lato';
+  font-family:lato, sans-serif;
   font-weight: bolder;
   font-size: 40px;
   color: rgb(0, 0, 0);
