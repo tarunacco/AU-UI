@@ -56,7 +56,10 @@ export class SessionformComponent implements OnInit {
     this.http
       .get<any[]>('/api/trainer/all')
       .subscribe(
-        (trainer) => ((this.Trainers = trainer), console.log(trainer))
+        (trainer) => {
+          (this.Trainers = trainer);
+          //console.log(trainer);
+        }
       );
 
     this.batchObject = this.dialogData.batchObj;
@@ -81,7 +84,8 @@ export class SessionformComponent implements OnInit {
         ] = this.sessionObject.calenderInviteLink;
         console.log('Inside Update');
         this.http.post('/api/session/add', updateForm).subscribe(() => {
-          this.dialogRef.close(), (this.isProgressLoading = false);
+          this.dialogRef.close();
+          (this.isProgressLoading = false);
         });
         console.log(updateForm);
 

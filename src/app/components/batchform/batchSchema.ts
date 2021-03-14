@@ -1,6 +1,6 @@
 export interface BatchSchema {
-  batchName: String,
+  batchName: string,
   startDate: Date,
   endDate: Date,
-  commonSkypeId: String
+  commonSkypeId: string
 }

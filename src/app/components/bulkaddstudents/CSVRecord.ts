@@ -1,5 +1,5 @@
 export interface CSVRecord{
-   firstName: String,
-   lastName: String,
-   email: String,
+   firstName: string,
+   lastName: string,
+   email: string,
 }

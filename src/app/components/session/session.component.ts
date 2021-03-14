@@ -24,7 +24,7 @@ export class SessionComponent implements OnInit {
   @Input()
   batchId: number;
   batchObject;
-  batchName: String;
+  batchName: string;
   isLoading = true;
 
   constructor(

@@ -1,7 +1,7 @@
 export interface trainerSchema {
-  TrainerName: String,
-  BusinessUnit:String,
-  SkypeId : String,
-  EmailId: String,
-  ReportingManagerEmail: String
+  TrainerName: string,
+  BusinessUnit:string,
+  SkypeId : string,
+  EmailId: string,
+  ReportingManagerEmail: string
 }

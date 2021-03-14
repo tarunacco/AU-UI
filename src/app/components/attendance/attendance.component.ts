@@ -40,17 +40,17 @@ export class AttendanceComponent implements OnInit {
     this.http
       .get<any[]>(url, { params: { type: 'A' } })
       .subscribe(
-        (attendance) => (
-          (this.attend = attendance),
-          (this.sessionHeaders = attendance['sessions']),
-          this.sessionHeaders.map((seshead) => {
+        (attendance) => {
+          (this.attend = attendance);
+          (this.sessionHeaders = attendance['sessions']);
+          this.sessionHeaders.forEach((seshead) => {
             this.sessionHeaderName.push(seshead.sessionName);
-          }),
-          (this.headers = ['First Name', 'Last Name', 'Email Address', ...this.sessionHeaderName]),
-          (this.attendanceData = attendance['attendanceData']),
+          });
+          (this.headers = ['First Name', 'Last Name', 'Email Address', ...this.sessionHeaderName]);
+          (this.attendanceData = attendance['attendanceData']);
           //console.log(attendance),
-          this.updateReport()
-        )
+          //this.updateReport();
+        }
       );
   }
 
@@ -96,7 +96,7 @@ export class AttendanceComponent implements OnInit {
   }
 
   mark(studentId, sessionName_, row, previousStatus, markPresent) {
-    let attendanceStatus = 'N/A';
+    let attendanceStatus : string;
     if (markPresent === true) {
       attendanceStatus = 'P';
     } else if (markPresent === false) {

@@ -33,23 +33,23 @@ export class AssignmentsComponent implements OnInit {
     this.http
       .get<any[]>(url, { params: { type: 'M' } })
       .subscribe(
-        (marks) => (
-          (this.score = marks),
-          (this.sessionHeaders = marks['sessions']),
-          this.sessionHeaders.map((seshead) => {
+        (marks) => {
+          (this.score = marks);
+          (this.sessionHeaders = marks['sessions']);
+          this.sessionHeaders.forEach((seshead) => {
             this.sessionHeaderName.push(seshead.sessionName);
-          }),
+          });
           (this.headers = [
             'First Name',
             'Last Name',
             'Email Address',
             ...this.sessionHeaderName,
             'Average',
-          ]),
-          (this.marksData = marks['marksData']),
-          this.updateReport(),
-          console.log(marks['marksData'])
-        )
+          ]);
+          (this.marksData = marks['marksData']);
+          //this.updateReport();
+          //console.log(marks['marksData']);
+        }
       );
   }
 
