@@ -42,7 +42,10 @@ export class BatchesComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
   }
 
+  allBatches = {};
+
   getSessions() {
+    this.allBatches = {}
     this.http
       .get<any[]>('/api/batch/all')
       .subscribe((res) => {
@@ -50,6 +53,12 @@ export class BatchesComponent implements OnInit, AfterViewInit {
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
         this.isLoading = false;
+        console.log(res);
+        res.map((batch) => {
+          this.allBatches[batch.batchName] = batch.batchId;
+        });
+
+        console.log(this.allBatches);
       }
       );
   }
@@ -58,10 +67,17 @@ export class BatchesComponent implements OnInit, AfterViewInit {
     let dialogRef: MatDialogRef<BatchformComponent>;
     if (batch) {
       dialogRef = this.dialog.open(BatchformComponent, {
-        data: batch,
+        data: {
+          batch: batch,
+          allBatches: this.allBatches,
+        }
       });
     } else {
-      dialogRef = this.dialog.open(BatchformComponent);
+      dialogRef = this.dialog.open(BatchformComponent, {
+        data: {
+          allBatches: this.allBatches,
+        }
+      });
     }
     dialogRef.afterClosed().subscribe(() => this.getSessions());
   }

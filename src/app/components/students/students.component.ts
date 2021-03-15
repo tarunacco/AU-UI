@@ -42,7 +42,9 @@ export class StudentsComponent implements OnInit {
   sort!: MatSort;
   @Input()
   batchId: number;
+
   isLoading = true;
+  allStudents = {};
 
   ngOnInit(): void {
     this.getStudents();
@@ -56,6 +58,9 @@ export class StudentsComponent implements OnInit {
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
         this.isLoading = false;
+        res.map((student) => {
+          this.allStudents[(student.emailId).toLowerCase()] = student.studentId;
+        })
       }
       );
   }
@@ -67,12 +72,14 @@ export class StudentsComponent implements OnInit {
         data: {
           batchId: this.batchId,
           studDetails: stud,
+          allStudents : this.allStudents,
         },
       });
     } else {
       dialogRef = this.dialog.open(StudentformComponent, {
         data: {
           batchId: this.batchId,
+          allStudents : this.allStudents,
         },
       });
     }

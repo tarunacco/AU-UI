@@ -25,7 +25,7 @@ export class TrainerFormComponent implements OnInit {
   ) { }
 
   bu_heads: any[] = [];
-
+  allTrainers = {}
   ngOnInit() {
     this.newTrainerForm = this.fb.group({
       trainerId: [''],
@@ -36,32 +36,51 @@ export class TrainerFormComponent implements OnInit {
       businessUnitId: ['', [Validators.required]],
     });
 
-    if (this.dialogData) {
-      this.newTrainerForm.patchValue(this.dialogData);
+    this.allTrainers = this.dialogData.allTrainers;
+    if (this.dialogData.trainer) {
+      this.newTrainerForm.patchValue(this.dialogData.trainer);
     }
 
     this.http
       .get<any[]>('/api/businessUnit/all')
-      .subscribe((all_bu) => (this.bu_heads = all_bu));
+      .subscribe((all_bu) => ((this.bu_heads = all_bu), console.log(this.bu_heads)));
   }
 
   onSubmit() {
     if (this.newTrainerForm.valid) {
       let tempObj = this.newTrainerForm.value;
+      console.log(this.dialogData.trainer);
+      console.log("New trainer data ");
+      console.log(this.newTrainerForm.value);
+      console.log("All trainers")
+      console.log(this.allTrainers);
       tempObj['businessUnit'] = {
         "buId": tempObj['businessUnitId']
       }
       delete tempObj['businessUnitId'];
-      console.log(tempObj);
-      if (this.dialogData) {
+      if (this.dialogData.trainer) {
+        if ((tempObj.emailId in this.allTrainers) && (this.allTrainers[(tempObj.emailId).toLowerCase()] != tempObj.trainerId)) {
+          this.snackbar.open("Trainer already exists", '' ,{
+            duration : 5000
+          });
+          return;
+        }
+
         this.http
-          .post('/api/trainer/add', tempObj)
+          .post('api/trainer/add', tempObj)
           .subscribe(() => this.dialogRef.close());
         this.snackbar.open("Trainer updated", '', { duration: 3000 });
       }
       else {
+        if (((this.newTrainerForm.value.emailId).toLowerCase()) in this.allTrainers) {
+          this.snackbar.open("Trainer already exists", '' ,{
+            duration : 5000
+          });
+          // this.dialogRef.close();
+          return;
+        }
         this.http
-          .post('/api/trainer/add', tempObj)
+          .post('api/trainer/add', tempObj)
           .subscribe(() => this.dialogRef.close());
         this.snackbar.open("Trainer added", '', { duration: 3000 });
       }

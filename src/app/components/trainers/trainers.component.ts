@@ -25,6 +25,7 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class TrainersComponent implements OnInit {
   isLoading = true;
+  allTrainers = {};
   public displayedColumns: string[] = [
     'trainerName',
     'BusinessUnit',
@@ -47,22 +48,34 @@ export class TrainersComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
   getSessions() {
-    this.http.get<any[]>('/api/trainer/all').subscribe((trainer) => {
-      this.dataSource.data = trainer;
+    this.http.get<any[]>('/api/trainer/all').subscribe((res) => {
+      this.dataSource.data = res;
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.isLoading = false;
+      console.log(res);
+      res.map((trainer) => {
+        this.allTrainers[(trainer.emailId).toLowerCase()] = trainer.trainerId;
+      });
     });
+    console.log(this.allTrainers);
   }
 
   openNewTrainerDialog(trainer_) {
     let dialogRef: MatDialogRef<TrainerFormComponent>;
     if (trainer_) {
       dialogRef = this.dialog.open(TrainerFormComponent, {
-        data: trainer_,
+        data: {
+          trainer: trainer_,
+          allTrainers: this.allTrainers,
+        }
       });
     } else {
-      dialogRef = this.dialog.open(TrainerFormComponent);
+      dialogRef = this.dialog.open(TrainerFormComponent, {
+        data: {
+          allTrainers: this.allTrainers,
+        }
+      });
     }
     dialogRef.afterClosed().subscribe(() => this.getSessions());
   }

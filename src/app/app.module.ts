@@ -48,6 +48,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { HomeComponent } from './components/./home/home.component';
 import { OverlayLoaderComponent } from './components/overlay-loader/overlay-loader.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ChartsComponent } from './components/charts/charts.component';
+import { ReportsComponent } from './components/reports/reports.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +71,9 @@ import { OverlayLoaderComponent } from './components/overlay-loader/overlay-load
     BulkaddsessionsComponent,
     HomeComponent,
     OverlayLoaderComponent,
+    DashboardComponent,
+    ChartsComponent,
+    ReportsComponent,
   ],
   imports: [
     BrowserModule,

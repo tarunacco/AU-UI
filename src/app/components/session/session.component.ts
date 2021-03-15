@@ -54,7 +54,10 @@ export class SessionComponent implements OnInit {
     this.getSessions();
   }
 
+  allSessions = {};
+
   getSessions() {
+    this.allSessions = {};
     this.http
       .get<any[]>('/api/session/all', {
         params: { batchId: `${this.batchId}` },
@@ -64,6 +67,9 @@ export class SessionComponent implements OnInit {
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
         this.isLoading = false;
+        res.map((session) => {
+          this.allSessions[session.sessionName] = session.sessionId;
+        })
       });
   }
 
@@ -77,6 +83,7 @@ export class SessionComponent implements OnInit {
           batchId: this.batchId,
           sessionDetails: session_,
           batchObj: this.batchObject,
+          allSessions: this.allSessions
         },
       });
     } else {
@@ -84,6 +91,7 @@ export class SessionComponent implements OnInit {
         data: {
           batchId: this.batchId,
           batchObj: this.batchObject,
+          allSessions: this.allSessions,
         },
       });
     }

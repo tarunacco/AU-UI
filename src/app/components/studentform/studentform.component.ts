@@ -17,6 +17,8 @@ export class StudentformComponent implements OnInit {
   //updateStudentForm: FormGroup;
 
   batchId: number;
+  allStudents = {};
+
   constructor(private fb: FormBuilder,
     private http: HttpClient,
     private dialogRef: MatDialogRef<StudentformComponent>,
@@ -41,6 +43,7 @@ export class StudentformComponent implements OnInit {
 
     });
 
+    this.allStudents = this.dialogData.allStudents;
     if (this.dialogData.studDetails) {
       this.newStudentForm.patchValue(this.dialogData.studDetails);
       this.update = true;
@@ -49,8 +52,15 @@ export class StudentformComponent implements OnInit {
 
   onSubmit() {
     if (this.newStudentForm.valid) {
+      console.log(this.dialogData.studDetails);
       if (this.dialogData.studDetails) {
         let tempForm = this.newStudentForm.value;
+        if ((tempForm.emailId in this.allStudents) && (this.allStudents[(tempForm.emailId).toLowerCase()] != tempForm.studentId)) {
+          this.snackbar.open("Student with this email already exists", '' ,{
+            duration : 5000
+          });
+          return;
+        }
         tempForm['createdOn'] = this.dialogData.studDetails.createdOn;
         this.http.post('/api/student/add', tempForm).subscribe(() => this.dialogRef.close())
         this.snackbar.open("Updated Student", '', {
@@ -58,6 +68,13 @@ export class StudentformComponent implements OnInit {
         });
       }
       else {
+        if (((this.newStudentForm.value.emailId).toLowerCase()) in this.allStudents) {
+          this.snackbar.open("Student with this email already exists", '' ,{
+            duration : 5000
+          });
+          // this.dialogRef.close();
+          return;
+        }
         this.http.post('/api/student/add', this.newStudentForm.value).subscribe(() => this.dialogRef.close())
         this.snackbar.open("Added Student", '', {
           duration: 2000

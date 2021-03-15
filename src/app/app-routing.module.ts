@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BatchdetailsComponent } from './components/batchdetails/batchdetails.component';
 import { BatchesComponent } from './components/batches/batches.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,10 @@ const routes: Routes = [
   {
     path: 'batches',
     component: BatchesComponent,
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
   },
 
   {

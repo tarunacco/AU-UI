@@ -42,6 +42,7 @@ export class SessionformComponent implements OnInit {
   Trainers: any = [];
   batchObject;
   sessionObject;
+  allSessions = {};
 
   ngOnInit() {
     this.newSessionForm = this.fb.group({
@@ -61,6 +62,7 @@ export class SessionformComponent implements OnInit {
 
     this.batchObject = this.dialogData.batchObj;
     this.sessionObject = this.dialogData.sessionDetails;
+    this.allSessions = this.dialogData.allSessions;
 
     if (this.dialogData.sessionDetails) {
       this.newSessionForm.patchValue(this.dialogData.sessionDetails);
@@ -70,8 +72,44 @@ export class SessionformComponent implements OnInit {
   onSubmit() {
     if (this.newSessionForm.valid) {
       this.isProgressLoading = true;
+
+      //SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+
+      let batchStartDate = Date.parse(this.batchObject.startDate);
+      let batchEndDate = Date.parse(this.batchObject.endDate);
+      console.log("Inside session form. Checking dates");
+      console.log(batchStartDate);
+      console.log(batchEndDate);
+      console.log(typeof(batchStartDate));
+
+      console.log(this.allSessions);
+      let sessionDate = Date.parse(this.newSessionForm.value.startDate);
+
+      // This is common for both updating and creating a new session
+      if ((sessionDate > batchEndDate) || (sessionDate < batchStartDate)) {
+        this.snackbar.open("Session date lies outside the batchdate. Please enter a valid date", '', {
+          duration:5000
+        });
+        this.isProgressLoading = false;
+        return;
+      }
+
+      // If the session already exists
       if (this.dialogData.sessionDetails) {
         let updateForm = this.newSessionForm.value;
+
+
+        if (
+          updateForm.sessionName in this.allSessions &&
+          this.allSessions[updateForm.sessionName] != updateForm.sessionId
+        ) {
+          this.snackbar.open('Provide a different session name', '', {
+            duration: 5000,
+          });
+          this.dialogRef.close();
+          return;
+        }
+
         updateForm['classroomTopicId'] = this.sessionObject.classroomTopicId;
         updateForm[
           'classroomTopicName'
@@ -86,9 +124,21 @@ export class SessionformComponent implements OnInit {
         console.log(updateForm);
 
         this.snackbar.open('Session Updated', '', { duration: 3000 });
-      } else {
+      }
+
+      // For creating a new session
+      else {
         this.loadText = 'Creating Google Classroom Topic...';
         let tempForm = this.newSessionForm.value;
+
+        if (tempForm.sessionName in this.allSessions) {
+          this.snackbar.open('Provide a different session name', '', {
+            duration: 5000,
+          });
+          this.dialogRef.close();
+          return;
+        }
+
         console.log('Inside Create');
         this.http
           .get<any>(
