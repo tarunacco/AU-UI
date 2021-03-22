@@ -1,0 +1,30 @@
+
+
+ 
+<div class="float-container">
+    <div class="float-child">
+    <div class="float-disp"><h2>Students</h2>
+           <ul>
+          <li *ngFor="let link of studentNames">
+            <mat-checkbox  [checked]=true   (change)="checkCheckBoxvalue($event,link)">
+            {{link.firstName}} {{ link.lastName}}
+          </mat-checkbox>
+          </li>
+        </ul>
+    </div>
+      </div>  
+      <div class="float-child">
+        <div>
+        <button
+        mat-raised-button
+        type="submit"
+        (click) = "this.addStudent()"
+        style = "margin-bottom:2px"
+        >
+       UpdateTeam
+      </button>
+    
+    </div>
+  </div>
+  </div>
+  

@@ -1,0 +1,19 @@
+ul {
+    list-style-type: none;
+    margin-top: 4px;
+  }
+  .float-container {
+    border: 3px solid #fff;
+    padding: 20px;
+}
+
+.float-child {
+    width: 35%;
+    float: left;
+    padding: 20px;
+    
+}  
+.float-disp{
+    font-size: large;
+    
+}
