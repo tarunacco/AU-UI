@@ -1,4 +1,7 @@
 <div fxLayoutAlign="space-between center" style="padding: 20px" >
+  <div>
+
+  </div>
     <div fxLayoutGap="20px">
   
       <button mat-raised-button color="primary" (click) = 'openDialog()'>
@@ -28,6 +31,11 @@
           <mat-panel-description>
             <button type="button">Update</button>
           </mat-panel-description>
+          <mat-panel-description>
+            <button mat-raised-button color="primary"  (click)="feedback(element)">Feedback</button>
+           
+          </mat-panel-description>
+         
       </mat-expansion-panel-header >
       <div style="float: left;"  *ngFor="let element1 of element.studentsList">
        {{element1.firstName}}{{element1.lastName}}

@@ -1,0 +1,48 @@
+<p>addfeedback works!</p>
+<div>
+    <table mat-table [dataSource]="Data" class="mat-elevation-z8">
+
+     
+        <ng-container matColumnDef="firstName">
+          <th mat-header-cell style="max-width: 100px" *matHeaderCellDef> firstName </th>
+          <td mat-cell style="max-width: 100px" *matCellDef="let element"> {{element.firstName}} </td>
+        </ng-container>
+      
+   
+        <ng-container matColumnDef="lastName">
+          <th mat-header-cell style="max-width: 100px" *matHeaderCellDef> lastName </th>
+          <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+        </ng-container>
+      
+        
+        <!-- <ng-container matColumnDef="emailId">
+          <th mat-header-cell *matHeaderCellDef> email </th>
+          <td mat-cell *matCellDef="let element"> {{element.emailId}} </td>
+        </ng-container> -->
+
+        <ng-container matColumnDef="actions">
+            <mat-header-cell style="min-width: 150px" *matHeaderCellDef
+              >Actions</mat-header-cell
+            >
+            <mat-cell style="min-width: 150px" *matCellDef="let row">
+                <mat-form-field class="example-full-width">
+                    <mat-label>feedback</mat-label>
+                    <input matInput placeholder="feed" value="feed">
+                  </mat-form-field>
+                
+             
+              <button mat-mini-fab color="primary">save</button>
+        
+              <mat-divider vertical style="height: 20px"></mat-divider>
+             
+             
+            </mat-cell>
+          </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="headers"></tr>
+        <tr mat-row *matRowDef="let row; columns: headers;"></tr>
+      </table>
+    
+
+   
+</div>

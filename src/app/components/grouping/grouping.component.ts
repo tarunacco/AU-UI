@@ -6,6 +6,7 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { AddStudentComponent } from '../add-student/add-student.component';
+import { AddfeedbackComponent } from '../addfeedback/addfeedback.component';
 import { CreateGroupComponent } from '../create-group/create-group.component';
 
 @Component({
@@ -55,8 +56,7 @@ export class GroupingComponent implements OnInit {
 
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
-    dialogConfig.height = '450px';
-    dialogConfig.width = '400px';
+   
     dialogConfig.hasBackdrop = true;
 
     let dialogRef = this.dialog.open(CreateGroupComponent, {
@@ -95,5 +95,25 @@ export class GroupingComponent implements OnInit {
         console.log(res);
         this.autoUpdate();
       });
+  }
+  feedback(element: any) {
+    console.log(element.studentGroupId);
+    console.log(this.batchId);
+    console.log('feedback');
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.height = '450px';
+    dialogConfig.width = '400px';
+    dialogConfig.hasBackdrop = true;
+
+    let dialogRef = this.dialog.open(AddfeedbackComponent, {
+      data: {
+        batchId: this.batchId,
+        groupId: element.studentGroupId,
+      },
+    });
+    dialogRef.afterClosed().subscribe(() => this.autoUpdate());
   }
 }

@@ -24,3 +24,7 @@ input::-webkit-inner-spin-button {
   -webkit-hyphens: auto;
   hyphens: auto;
 }
+.example-additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
+}

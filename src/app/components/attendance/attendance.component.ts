@@ -48,7 +48,7 @@ export class AttendanceComponent implements OnInit {
           }),
           (this.headers = ['First Name', 'Last Name', 'Email Address', ...this.sessionHeaderName]),
           (this.attendanceData = attendance['attendanceData']),
-          //console.log(attendance),
+        console.log(this.attendanceData),
           this.updateReport()
         )
       );
