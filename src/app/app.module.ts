@@ -56,6 +56,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import { CommonModule } from '@angular/common';
 import { AddStudentComponent } from './components/add-student/add-student.component';
 import { AddfeedbackComponent } from './components/addfeedback/addfeedback.component';
+import { EditGroupComponent } from './components/edit-group/edit-group.component';
+import { EvaluationComponent } from './components/evaluation/evaluation.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +82,8 @@ import { AddfeedbackComponent } from './components/addfeedback/addfeedback.compo
     CreateGroupComponent,
     AddStudentComponent,
     AddfeedbackComponent,
+    EditGroupComponent,
+    EvaluationComponent,
   ],
   imports: [
     MatCheckboxModule,

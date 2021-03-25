@@ -8,6 +8,7 @@ import {
 import { AddStudentComponent } from '../add-student/add-student.component';
 import { AddfeedbackComponent } from '../addfeedback/addfeedback.component';
 import { CreateGroupComponent } from '../create-group/create-group.component';
+import { EditGroupComponent } from '../edit-group/edit-group.component';
 
 @Component({
   selector: 'app-grouping',
@@ -67,9 +68,32 @@ export class GroupingComponent implements OnInit {
     dialogRef.afterClosed().subscribe(() => this.autoUpdate());
   }
   addStudent(element: any) {
+    
     console.log(element.studentGroupId);
     console.log(this.batchId);
     console.log('addstudent');
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.height = '60%';
+    dialogConfig.width = '60%';
+    dialogConfig.hasBackdrop = true;
+
+    let dialogRef = this.dialog.open(AddStudentComponent, {
+      panelClass: 'my-class',
+      data: {
+        batchId: this.batchId,
+        groupId: element.studentGroupId,
+      },
+    });
+    dialogRef.afterClosed().subscribe(() => this.autoUpdate());
+  }
+  editGroup(element:any)
+  {
+    console.log(element.studentGroupName);
+    console.log(this.batchId);
+    console.log('EditGroup');
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = false;
@@ -78,10 +102,12 @@ export class GroupingComponent implements OnInit {
     dialogConfig.width = '400px';
     dialogConfig.hasBackdrop = true;
 
-    let dialogRef = this.dialog.open(AddStudentComponent, {
+    let dialogRef = this.dialog.open(EditGroupComponent, {
       data: {
         batchId: this.batchId,
-        groupId: element.studentGroupId,
+        studentgroupName :element.studentGroupName,
+        //projectName: element.projectName,
+        groupDetails: element,
       },
     });
     dialogRef.afterClosed().subscribe(() => this.autoUpdate());

@@ -17,3 +17,13 @@ ul {
     font-size: large;
     
 }
+table{
+    width: 550px;
+  }
+
+  h2.head {
+    text-align: center;
+  }
+  .dis{
+    align-items: center;
+  }
