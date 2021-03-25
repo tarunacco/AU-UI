@@ -1,4 +1,6 @@
-
+<div>
+  <h1 class="header"><b>Feedback</b></h1>
+</div>
 <div>
     <table mat-table [dataSource]="Data" class="mat-elevation-z8">
 
@@ -8,18 +10,42 @@
           <td mat-cell style="max-width: 100px" *matCellDef="let element"> {{element.firstName}} {{element.lastName}} </td>
         </ng-container>
       
-   
-        <ng-container matColumnDef="marks">
-          <th mat-header-cell style="width: 100px" *matHeaderCellDef>marks
-          </th>
+
+        <ng-container matColumnDef="marks" sticky>
+          <th mat-header-cell style="max-width: 150px" *matHeaderCellDef
+            >Marks</th>
+          
           <td mat-cell style="width: 100px" *matCellDef="let row">
             <mat-form-field style="width: 20px" class="example-form-field">
-              <input matInput type="number" min="0" max="100"/>
+              <input
+                matInput
+                type="number"
+                min="0"
+                max="10"
+                #marksValue
+                value="{{ getProjectMarks(row) }}"
+              />
             </mat-form-field>
     
-            &nbsp; / 10
-          </td>
+            &nbsp;/10
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button
+                  mat-menu-item
+                  (click)="
+                    marks(
+                      
+                    )
+                  "
+                >
+                  <span>Save</span>
+                </button>
+              </mat-menu>
+            </td>
         </ng-container>
+    
   
         <ng-container matColumnDef="feedback">
             <th mat-header-cell style="max-width: 150px" *matHeaderCellDef
@@ -27,7 +53,7 @@
             <td mat-cell style="min-width: 150px" *matCellDef="let row">
                 <mat-form-field class="example-full-width">
                    
-                    <input matInput placeholder="feed" >
+                    <input matInput placeholder="feedback" >
                   </mat-form-field>
               
              
@@ -39,11 +65,24 @@
                 </td>
               
           </ng-container>
+          
          
         <tr mat-header-row *matHeaderRowDef="headers"></tr>
         <tr mat-row *matRowDef="let row; columns: headers;"></tr>
-      </table>
-    
+      
 
-   
+  </table>
+  <div>
+   <b>Group Feedback :  </b><mat-form-field class="example-full-width"><input matInput placeholder="feedback" >
+</mat-form-field>
 </div>
+</div>
+
+<div id="wrapper">
+  <div style="float: left;">
+    <button mat-raised-button color="primary"  type="submit"
+    (click) = "this.addFeedback()"
+    style = "margin-bottom:2px">save</button>
+</div>
+
+

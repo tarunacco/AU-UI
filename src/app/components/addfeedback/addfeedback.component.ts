@@ -56,5 +56,11 @@ export class AddfeedbackComponent implements OnInit {
     
     
   }
+  getProjectMarks(row) {
+    return ;
+  }
+  addFeedback(){
+    
+  }
 
 }
