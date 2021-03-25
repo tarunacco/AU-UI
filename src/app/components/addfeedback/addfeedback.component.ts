@@ -15,10 +15,10 @@ export class AddfeedbackComponent implements OnInit {
  
   headers: string[] = [
     'firstName',
-    'lastName',
+   'marks',
     
-    //'emailId',
-    'actions'
+    
+    'feedback'
     
   ];
 
