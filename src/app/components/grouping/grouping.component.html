@@ -1,54 +1,96 @@
-<div fxLayoutAlign="space-between center" style="padding: 20px" >
-  <div>
-
+<div fxLayoutAlign="space-between center" style="padding: 20px">
+  <div></div>
+  <div fxLayoutGap="20px">
+    <button mat-raised-button color="primary" (click)="openDialog()">
+      <mat-icon>add_circle</mat-icon>&nbsp;&nbsp;Asign Groups
+    </button>
+    &nbsp;&nbsp;
   </div>
-    <div fxLayoutGap="20px">
-  
-      <button mat-raised-button color="primary" (click) = 'openDialog()'>
-        <mat-icon>add_circle</mat-icon>&nbsp;&nbsp;Asign Groups
+</div>
+
+<mat-accordion *ngFor="let element of groups">
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ element.studentGroupName }}
+      </mat-panel-title>
+      <mat-panel-title>
+        {{ element.studentGroupName }}
+      </mat-panel-title>
+      <mat-panel-title>
+        {{ element.studentGroupName }}
+      </mat-panel-title>
+      <mat-divider vertical style="height: 20px"></mat-divider>
+      <mat-panel-description>
+        <button
+          mat-button
+          matTooltip="Update Group"
+          matTooltipPosition="above"
+          (click)="editGroup(element)"
+          color="warn"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-button
+          matTooltip="Add Student"
+          matTooltipPosition="above"
+          (click)="addStudent(element)"
+          style="color: black;"
+        >
+          <mat-icon>person_add</mat-icon></button>
+          <button
+          mat-button
+          matTooltip="Submit Feedback"
+          matTooltipPosition="above"
+          (click)="feedback(element)"
+          style="color: black;"
+        >
+          <mat-icon>feedback</mat-icon></button>
+      </mat-panel-description>
+      <!-- <mat-panel-description>
+        <button
+          mat-button
+          matTooltip="Add Student"
+          matTooltipPosition="above"
+          (click)="addStudent(element)"
+          style="color: black;"
+        >
+          <mat-icon>person_add</mat-icon>
+        </button>
+      </mat-panel-description> -->
+      <!-- <mat-panel-description>
+        <button
+          mat-button
+          matTooltip="Submit Feedback"
+          matTooltipPosition="above"
+          (click)="feedback(element)"
+          style="color: black;"
+        >
+          <mat-icon>feedback</mat-icon>
+        </button>
+      </mat-panel-description> -->
+    </mat-expansion-panel-header>
+    <div style="float: left" *ngFor="let element1 of element.studentsList">
+      {{ element1.firstName }}{{ element1.lastName }}
+      <button
+        mat-button
+        matTooltip="Delete Student"
+        matTooltipPosition="above"
+        color="warn"
+        (click)="deleteStudent(element1, element)"
+      >
+        <mat-icon>delete</mat-icon>
       </button>
-      &nbsp;&nbsp;
+      <!-- <button mat-raised-button color="warn" (click)="deleteStudent(element1,element)">Delete</button> -->
+      <!-- <button type="button" (click)="deleteStudent(element1,element)">DELETE</button> -->
     </div>
-  </div>
- 
-   <mat-accordion *ngFor="let element of groups">
-    <mat-expansion-panel hideToggle >
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-           {{element.studentGroupName}}
-        </mat-panel-title>
-        <mat-panel-description>
-          <input  type="text" [disabled]="isToggled(element.studentGroupId)" placeholder="projectName" value="{{element.trainerId}}">
-        </mat-panel-description>
-        <mat-panel-description>
-          <button mat-raised-button color="accent" (click)="enable(element.studentGroupId)">Edit</button>
-            <!-- <button type="button" (click)="enable(element.studentGroupId)">Edit</button> -->
-          </mat-panel-description>
-          <mat-panel-description>
-            <button mat-raised-button color="primary" (click)="addStudent(element)">ADD STUDENT</button>
-            <!-- <button type="button" (click)="addStudent(element)"></button> -->
-          </mat-panel-description>
-          <mat-panel-description>
-            <button type="button">Update</button>
-          </mat-panel-description>
-          <mat-panel-description>
-            <button mat-raised-button color="primary"  (click)="feedback(element)">Feedback</button>
-           
-          </mat-panel-description>
-         
-      </mat-expansion-panel-header >
-      <div style="float: left;"  *ngFor="let element1 of element.studentsList">
-       {{element1.firstName}}{{element1.lastName}}
-       <button mat-raised-button color="warn" (click)="deleteStudent(element1,element)">Delete</button>
-       <!-- <button type="button" (click)="deleteStudent(element1,element)">DELETE</button> -->
-            
-      </div>
-      <br />
-       </mat-expansion-panel>
-     <br>
-    <mat-expansion-panel (opened)="panelOpenState = true"
-                         (closed)="panelOpenState = false">
-    </mat-expansion-panel>
-  </mat-accordion>
-
-
+    <br />
+  </mat-expansion-panel>
+  <br />
+  <mat-expansion-panel
+    (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false"
+  >
+  </mat-expansion-panel>
+</mat-accordion>
