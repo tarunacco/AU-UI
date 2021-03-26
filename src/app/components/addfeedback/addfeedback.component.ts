@@ -15,10 +15,10 @@ export class AddfeedbackComponent implements OnInit {
  
   headers: string[] = [
     'firstName',
-    'lastName',
+   'marks',
     
-    //'emailId',
-    'actions'
+    
+    'feedback'
     
   ];
 
@@ -54,6 +54,12 @@ export class AddfeedbackComponent implements OnInit {
       console.log(this.Data);
     });
     
+    
+  }
+  getProjectMarks(row) {
+    return ;
+  }
+  addFeedback(){
     
   }
 

@@ -1,48 +1,88 @@
-<p>addfeedback works!</p>
+<div>
+  <h1 class="header"><b>Feedback</b></h1>
+</div>
 <div>
     <table mat-table [dataSource]="Data" class="mat-elevation-z8">
 
      
         <ng-container matColumnDef="firstName">
-          <th mat-header-cell style="max-width: 100px" *matHeaderCellDef> firstName </th>
-          <td mat-cell style="max-width: 100px" *matCellDef="let element"> {{element.firstName}} </td>
+          <th mat-header-cell style="max-width: 100px" *matHeaderCellDef> Name </th>
+          <td mat-cell style="max-width: 100px" *matCellDef="let element"> {{element.firstName}} {{element.lastName}} </td>
         </ng-container>
       
-   
-        <ng-container matColumnDef="lastName">
-          <th mat-header-cell style="max-width: 100px" *matHeaderCellDef> lastName </th>
-          <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
-        </ng-container>
-      
-        
-        <!-- <ng-container matColumnDef="emailId">
-          <th mat-header-cell *matHeaderCellDef> email </th>
-          <td mat-cell *matCellDef="let element"> {{element.emailId}} </td>
-        </ng-container> -->
 
-        <ng-container matColumnDef="actions">
-            <mat-header-cell style="min-width: 150px" *matHeaderCellDef
-              >Actions</mat-header-cell
-            >
-            <mat-cell style="min-width: 150px" *matCellDef="let row">
+        <ng-container matColumnDef="marks" sticky>
+          <th mat-header-cell style="max-width: 150px" *matHeaderCellDef
+            >Marks</th>
+          
+          <td mat-cell style="width: 100px" *matCellDef="let row">
+            <mat-form-field style="width: 20px" class="example-form-field">
+              <input
+                matInput
+                type="number"
+                min="0"
+                max="10"
+                #marksValue
+                value="{{ getProjectMarks(row) }}"
+              />
+            </mat-form-field>
+    
+            &nbsp;/10
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button
+                  mat-menu-item
+                  (click)="
+                    marks(
+                      
+                    )
+                  "
+                >
+                  <span>Save</span>
+                </button>
+              </mat-menu>
+            </td>
+        </ng-container>
+    
+  
+        <ng-container matColumnDef="feedback">
+            <th mat-header-cell style="max-width: 150px" *matHeaderCellDef
+              >Feedback</th>
+            <td mat-cell style="min-width: 150px" *matCellDef="let row">
                 <mat-form-field class="example-full-width">
-                    <mat-label>feedback</mat-label>
-                    <input matInput placeholder="feed" value="feed">
+                   
+                    <input matInput placeholder="feedback" >
                   </mat-form-field>
-                
+              
              
-              <button mat-mini-fab color="primary">save</button>
+             
         
               <mat-divider vertical style="height: 20px"></mat-divider>
              
              
-            </mat-cell>
+                </td>
+              
           </ng-container>
-      
+          
+         
         <tr mat-header-row *matHeaderRowDef="headers"></tr>
         <tr mat-row *matRowDef="let row; columns: headers;"></tr>
-      </table>
-    
+      
 
-   
+  </table>
+  <div>
+   <b>Group Feedback :  </b><mat-form-field class="example-full-width"><input matInput placeholder="feedback" >
+</mat-form-field>
 </div>
+</div>
+
+<div id="wrapper">
+  <div style="float: left;">
+    <button mat-raised-button color="primary"  type="submit"
+    (click) = "this.addFeedback()"
+    style = "margin-bottom:2px">save</button>
+</div>
+
+
