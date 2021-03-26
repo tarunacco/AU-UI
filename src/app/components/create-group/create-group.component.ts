@@ -135,6 +135,8 @@ export class CreateGroupComponent implements OnInit {
       console.log(this.modified);
       console.log("dataSource "+ this.dataSource);
     }
+
+   
   });
 
 
@@ -145,5 +147,9 @@ export class CreateGroupComponent implements OnInit {
   this.http.post('api/group/automate/'+this.batchId+'?groupSize='+this.num, this.modified).subscribe(() =>
      console.log("group created"))
  
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
   }
 }

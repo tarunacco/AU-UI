@@ -166,10 +166,12 @@
               mat-menu-item
               (click)="
                 marks(
-                  
-                )
-              "
-            >
+                    row,
+                    row.student.studentId,
+                    getProjectMarks(row),
+                    marksValue.value
+                    )
+                    ">
               <span>Save</span>
             </button>
           </mat-menu>
