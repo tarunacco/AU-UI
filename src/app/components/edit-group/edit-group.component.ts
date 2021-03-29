@@ -11,6 +11,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class EditGroupComponent implements OnInit {
   batchId: any;
   studentGroupName: any;
+  groupDetails: any;
+  studentgroupId: any;
 
   constructor(private http: HttpClient,
     private fb: FormBuilder,
@@ -18,6 +20,8 @@ export class EditGroupComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public dialogData) {
       this.batchId = dialogData.batchId;
       this.studentGroupName=dialogData.studentgroupName;
+      this.groupDetails = dialogData.groupDetails;
+      this.studentgroupId= dialogData.studentGroupId;
      }
 
      batchObject;
@@ -27,9 +31,14 @@ export class EditGroupComponent implements OnInit {
   ngOnInit(): void {
 
     this.editGroupForm = this.fb.group({
+      studentGroupId: [this.groupDetails.studentGroupId, [Validators.required]],
       batchId: [this.batchId, [Validators.required]],
-      // projectName:[],
-      groupName : [this.studentGroupName,[]],
+      studentGroupName : [this.studentGroupName,[]],
+      projectDocUrl: [this.groupDetails.projectDocUrl,[]],
+      projectName: [this.groupDetails.projectName,[]],
+      groupFeedback: [this.groupDetails.groupFeedback,[]],
+      trainerId: [],
+      trainer: []
     });
     
     
@@ -50,6 +59,10 @@ export class EditGroupComponent implements OnInit {
    
 
   onSubmit(){
-          //api put update
+    this.editGroupForm.value['trainerId'] = this.editGroupForm.value['trainer']['trainerId']
+    delete this.editGroupForm.value['trainer']
+    console.log(this.editGroupForm.value)
+   this.http.put('/api/group/'+this.studentgroupId, this.editGroupForm.value).subscribe((res) =>
+    console.log("group edited"))
   }
 }

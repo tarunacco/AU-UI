@@ -16,6 +16,7 @@ import { EditGroupComponent } from '../edit-group/edit-group.component';
   styleUrls: ['./grouping.component.css'],
 })
 export class GroupingComponent implements OnInit {
+  displayedColumns: string[] = ['position','name','email','delete'];
   panelOpenState = false;
   groups = [];
   toggleButton= {};

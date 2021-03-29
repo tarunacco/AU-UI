@@ -55,6 +55,7 @@ export class AssignmentsComponent implements OnInit {
 
   getTotalMarksAverage(column) {
     column = column.student.studentId;
+   // console.log("column"+column);
     if (column in this.finalAverageReport) {
       return (parseFloat(this.finalAverageReport[column]) / this.total)
         .toFixed(2)

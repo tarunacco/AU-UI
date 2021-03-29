@@ -46,10 +46,30 @@
   </tr>
 </table>
 </div>
- 
+
+ <!-- <div class="search" style="float: right">
+  <mat-form-field>
+    <input
+      (keyup)="applyFilter($event.target.value)"
+      matInput
+      placeholder="Search"
+    />
+  </mat-form-field>
+
+
+ </div> -->
 <div class="float-container" style="float: right;">
-    <div class="float-child">
-      <div class="dis">
+  <div class="search">
+  <mat-form-field>
+    <input
+      (keyup)="applyFilter($event.target.value)"
+      matInput
+      placeholder="Search"
+    />
+  </mat-form-field>
+</div>
+    <div id="wrapper">
+      
       <form [formGroup]="custForm" class  = "example-form">
       <mat-form-field class = "example-full-width">
         <mat-label>
@@ -58,6 +78,7 @@
           <input matInput type="number" formControlName="size" />
       </mat-form-field>
       <br>
+      
       <button
       mat-raised-button
       type="submit"
@@ -66,8 +87,7 @@
       >
       Create
     </button>
+ 
     </form>
   </div>
-</div>
-</div>
 </div>

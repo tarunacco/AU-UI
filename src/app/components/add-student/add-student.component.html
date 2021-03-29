@@ -51,8 +51,16 @@
 </div>
 </div>
 <br>
-      <div id="wrapper">
-        <div style="float: right;"> 
+      <div id="wrap">
+          <mat-form-field>
+            <input
+              (keyup)="applyFilter($event.target.value)"
+              matInput
+              placeholder="Search"
+            />
+          </mat-form-field>
+        
+        <div id="wrapper" style="float: right;"> 
           <button mat-stroked-button color="primary"  type="submit"
           (click) = "this.addStudent()"
           style = "margin-bottom:2px">UpdateTeam</button>
