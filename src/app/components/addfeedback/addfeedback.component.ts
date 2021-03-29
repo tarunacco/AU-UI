@@ -9,15 +9,13 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./addfeedback.component.css']
 })
 export class AddfeedbackComponent implements OnInit {
- 
+  
  
   Data = [];
  
   headers: string[] = [
     'firstName',
    'marks',
-    
-    
     'feedback'
     
   ];
@@ -60,7 +58,7 @@ export class AddfeedbackComponent implements OnInit {
     return ;
   }
   addFeedback(){
-    
+    console.log("abd");
   }
 
 }
