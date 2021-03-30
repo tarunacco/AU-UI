@@ -92,6 +92,7 @@ export class GroupingComponent implements OnInit {
   }
   editGroup(element:any)
   {
+    console.log(element.studentGroupId);
     console.log(element.studentGroupName);
     console.log(this.batchId);
     console.log('EditGroup');
@@ -107,6 +108,7 @@ export class GroupingComponent implements OnInit {
       data: {
         batchId: this.batchId,
         studentgroupName :element.studentGroupName,
+        studentgroupId : element.studentGroupId,
         //projectName: element.projectName,
         groupDetails: element,
       },

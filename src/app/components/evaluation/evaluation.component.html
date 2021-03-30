@@ -145,7 +145,7 @@
       <mat-header-cell style="width: 100px" *matHeaderCellDef
         >Project Marks</mat-header-cell
       >
-      <mat-cell style="width: 100px" *matCellDef="let row">
+      <mat-cell style="width: 100px" *matCellDef="let row; let i=index">
         <mat-form-field style="width: 20px" class="example-form-field">
           <input
             matInput
@@ -169,7 +169,8 @@
                     row,
                     row.student.studentId,
                     getProjectMarks(row),
-                    marksValue.value
+                    marksValue.value,
+                    i
                     )
                     ">
               <span>Save</span>

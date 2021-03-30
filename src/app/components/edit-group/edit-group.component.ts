@@ -12,7 +12,7 @@ export class EditGroupComponent implements OnInit {
   batchId: any;
   studentGroupName: any;
   groupDetails: any;
-  studentgroupId: any;
+  studentGroupId: any;
 
   constructor(private http: HttpClient,
     private fb: FormBuilder,
@@ -21,7 +21,8 @@ export class EditGroupComponent implements OnInit {
       this.batchId = dialogData.batchId;
       this.studentGroupName=dialogData.studentgroupName;
       this.groupDetails = dialogData.groupDetails;
-      this.studentgroupId= dialogData.studentGroupId;
+      this.studentGroupId= dialogData.studentgroupId;
+      console.log("studentID "+this.studentGroupId);
      }
 
      batchObject;
@@ -62,7 +63,8 @@ export class EditGroupComponent implements OnInit {
     this.editGroupForm.value['trainerId'] = this.editGroupForm.value['trainer']['trainerId']
     delete this.editGroupForm.value['trainer']
     console.log(this.editGroupForm.value)
-   this.http.put('/api/group/'+this.studentgroupId, this.editGroupForm.value).subscribe((res) =>
+  //  console.log("groupId "+dialogData.studentGroupId);
+   this.http.put('/api/group/'+this.studentGroupId, this.editGroupForm.value).subscribe((res) =>
     console.log("group edited"))
   }
 }
