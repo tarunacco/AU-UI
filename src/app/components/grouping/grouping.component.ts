@@ -110,6 +110,7 @@ export class GroupingComponent implements OnInit {
         studentgroupName :element.studentGroupName,
         studentgroupId : element.studentGroupId,
         //projectName: element.projectName,
+        groupId: element.studentGroupId,
         groupDetails: element,
       },
     });
