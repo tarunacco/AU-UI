@@ -17,53 +17,6 @@
           Marks
         </th>
 
-<<<<<<< HEAD
-        <ng-container matColumnDef="marks" sticky>
-          <th mat-header-cell style="max-width: 150px" *matHeaderCellDef
-            >Marks</th>
-          
-          <td mat-cell style="width: 100px" *matCellDef="let row">
-            <mat-form-field style="width: 20px" class="example-form-field">
-              <input
-                matInput
-                type="number"
-                min="0"
-                max="10"
-                #marksValue
-                value="{{ getProjectMarks(row) }}"
-              />
-            </mat-form-field>
-    
-            &nbsp;/10
-            
-             
-            </td>
-        </ng-container>
-    
-  
-        <ng-container matColumnDef="feedback">
-            <th mat-header-cell style="max-width: 150px" *matHeaderCellDef
-              >Feedback</th>
-            <td mat-cell style="min-width: 150px" *matCellDef="let row">
-                <mat-form-field class="example-full-width">
-                   
-                    <input matInput placeholder="feedback" >
-                  </mat-form-field>
-              
-             
-                 
-              <mat-divider vertical style="height: 20px"></mat-divider>
-              
-             
-                </td>
-                
-          </ng-container>
-          
-         
-        <tr mat-header-row *matHeaderRowDef="headers"></tr>
-        <tr mat-row *matRowDef="let row; columns: headers;"></tr>
-      
-=======
         <td mat-cell style="width: 100px" *matCellDef="let row">
           <mat-form-field style="width: 20px" class="example-form-field">
             <input
@@ -79,7 +32,6 @@
           &nbsp;/10
         </td>
       </ng-container>
->>>>>>> ef1ef90fb7ce22b9b863d99516aa4658a666734e
 
       <ng-container matColumnDef="feedback">
         <th mat-header-cell style="max-width: 150px" *matHeaderCellDef>

@@ -9,20 +9,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./addfeedback.component.css'],
 })
 export class AddfeedbackComponent implements OnInit {
-<<<<<<< HEAD
-  
- 
   Data = [];
- 
-  headers: string[] = [
-    'firstName',
-   'marks',
-    'feedback'
-    
-  ];
-=======
-  Data = [];
->>>>>>> ef1ef90fb7ce22b9b863d99516aa4658a666734e
 
   headers: string[] = ['firstName', 'marks', 'feedback'];
   tableIsLoading = true;
@@ -99,10 +86,6 @@ export class AddfeedbackComponent implements OnInit {
     //   this.dataSource['projectFeedbackList'].length - 1;
     // return '';
   }
-<<<<<<< HEAD
-  addFeedback(){
-    console.log("abd");
-=======
 
   getProjectFeedback(row) {
     if (row['studentId'] in this.studentPos) {
@@ -119,7 +102,6 @@ export class AddfeedbackComponent implements OnInit {
     // this.studentPos[row['studentId']] =
     //   this.dataSource['projectFeedbackList'].length - 1;
     // return '';
->>>>>>> ef1ef90fb7ce22b9b863d99516aa4658a666734e
   }
 
   onStatusChange(row, data, type) {

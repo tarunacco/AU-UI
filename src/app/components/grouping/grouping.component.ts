@@ -108,6 +108,7 @@ export class GroupingComponent implements OnInit {
         batchId: this.batchId,
         studentgroupName :element.studentGroupName,
         //projectName: element.projectName,
+        groupId: element.studentGroupId,
         groupDetails: element,
       },
     });
