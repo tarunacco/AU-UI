@@ -58,7 +58,12 @@ import { AddStudentComponent } from './components/add-student/add-student.compon
 import { AddfeedbackComponent } from './components/addfeedback/addfeedback.component';
 import { EditGroupComponent } from './components/edit-group/edit-group.component';
 import { EvaluationComponent } from './components/evaluation/evaluation.component';
-
+import { ChartsComponent } from './components/charts/charts.component';
+import * as PlotlyJS from 'plotly.js/dist/plotly.js';
+import { PlotlyModule } from 'angular-plotly.js';
+import { BulkaddmarksComponent } from './components/bulkaddmarks/bulkaddmarks.component';
+//import { PlotlyModule } from 'angular-plotly.js';
+PlotlyModule.plotlyjs = PlotlyJS;
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,8 +89,12 @@ import { EvaluationComponent } from './components/evaluation/evaluation.componen
     AddfeedbackComponent,
     EditGroupComponent,
     EvaluationComponent,
+    ChartsComponent,
+    BulkaddmarksComponent,
   ],
+  
   imports: [
+    PlotlyModule,
     MatCheckboxModule,
     MatRadioModule,
     BrowserModule,
@@ -125,7 +134,7 @@ import { EvaluationComponent } from './components/evaluation/evaluation.componen
     MatPaginatorModule
   ],
   exports: [MatTabsModule, MatSortModule],
-
+  
   providers: [],
   bootstrap: [AppComponent],
 })
