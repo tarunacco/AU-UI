@@ -11,7 +11,7 @@ import { NgxCsvParser } from 'ngx-csv-parser';
 export class BulkaddmarksComponent implements OnInit {
   batchId: number;
   csvRecords: any[] = [];
-  eduid: any;
+  eduid: "1";
   eduname: any;
   header: boolean = true;
   constructor(private ngxCsvParser: NgxCsvParser,
@@ -41,10 +41,10 @@ if(type=='f'){
       this.fileAttr = 'Selected File :- ' + sessionsFile.name;
     }
   }
-  else if(type=='i'){
-      this.eduid=$event.target.value;
-      console.log(this.eduid);
-  }
+  // else if(type=='i'){
+  //     this.eduid=$event.target.value;
+  //     console.log(this.eduid);
+  // }
   else{
   this.eduname=$event.target.value;
   console.log(this.eduname); 
@@ -56,7 +56,7 @@ if(type=='f'){
       const sessionsFile = this.file;
       let formData: FormData = new FormData();
       console.log(sessionsFile.name);
-      formData.append('eduthrillTestId', this.eduid.toString());
+      formData.append('eduthrillTestId', this.eduid);
       formData.append('eduthrillTestFile', sessionsFile);
       formData.append('eduthrillTestName', this.eduname.toString());
       

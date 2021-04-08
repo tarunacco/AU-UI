@@ -5,6 +5,9 @@
     style="margin-left: 30%; padding-top: 3%"
   >
     <div fxLayoutGap="35px">
+      <button mat-raised-button color="primary" (click)="openBulkSessionDialog()">
+        <mat-icon>cloud_upload</mat-icon>&nbsp;&nbsp;Eduthrill Test
+      </button>
       <button
         mat-raised-button
         color="primary"
@@ -47,7 +50,7 @@
         <mat-icon>cloud_download</mat-icon>&nbsp;&nbsp;Export As JSON
       </button>
 
-      <button
+      <!-- <button
         mat-raised-button
         color="primary"
         (click)="
@@ -59,19 +62,20 @@
         "
       >
         <mat-icon>cloud_download</mat-icon>&nbsp;&nbsp;Export As TEXT
-      </button>
+      </button> -->
     </div>
   </div>
   <br />
-
+  <!-- table -->
   <mat-table
+    matSort
     matTableExporter
     #exporter="matTableExporter"
-    [dataSource]="marksData"
+    [dataSource]="dataSource"
     style="width: 100%"
   >
     <!-- Name Column -->
-    <ng-container matColumnDef="First Name" sticky>
+    <ng-container matColumnDef="First Name" >
       <mat-header-cell style="width: 100px" *matHeaderCellDef
         >First Name</mat-header-cell
       >
@@ -80,7 +84,7 @@
       }}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="Last Name" sticky>
+    <ng-container matColumnDef="Last Name" >
       <mat-header-cell style="width: 100px" *matHeaderCellDef
         >Last Name</mat-header-cell
       >
@@ -89,7 +93,7 @@
       }}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="Email Address" sticky>
+    <ng-container matColumnDef="Email Address" >
       <mat-header-cell style="width: 100px" *matHeaderCellDef
         >Email Address</mat-header-cell
       >
@@ -98,103 +102,45 @@
       }}</mat-cell>
     </ng-container>
 
-    <!-- <ng-container
-      *ngFor="let column of sessionHeaderName"
-      [matColumnDef]="column"
-    >
-      <mat-header-cell style="width: 100px" *matHeaderCellDef
-        >{{ column }}
-      </mat-header-cell>
-      <mat-cell style="width: 100px" *matCellDef="let row">
-        <mat-form-field style="width: 20px" class="example-form-field">
-          <input
-            matInput
-            type="number"   
-            min="0"
-            max="100"
-            #marksValue
-            value="{{ getMarks(row, column) }}"
-          />
-        </mat-form-field>
-
-        &nbsp; / 100
-
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-          <button
-            mat-menu-item
-            (click)="
-              mark(
-                row,
-                row.student.studentId,
-                column,
-                getMarks(row, column),
-                marksValue.value
-              )
-            "
-          >
-            <span>Save</span>
-          </button>
-        </mat-menu>
-      </mat-cell>
-    </ng-container> -->
-
-    <ng-container matColumnDef="Project Marks" sticky>
-      <mat-header-cell style="width: 100px" *matHeaderCellDef
+    <ng-container *ngFor="let column of sessionHeaderName" [matColumnDef]="column">
+      <mat-header-cell style="width: 100px" *matHeaderCellDef>{{ column }}
+      </mat-header-cell>           
+      <mat-cell *matCellDef="let row">{{ getMarks(row, column) }}</mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef="Project Marks" >
+      <mat-header-cell style="width: 100px"  *matHeaderCellDef
         >Project Marks</mat-header-cell
       >
-      <mat-cell style="width: 100px" *matCellDef="let row; let i=index">
-        <mat-form-field style="width: 20px" class="example-form-field">
-          <input
-            matInput
-            type="number"
-            min="0"
-            max="100"
-            #marksValue
-            value="{{ getProjectMarks(row) }}"
-          />
-        </mat-form-field>
-
-        &nbsp; / 100
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-            <mat-icon>more_vert</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu">
-            <button
-              mat-menu-item
-              (click)="
-                marks(
-                    row,
-                    row.student.studentId,
-                    getProjectMarks(row),
-                    marksValue.value,
-                    i
-                    )
-                    ">
-              <span>Save</span>
-            </button>
-          </mat-menu>
-      </mat-cell>
+      <mat-cell *matCellDef="let row">{{ row.projectDetails.marks }}</mat-cell>
     </ng-container>
-
+  
     <!-- Average Column -->
-    <ng-container matColumnDef="Assignment Average" sticky>
+    <ng-container matColumnDef="Assignment Average" >
       <mat-header-cell style="width: 100px" *matHeaderCellDef
         >Assignment Average</mat-header-cell
       >
-      <mat-cell *matCellDef="let row">{{ getTotalMarksAverage(row) }}</mat-cell>
+      <mat-cell *matCellDef="let row">{{ row.assignmentAverage }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="attendence" >
+      <mat-header-cell style="width: 100px"  *matHeaderCellDef
+        >sessions attended</mat-header-cell
+      >
+      <mat-cell *matCellDef="let row">{{row.studentSessionAttendance }}</mat-cell>
+      <!-- <mat-cell *matCellDef="let row">{{12121 }}</mat-cell> -->
     </ng-container>
 
-    <ng-container matColumnDef="Final Score" sticky>
-        <mat-header-cell style="width: 100px" *matHeaderCellDef
-          >Final Score</mat-header-cell
+    <ng-container matColumnDef="totalMarks" >
+        <mat-header-cell style="width: 100px" mat-sort-header *matHeaderCellDef
+          >Final Marks</mat-header-cell
         >
-        <mat-cell *matCellDef="let row">{{ getTotalMarks(row) }}</mat-cell>
+        <mat-cell *matCellDef="let row">{{ row.totalMarks }}</mat-cell>
       </ng-container>
+      
 
-    <mat-header-row *matHeaderRowDef="headers; sticky: true"></mat-header-row>
+    <mat-header-row *matHeaderRowDef="headers"></mat-header-row>
     <mat-row *matRowDef="let row; columns: headers"></mat-row>
   </mat-table>
+  <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
 </div>
