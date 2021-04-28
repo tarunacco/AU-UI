@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-group',
@@ -14,8 +15,10 @@ export class EditGroupComponent implements OnInit {
   studentGroupName: any;
   groupDetails: any;
   studentGroupId: any;
+   
 
   constructor(private http: HttpClient,
+    private snackbar: MatSnackBar,
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<EditGroupComponent>,
     @Inject(MAT_DIALOG_DATA) public dialogData) {
@@ -71,5 +74,8 @@ export class EditGroupComponent implements OnInit {
   //  console.log("groupId "+dialogData.studentGroupId);
    this.http.put('/api/group/'+this.studentGroupId, this.editGroupForm.value).subscribe((res) =>
     console.log("group edited"))
+    this.snackbar.open("Updated Group", '', {
+      duration: 2000
+    });
   }
 }

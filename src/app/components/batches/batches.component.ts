@@ -67,7 +67,7 @@ export class BatchesComponent implements OnInit, AfterViewInit {
   }
 
   getBatch(batch) {
-    this.router.navigate(['/batch', batch.batchId], {
+    this.router.navigate(['/logedin/batch', batch.batchId], {
       state: { batchObject: batch },
     });
   }

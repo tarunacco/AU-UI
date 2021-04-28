@@ -23,7 +23,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BatchdetailsComponent } from './components/batchdetails/batchdetails.component';
 import { SessionComponent } from './components/session/session.component';
@@ -61,11 +61,22 @@ import { EvaluationComponent } from './components/evaluation/evaluation.componen
 import { ChartsComponent } from './components/charts/charts.component';
 import * as PlotlyJS from 'plotly.js/dist/plotly.js';
 import { PlotlyModule } from 'angular-plotly.js';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from '../environments/environment';
 import { BulkaddmarksComponent } from './components/bulkaddmarks/bulkaddmarks.component';
+import {SigninComponent} from './components/signin/signin.component';
+import { AuthGaurdComponent } from './auth-gaurd/auth-gaurd.component';
+import { AuthGaurdService } from './auth-gaurd.service';
+import { FisrtHomeComponent } from './components/fisrt-home/fisrt-home.component';
+import { SecondHomeComponent } from './components/second-home/second-home.component';
+import {TokenInterseptorService} from './token-interseptor.service';
 //import { PlotlyModule } from 'angular-plotly.js';
 PlotlyModule.plotlyjs = PlotlyJS;
 @NgModule({
   declarations: [
+    SigninComponent,
     AppComponent,
     BatchesComponent,
     BatchformComponent,
@@ -91,9 +102,16 @@ PlotlyModule.plotlyjs = PlotlyJS;
     EvaluationComponent,
     ChartsComponent,
     BulkaddmarksComponent,
+    AuthGaurdComponent,
+    FisrtHomeComponent,
+    SecondHomeComponent,
+
   ],
-  
+
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
     PlotlyModule,
     MatCheckboxModule,
     MatRadioModule,
@@ -134,8 +152,12 @@ PlotlyModule.plotlyjs = PlotlyJS;
     MatPaginatorModule
   ],
   exports: [MatTabsModule, MatSortModule],
-  
-  providers: [],
+
+   providers: [AuthGaurdService],
+    // ,{
+    //  provide: HTTP_INTERCEPTORS,
+    //   useClass: TokenInterseptorService,
+    // multi: true}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

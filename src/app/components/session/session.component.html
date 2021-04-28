@@ -49,12 +49,23 @@
     </ng-container>
 
     <ng-container matColumnDef="TrainerEmail">
-      <mat-header-cell style="max-width: 150px;" *matHeaderCellDef> Trainer Email </mat-header-cell>
-      <mat-cell style="max-width: 150px;" *matCellDef="let element">
+      <mat-header-cell style="min-width: 200px;" *matHeaderCellDef> Trainer Email </mat-header-cell>
+      <mat-cell style="min-width: 200px;" *matCellDef="let element">
         {{ element.trainer.emailId }}
       </mat-cell>
     </ng-container>
-
+    <ng-container matColumnDef="Attendence">
+      <mat-header-cell style="max-width: 150px;" *matHeaderCellDef> Attendence </mat-header-cell>
+      <mat-cell style="max-width: 150px;" *matCellDef="let element">
+        {{getAtt(element)}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="forms">
+      <mat-header-cell style="max-width: 150px;" *matHeaderCellDef> forms </mat-header-cell>
+      <mat-cell style="max-width: 150px;" *matCellDef="let element">
+        {{getFromAttendence(element.sessionName)}}
+      </mat-cell>
+    </ng-container>
     <!-- Actions -->
     <ng-container matColumnDef="Actions">
       <mat-header-cell style="min-width: 200px;" *matHeaderCellDef>Actions</mat-header-cell>
@@ -67,6 +78,10 @@
         <button mat-icon-button matTooltip="Calendar Invite" matTooltipPosition="above"
           (click)="openCalendar(row.calenderInviteLink)" color="primary">
           <mat-icon>calendar_today</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="feedback from" matTooltipPosition="above"
+          (click)="openFrom(row.sessionName)" color="primary">
+          <i class="material-icons md-48">feedback</i>
         </button>
 
         <mat-divider vertical style="height: 20px"></mat-divider>

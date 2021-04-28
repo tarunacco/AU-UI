@@ -31,3 +31,6 @@
 .li-item :hover{
   color: blue;
 }
+.example-spacer {
+  flex: 1 1 auto;
+}

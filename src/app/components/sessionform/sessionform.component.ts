@@ -108,16 +108,37 @@ export class SessionformComponent implements OnInit {
             tempForm['classroomTopicId'] = val['createdTopic']['topicId'];
             tempForm['classroomTopicName'] = val['createdTopic']['name'];
             tempForm['calendarInviteLink'] = val['sentCalInvite']['htmlLink'];
-
+            
             this.loadText = 'Creating Session...';
             this.http.post('/api/session/add', tempForm).subscribe(() => {
-              this.dialogRef.close();
-              this.isProgressLoading = false;
-              this.loadText = 'Loading...';
+             
+            });
+
+           
+            this.http.get<any>('https://script.google.com/macros/s/AKfycbyYic4yIIXb_W65ntjOdspet7u7djUIZpCfYmQkT4AfH-vmKQhivwo2m-JVsP31fwmz/exec',{
+                params:{
+                  operation :'createForm',
+                  driveId : '1cY5wnv2a-n4C4TPzajvQ2KJ85apNZbOL',
+                  location : 'Hyderabad',
+                  sessionName:this.newSessionForm.get('sessionName').value,
+                  trainerName:this.newSessionForm.get('trainer').value
+                  .trainerName
+
+                },
+            }).subscribe((val) => {
+                console.log(val['formId']);
+                localStorage.setItem(
+                  this.newSessionForm.get('sessionName').value,
+                  JSON.stringify(val['formId']));
+                this.dialogRef.close();
+                this.isProgressLoading = false;
+                this.loadText = 'Loading...';
             });
             this.snackbar.open('Session Created', '', { duration: 3000 });
-          });
-      }
+              });
+            
+          }
+
     } else {
       this.snackbar.open('There are validation errors', '', { duration: 5000 });
     }

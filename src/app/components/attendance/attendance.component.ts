@@ -28,6 +28,7 @@ export class AttendanceComponent implements OnInit {
   }
 
   getTotalAttendance(column) {
+    console.log(column);
     if (column in this.finalAttendanceReport) {
       return this.finalAttendanceReport[column];
     }
@@ -48,7 +49,6 @@ export class AttendanceComponent implements OnInit {
           }),
           (this.headers = ['First Name', 'Last Name', 'Email Address', ...this.sessionHeaderName]),
           (this.attendanceData = attendance['attendanceData']),
-        console.log(this.attendanceData),
           this.updateReport()
         )
       );

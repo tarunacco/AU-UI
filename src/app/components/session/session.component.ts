@@ -26,13 +26,14 @@ export class SessionComponent implements OnInit {
   batchObject;
   batchName: String;
   isLoading = true;
+  attend: any[] = [];
 
   constructor(
     private dialog: MatDialog,
     private http: HttpClient,
     private router: Router,
-    private snackbar: MatSnackBar
-  ) {
+    private snackbar: MatSnackBar,
+  ) {console.log(this.batchId)
     this.batchObject = this.router.getCurrentNavigation().extras.state.batchObject;
     this.batchName = this.batchObject.batchName;
   }
@@ -43,6 +44,8 @@ export class SessionComponent implements OnInit {
     'sessionName',
     'Trainer',
     'TrainerEmail',
+    'Attendence',
+    'forms',
     'Actions',
   ];
 
@@ -51,6 +54,7 @@ export class SessionComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
   ngOnInit(): void {
+    console.log(this.batchId)
     this.getSessions();
   }
 
@@ -121,4 +125,48 @@ export class SessionComponent implements OnInit {
   openCalendar(link) {
     window.open(link);
   }
+  getAtt(ele){
+    //console.log(ele);
+ //  return this.fetchAttendence(ele["sessionId"]);
+ return "----"
+  }
+  fetchAttendence(id){
+    let count=0;
+    let url = '/api/training/all/' + this.batchId;
+    this.http
+      .get<any[]>(url, { params: { type: 'A' } })
+      .subscribe(
+        (attendance) => (
+            (this.attend=attendance['attendanceData']),
+            console.log(this.attend)
+        )
+        );
+        for (let i = 0; i < this.attend.length; i++) {
+          let x=this.attend[i][id]
+             if(x['attendence']=='P')
+              count++;
+        }
+        console.log(count);
+        return count;
+          
+  }
+  openFrom(name){
+       let y=JSON.parse(localStorage.getItem(name));
+       window.open(`https://docs.google.com/forms/d/${y}/edit`);
+  }
+  getFromAttendence(name){
+    let total
+    let y=JSON.parse(localStorage.getItem(name));
+    this.http.get<any>('https://script.google.com/macros/s/AKfycbyYic4yIIXb_W65ntjOdspet7u7djUIZpCfYmQkT4AfH-vmKQhivwo2m-JVsP31fwmz/exec',{
+                params:{
+                  formId : y,
+                  operation :'getFormResponses'
+                }
+              }).subscribe((val) => {
+                 total=val['totalRespondents']
+              });
+              return '-';
+  }
+
+
 }

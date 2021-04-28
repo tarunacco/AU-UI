@@ -11,3 +11,7 @@
 .containerForHeading{
   margin-left: 40%;
 }
+
+.myClass{
+  display: none;
+}

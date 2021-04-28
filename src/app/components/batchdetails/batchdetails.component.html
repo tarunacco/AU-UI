@@ -3,35 +3,51 @@
     <h1 class="heading">Batch : {{ batchName }}</h1>
   </div>
   <br />
-  <mat-tab-group mat-align-tabs="center">
-    <mat-tab label="Sessions">
-      <app-session [batchId]="batchId"></app-session>
+  <mat-tab-group
+    #tabRef
+    mat-align-tabs="center"
+    (selectedTabChange)="onTabChange($event)"
+  >
+    <mat-tab *ngFor="let tab of tabs; let ind = index">
+      <ng-template mat-tab-label>{{ tab.tabName }}</ng-template>
     </mat-tab>
-
-    <mat-tab label="Candidates">
-      <app-students [batchId]="batchId"> </app-students>
-    </mat-tab>
-
-    <mat-tab label="Attendance">
-      <app-attendance [batchId]="batchId"></app-attendance>
-    </mat-tab>
-
-    <mat-tab label="Assignment">
-      <app-assignments [batchId]="batchId"> </app-assignments>
-    </mat-tab>
-
-    
-    <mat-tab label="Asign group">
-      <app-grouping [batchId]="batchId"> </app-grouping>
-    </mat-tab>
-
-    <mat-tab label="Final Evaluation">
-      <app-evaluation [batchId]="batchId"> </app-evaluation>
-    </mat-tab>
-    <mat-tab label="Charts">
-      <app-charts [batchId]="batchId"> </app-charts>
-    </mat-tab>
-    
-
   </mat-tab-group>
+
+  <app-session 
+  [ngClass]="[disableSession === true ? 'myClass' : '']"
+    [batchId]="batchId"
+  >
+  </app-session>
+
+  <app-students
+    *ngIf="getTabValue('Candidates') === selectedTabValue"
+    [batchId]="batchId"
+  >
+  </app-students>
+
+  <app-attendance
+    *ngIf="getTabValue('Attendance') === selectedTabValue"
+    [batchId]="batchId"
+  ></app-attendance>
+
+  <app-assignments
+    *ngIf="getTabValue('Assignment') === selectedTabValue"
+    [batchId]="batchId"
+  >
+  </app-assignments>
+  <app-grouping
+    *ngIf="getTabValue('Assign Group') === selectedTabValue"
+    [batchId]="batchId"
+  >
+  </app-grouping>
+  <app-evaluation
+    *ngIf="getTabValue('Final Evaluation') === selectedTabValue"
+    [batchId]="batchId"
+  >
+  </app-evaluation>
+  <app-charts
+    *ngIf="getTabValue('Charts') === selectedTabValue"
+    [batchId]="batchId"
+  >
+  </app-charts>
 </div>

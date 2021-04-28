@@ -27,7 +27,7 @@ export class StudentformComponent implements OnInit {
     this.batchId = dialogData.batchId;
   }
 
-  Location = ['Hyderabad', 'Bangalore', 'Delhi', 'Chennai', 'Mumbai']
+  Location = ['Hyderabad', 'Banglore', 'Delhi', 'Chennai', 'Mumbai']
   update = false;;
   ngOnInit() {
     this.newStudentForm = this.fb.group({

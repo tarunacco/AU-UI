@@ -4,6 +4,7 @@ import { Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatOption } from '@angular/material/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { map } from 'rxjs/operators';
 
@@ -13,10 +14,11 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./create-group.component.css']
 })
 export class CreateGroupComponent implements OnInit {
-  constructor(private http:HttpClient , @Inject(MAT_DIALOG_DATA) public dialogData,private fb: FormBuilder) {
+  constructor(private http:HttpClient , private snackbar: MatSnackBar,@Inject(MAT_DIALOG_DATA) public dialogData,private fb: FormBuilder) {
       
   }
   studentNames=[];
+  
   getStudents()
   {
     this.http.get<any[]>('api/student/allUnassigned?batchId='+this.batchId).subscribe((res) => {
@@ -134,6 +136,9 @@ export class CreateGroupComponent implements OnInit {
       console.log(value);
       console.log(this.modified);
       console.log("dataSource "+ this.dataSource);
+      this.snackbar.open("Group Created", '', {
+        duration: 2000
+      });
     }
 
    

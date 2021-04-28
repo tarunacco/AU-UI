@@ -4,26 +4,51 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BatchdetailsComponent } from './components/batchdetails/batchdetails.component';
 import { BatchesComponent } from './components/batches/batches.component';
+import { SigninComponent } from './components/signin/signin.component';
+import { AuthGaurdService } from './auth-gaurd.service';
+import { SideNavComponent } from './components/side-nav/side-nav.component';
+import { FisrtHomeComponent } from './components/fisrt-home/fisrt-home.component';
+import { SecondHomeComponent } from './components/second-home/second-home.component';
 
 const routes: Routes = [
   {
+    path: 'welcome',
+    component: FisrtHomeComponent,
+  },
+  {
     path: '',
-    component: HomeComponent,
+    redirectTo: 'welcome',
+    pathMatch: 'full',
   },
   {
-    path: 'batches',
-    component: BatchesComponent,
-  },
+    path: 'logedin',
+    component: SecondHomeComponent,
+    canActivate: [AuthGaurdService],
+    children: [
+      {
+        path: 'batches',
+        component: BatchesComponent,
+      },
+      {
+        path: 'home',
+        component: HomeComponent,
+      },
 
-  {
-    path: 'batch/:batchId',
-    component: BatchdetailsComponent,
-  },
+      {
+        path: 'batch/:batchId',
+        component: BatchdetailsComponent,
+      },
 
-  {
-    path: 'trainers',
-    component: TrainersComponent,
+      {
+        path: 'trainers',
+        component: TrainersComponent,
+      },
+    ],
   },
+  {
+    path: '**',
+    redirectTo:'/welcome'
+  }
 ];
 
 @NgModule({

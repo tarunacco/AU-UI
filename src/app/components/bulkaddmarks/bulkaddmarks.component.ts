@@ -11,7 +11,7 @@ import { NgxCsvParser } from 'ngx-csv-parser';
 export class BulkaddmarksComponent implements OnInit {
   batchId: number;
   csvRecords: any[] = [];
-  eduid: "1";
+
   eduname: any;
   header: boolean = true;
   constructor(private ngxCsvParser: NgxCsvParser,
@@ -56,7 +56,7 @@ if(type=='f'){
       const sessionsFile = this.file;
       let formData: FormData = new FormData();
       console.log(sessionsFile.name);
-      formData.append('eduthrillTestId', this.eduid);
+       formData.append('eduthrillTestId', this.eduname.toString());
       formData.append('eduthrillTestFile', sessionsFile);
       formData.append('eduthrillTestName', this.eduname.toString());
       
