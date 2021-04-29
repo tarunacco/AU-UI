@@ -150,16 +150,16 @@ export class SessionComponent implements OnInit {
         return count;
           
   }
-  openFrom(name){
-       let y=JSON.parse(localStorage.getItem(name));
-       window.open(`https://docs.google.com/forms/d/${y}/edit`);
+  openFrom(formid){
+      //  let y=JSON.parse(localStorage.getItem(name));
+       window.open(`https://docs.google.com/forms/d/${formid}/edit`);
   }
-  getFromAttendence(name){
+  getFromAttendence(id){
     let total
-    let y=JSON.parse(localStorage.getItem(name));
+
     this.http.get<any>('https://script.google.com/macros/s/AKfycbyYic4yIIXb_W65ntjOdspet7u7djUIZpCfYmQkT4AfH-vmKQhivwo2m-JVsP31fwmz/exec',{
                 params:{
-                  formId : y,
+                  formId : id,
                   operation :'getFormResponses'
                 }
               }).subscribe((val) => {

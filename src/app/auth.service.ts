@@ -11,7 +11,6 @@ export class AuthService {
 
   public getToken(): string {
     let token = JSON.parse(localStorage.getItem('currentGoogleLoggedInUser'));
-
     return token['firebaseIdToken'];
   }
   constructor(public afAuth: AngularFireAuth) {}
