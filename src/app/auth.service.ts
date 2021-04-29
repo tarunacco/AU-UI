@@ -8,21 +8,13 @@ import firebase, { auth } from 'firebase';
   providedIn: 'root',
 })
 export class AuthService {
+
   public getToken(): string {
-    let x=JSON.parse(localStorage.getItem('currentGoogleLoggedInUser'));
-    return x['firebaseIdToken'];
+    let token = JSON.parse(localStorage.getItem('currentGoogleLoggedInUser'));
+
+    return token['firebaseIdToken'];
   }
   constructor(public afAuth: AngularFireAuth) {}
-
-  // isUserLoggedin(){
-  //   if(localStorage.getItem("currentGoogleLoggedInUser")){
-  //    return true;
-
-  //   }
-  //    else{
-  //    return false;
-  //    }
-  // }
   // Sign in with Google
   GoogleAuth() {
     return this.AuthLogin(new auth.GoogleAuthProvider());

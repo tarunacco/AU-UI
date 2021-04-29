@@ -153,7 +153,14 @@ PlotlyModule.plotlyjs = PlotlyJS;
   ],
   exports: [MatTabsModule, MatSortModule],
 
-   providers: [AuthGaurdService],
+   providers: [
+     AuthGaurdService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterseptorService,
+      multi: true
+    }
+  ],
     // ,{
     //  provide: HTTP_INTERCEPTORS,
     //   useClass: TokenInterseptorService,
