@@ -68,12 +68,12 @@ export class HomeComponent implements OnInit {
       .currentUser.getIdToken(/* forceRefresh */ true)
       .then(function (idToken) {
         let profile = user;
-        profile['firebaseIdToken'] = idToken;
+        profile['firebaseIdToken'] = idToken; 
         localStorage.setItem(
           'currentGoogleLoggedInUser',
           JSON.stringify(profile)
         );
-        console.log(profile);
+       // console.log(profile);
       })
       .catch(function (error) {
         console.log(error);

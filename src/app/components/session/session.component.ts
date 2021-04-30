@@ -27,6 +27,7 @@ export class SessionComponent implements OnInit {
   batchName: String;
   isLoading = true;
   attend: any[] = [];
+  total :any[];
 
   constructor(
     private dialog: MatDialog,
@@ -127,24 +128,25 @@ export class SessionComponent implements OnInit {
   }
   getAtt(ele){
     //console.log(ele);
- //  return this.fetchAttendence(ele["sessionId"]);
+  //return this.fetchAttendence(ele["sessionId"]);
  return "----"
   }
   fetchAttendence(id){
-    let count=0;
+    let count=1;
     let url = '/api/training/all/' + this.batchId;
     this.http
-      .get<any[]>(url, { params: { type: 'A' } })
+      .get<any[]>(url, { params: { type: 'P' } })
       .subscribe(
         (attendance) => (
-            (this.attend=attendance['attendanceData']),
-            console.log(this.attend)
+            (this.attend=attendance['attendanceData'])
+           // console.log(this.attend)
         )
         );
         for (let i = 0; i < this.attend.length; i++) {
           let x=this.attend[i][id]
-             if(x['attendence']=='P')
+             if(x['attendence']=='P'){
               count++;
+              console.log(count)}
         }
         console.log(count);
         return count;
@@ -155,17 +157,20 @@ export class SessionComponent implements OnInit {
        window.open(`https://docs.google.com/forms/d/${formid}/edit`);
   }
   getFromAttendence(id){
-    let total
-
+     
     this.http.get<any>('https://script.google.com/macros/s/AKfycbyYic4yIIXb_W65ntjOdspet7u7djUIZpCfYmQkT4AfH-vmKQhivwo2m-JVsP31fwmz/exec',{
+      headers: { 'Anonymous': 'skip' },
                 params:{
                   formId : id,
                   operation :'getFormResponses'
                 }
               }).subscribe((val) => {
-                 total=val['totalRespondents']
+               // console.log(val['totalRespondents'])
+                this.total=(val['totalRespondents'])
+                 console.log(this.total);
               });
-              return '-';
+              
+              return this.total;
   }
 
 

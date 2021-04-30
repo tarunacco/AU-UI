@@ -18,7 +18,6 @@ export class AuthService {
   GoogleAuth() {
     return this.AuthLogin(new auth.GoogleAuthProvider());
   }
-
   // Auth logic to run auth providers
   AuthLogin(provider) {
     return this.afAuth.auth

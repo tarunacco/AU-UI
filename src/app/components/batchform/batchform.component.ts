@@ -77,6 +77,7 @@ export class BatchformComponent implements OnInit {
           .get<any>(
             'https://script.google.com/macros/s/AKfycbwRycXiB4o4G5bsLIiBwRcLhVrSCp5pk5feG9FPwNX-S2omV7fadGz0CYVey_yvXUzP/exec',
             {
+              headers: { 'Anonymous': 'skip' },
               params: {
                 operation: 'CreateCourse',
                 classRoomName: this.newBatchForm.get('batchName').value,

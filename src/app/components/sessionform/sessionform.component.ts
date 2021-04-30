@@ -23,7 +23,7 @@ export class SessionformComponent implements OnInit {
   newSessionForm: FormGroup;
 
   public Sessions: any = [];
-  formId :any;
+  formId: any;
   batchId: number;
   batchData: {};
   isProgressLoading = false;
@@ -91,27 +91,12 @@ export class SessionformComponent implements OnInit {
         this.loadText = 'Creating Google Classroom Topic...';
         let tempForm = this.newSessionForm.value;
         console.log('Inside Create');
-        this.http.get<any>('https://script.google.com/macros/s/AKfycbyYic4yIIXb_W65ntjOdspet7u7djUIZpCfYmQkT4AfH-vmKQhivwo2m-JVsP31fwmz/exec',{
-                params:{
-                  operation :'createForm',
-                  driveId : '1cY5wnv2a-n4C4TPzajvQ2KJ85apNZbOL',
-                  location : 'Hyderabad',
-                  sessionName:this.newSessionForm.get('sessionName').value,
-                  trainerName:this.newSessionForm.get('trainer').value
-                  .trainerName
 
-                },
-            }).subscribe((val) => {
-                console.log(val['formId']);
-                // localStorage.setItem(
-                //   this.newSessionForm.get('sessionName').value,
-                //   JSON.stringify(val['formId']));
-                this.formId=val['formId'];
-            });
         this.http
           .get<any>(
             'https://script.google.com/macros/s/AKfycbwRycXiB4o4G5bsLIiBwRcLhVrSCp5pk5feG9FPwNX-S2omV7fadGz0CYVey_yvXUzP/exec',
             {
+              headers: { 'Anonymous': 'skip' },
               params: {
                 operation: 'CreateTopic',
                 courseId: this.batchObject.commonClassroomId,
@@ -123,22 +108,43 @@ export class SessionformComponent implements OnInit {
             }
           )
           .subscribe((val) => {
-            tempForm['classroomTopicId'] = val['createdTopic']['topicId'];
-            tempForm['classroomTopicName'] = val['createdTopic']['name'];
-            tempForm['calendarInviteLink'] = val['sentCalInvite']['htmlLink'];
-            tempForm['googleFormId'] =this.formId;
-            this.loadText = 'Creating Session...';
-            
-            this.http.post('/api/session/add', tempForm).subscribe(() => {
-              this.dialogRef.close();
-              this.isProgressLoading = false;
-              this.loadText = 'Loading...';
-            });
-            this.snackbar.open('Session Created', '', { duration: 3000 });
-              });
-            
-          }
+            this.http
+              .get<any>(
+                'https://script.google.com/macros/s/AKfycbyYic4yIIXb_W65ntjOdspet7u7djUIZpCfYmQkT4AfH-vmKQhivwo2m-JVsP31fwmz/exec',
+                {
+                  headers: { 'Anonymous': 'skip' },
+                  params: {
+                    operation: 'createForm',
+                    driveId: '1cY5wnv2a-n4C4TPzajvQ2KJ85apNZbOL',
+                    location: 'Hyderabad',
+                    sessionName: this.newSessionForm.get('sessionName').value,
+                    trainerName: this.newSessionForm.get('trainer').value
+                      .trainerName,
+                  },
+                }
+              )
+              .subscribe((val1) => {
+                console.log(val1['formId']);
+                // localStorage.setItem(
+                //   this.newSessionForm.get('sessionName').value,
+                //   JSON.stringify(val['formId']));
+                this.formId = val1['formId'];
+                tempForm['classroomTopicId'] = val['createdTopic']['topicId'];
+                tempForm['classroomTopicName'] = val['createdTopic']['name'];
+                tempForm['calendarInviteLink'] =
+                  val['sentCalInvite']['htmlLink'];
+                tempForm['googleFormId'] = this.formId;
+                this.loadText = 'Creating Session...';
 
+                this.http.post('/api/session/add', tempForm).subscribe(() => {
+                  this.dialogRef.close();
+                  this.isProgressLoading = false;
+                  this.loadText = 'Loading...';
+                });
+                this.snackbar.open('Session Created', '', { duration: 3000 });
+              });
+          });
+      }
     } else {
       this.snackbar.open('There are validation errors', '', { duration: 5000 });
     }

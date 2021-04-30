@@ -8,7 +8,11 @@ export class TokenInterseptorService implements HttpInterceptor{
 
   constructor(public auth: AuthService) { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
+    if (request.headers.get('Anonymous') == 'skip') {
+      const newHeaders = request.headers.delete('Anonymous')
+      const newRequest = request.clone({ headers: newHeaders });
+      return next.handle(newRequest);
+    }
 
     request = request.clone({ headers: request.headers.set('Authorization',`Bearer ${this.auth.getToken()}`) });
     console.log(this.auth.getToken())
