@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http'
 import { Observable } from 'rxjs';
-import { AuthService } from './auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { map } from 'rxjs/operators';
 @Injectable()
-export class TokenInterseptorService implements HttpInterceptor{
 
+export class TokenInterceptorService implements HttpInterceptor{
   constructor(public auth: AuthService) { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (request.headers.get('Anonymous') == 'skip') {

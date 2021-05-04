@@ -68,10 +68,10 @@ import { environment } from '../environments/environment';
 import { BulkaddmarksComponent } from './components/bulkaddmarks/bulkaddmarks.component';
 import {SigninComponent} from './components/signin/signin.component';
 import { AuthGaurdComponent } from './auth-gaurd/auth-gaurd.component';
-import { AuthGaurdService } from './auth-gaurd.service';
+import { AuthGaurdService } from 'src/app/services/auth-gaurd.service';
 import { FisrtHomeComponent } from './components/fisrt-home/fisrt-home.component';
 import { SecondHomeComponent } from './components/second-home/second-home.component';
-import {TokenInterseptorService} from './token-interseptor.service';
+import {TokenInterceptorService} from 'src/app/services/token-interceptor.service';
 //import { PlotlyModule } from 'angular-plotly.js';
 PlotlyModule.plotlyjs = PlotlyJS;
 @NgModule({
@@ -157,7 +157,7 @@ PlotlyModule.plotlyjs = PlotlyJS;
      AuthGaurdService,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterseptorService,
+      useClass: TokenInterceptorService,
       multi: true
     }
   ],
