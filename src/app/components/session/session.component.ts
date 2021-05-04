@@ -1,10 +1,4 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  ViewChild
-}
-  from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SessionformComponent } from '../sessionform/sessionform.component';
@@ -27,14 +21,15 @@ export class SessionComponent implements OnInit {
   batchName: String;
   isLoading = true;
   attend: any[] = [];
-  total :any[];
+  total: any[];
 
   constructor(
     private dialog: MatDialog,
     private http: HttpClient,
     private router: Router,
-    private snackbar: MatSnackBar,
-  ) {console.log(this.batchId)
+    private snackbar: MatSnackBar
+  ) {
+    console.log(this.batchId);
     this.batchObject = this.router.getCurrentNavigation().extras.state.batchObject;
     this.batchName = this.batchObject.batchName;
   }
@@ -55,7 +50,7 @@ export class SessionComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
   ngOnInit(): void {
-    console.log(this.batchId)
+    console.log(this.batchId);
     this.getSessions();
   }
 
@@ -126,52 +121,58 @@ export class SessionComponent implements OnInit {
   openCalendar(link) {
     window.open(link);
   }
-  getAtt(ele){
+
+  getAtt(ele) {
     //console.log(ele);
-  //return this.fetchAttendence(ele["sessionId"]);
- return "----"
+    //return this.fetchAttendence(ele["sessionId"]);
+    return '----';
   }
-  fetchAttendence(id){
-    let count=1;
+
+  fetchAttendence(id) {
+    let count = 1;
     let url = '/api/training/all/' + this.batchId;
     this.http
       .get<any[]>(url, { params: { type: 'P' } })
       .subscribe(
-        (attendance) => (
-            (this.attend=attendance['attendanceData'])
-           // console.log(this.attend)
-        )
-        );
-        for (let i = 0; i < this.attend.length; i++) {
-          let x=this.attend[i][id]
-             if(x['attendence']=='P'){
-              count++;
-              console.log(count)}
-        }
+        (attendance) =>
+          (this.attend = attendance['attendanceData'])
+          // console.log(this.attend)
+      );
+    for (let i = 0; i < this.attend.length; i++) {
+      let x = this.attend[i][id];
+      if (x['attendence'] == 'P') {
+        count++;
         console.log(count);
-        return count;
-          
-  }
-  openFrom(formid){
-      //  let y=JSON.parse(localStorage.getItem(name));
-       window.open(`https://docs.google.com/forms/d/${formid}/edit`);
-  }
-  getFromAttendence(id){
-     
-    this.http.get<any>('https://script.google.com/macros/s/AKfycbyYic4yIIXb_W65ntjOdspet7u7djUIZpCfYmQkT4AfH-vmKQhivwo2m-JVsP31fwmz/exec',{
-      headers: { 'Anonymous': 'skip' },
-                params:{
-                  formId : id,
-                  operation :'getFormResponses'
-                }
-              }).subscribe((val) => {
-               // console.log(val['totalRespondents'])
-                this.total=(val['totalRespondents'])
-                 console.log(this.total);
-              });
-              
-              return this.total;
+      }
+    }
+    console.log(count);
+    return count;
   }
 
+  openFrom(formid) {
+    //  let y=JSON.parse(localStorage.getItem(name));
+    window.open(`https://docs.google.com/forms/d/${formid}/edit`);
+  }
 
+  getFromAttendence = async (id) => {
+    let totalCount = 0;
+    await this.http
+      .get<any>(
+        'https://script.google.com/macros/s/AKfycbyYic4yIIXb_W65ntjOdspet7u7djUIZpCfYmQkT4AfH-vmKQhivwo2m-JVsP31fwmz/exec',
+        {
+          headers: { Anonymous: 'skip' },
+          params: {
+            formId: id,
+            operation: 'getFormResponses',
+          },
+        }
+      )
+      .subscribe((val) => {
+        // console.log(val['totalRespondents'])
+        totalCount = val['totalRespondents'];
+        console.log(totalCount);
+      });
+
+    return totalCount;
+  };
 }
