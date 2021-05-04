@@ -21,7 +21,6 @@ export class SessionComponent implements OnInit {
   batchName: String;
   isLoading = true;
   attend: any[] = [];
-  total: any[];
 
   constructor(
     private dialog: MatDialog,
@@ -51,18 +50,14 @@ export class SessionComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.batchId);
+    this.getSessionAttendence();
     this.getSessions();
-    
   }
-  getSessionAttendence(){
+  getSessionAttendence() {
     let url = '/api/training/all/' + this.batchId;
     this.http
       .get<any[]>(url, { params: { type: 'P' } })
-      .subscribe(
-        (attendance) => (
-            (this.attend=attendance['attendanceData'])
-        )
-        );
+      .subscribe((attendance) => (this.attend = attendance['attendanceData']));
   }
   getSessions() {
     this.http
@@ -70,24 +65,31 @@ export class SessionComponent implements OnInit {
         params: { batchId: `${this.batchId}` },
       })
       .subscribe((res) => {
-       
         this.dataSource.data = res;
-   
-        for(let i=0;i<this.dataSource.data.length;i++){
-          let c1=0;
-          for(let j=0; j<this.attend.length;j++) {
-            if(this.attend[j][this.dataSource.data[i]["sessionId"]]!=null){
-              console.log(this.attend[j][this.dataSource.data[i]["sessionId"]]['attendance']);
-               if(this.attend[j][this.dataSource.data[i]["sessionId"]]['attendance'] =='P'){
+
+        for (let i = 0; i < this.dataSource.data.length; i++) {
+          let c1 = 0;
+          for (let j = 0; j < this.attend.length; j++) {
+            if (this.attend[j][this.dataSource.data[i]['sessionId']] != null) {
+              console.log(
+                this.attend[j][this.dataSource.data[i]['sessionId']][
+                  'attendance'
+                ]
+              );
+              if (
+                this.attend[j][this.dataSource.data[i]['sessionId']][
+                  'attendance'
+                ] == 'P'
+              ) {
                 c1++;
-              }}
+              }
+            }
           }
           console.log(c1);
-          this.dataSource.data[i]["attendence"]=c1;
-          
-         // this.dataSource.data[i]["fromatten"]=this.getFromAttendence(this.dataSource.data[i]["googleFormId"]);
-          }
-        console.log(this.dataSource.data)
+          this.dataSource.data[i]['attendence'] = c1;
+          // this.dataSource.data[i]["fromatten"]=this.getFromAttendence(this.dataSource.data[i]["googleFormId"]);
+        }
+        console.log(this.dataSource.data);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
         this.isLoading = false;
@@ -149,41 +151,13 @@ export class SessionComponent implements OnInit {
     window.open(link);
   }
 
-  getAtt(ele) {
-    //console.log(ele);
-    //return this.fetchAttendence(ele["sessionId"]);
-    return '----';
-  }
-
-  fetchAttendence(id) {
-    let count = 1;
-    let url = '/api/training/all/' + this.batchId;
-    this.http
-      .get<any[]>(url, { params: { type: 'P' } })
-      .subscribe(
-        (attendance) =>
-          (this.attend = attendance['attendanceData'])
-          // console.log(this.attend)
-      );
-    for (let i = 0; i < this.attend.length; i++) {
-      let x = this.attend[i][id];
-      if (x['attendence'] == 'P') {
-        count++;
-        console.log(count);
-      }
-    }
-    console.log(count);
-    return count;
-  }
-
   openFrom(formid) {
     //  let y=JSON.parse(localStorage.getItem(name));
     window.open(`https://docs.google.com/forms/d/${formid}/edit`);
   }
-
-  getFromAttendence = async (id) => {
+  getFromAttendence(id) {
     let totalCount = 0;
-    await this.http
+    this.http
       .get<any>(
         'https://script.google.com/macros/s/AKfycbyYic4yIIXb_W65ntjOdspet7u7djUIZpCfYmQkT4AfH-vmKQhivwo2m-JVsP31fwmz/exec',
         {
@@ -201,5 +175,5 @@ export class SessionComponent implements OnInit {
       });
 
     return totalCount;
-  };
+  }
 }
