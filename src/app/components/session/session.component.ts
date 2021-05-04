@@ -189,4 +189,9 @@ export class SessionComponent implements OnInit {
   //     });
   //   return total;
   // }
-}
+  reload(){
+this.ngOnInit();
+      }
+  
+  }
+

@@ -67,7 +67,6 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { BulkaddmarksComponent } from './components/bulkaddmarks/bulkaddmarks.component';
 import {SigninComponent} from './components/signin/signin.component';
-import { AuthGaurdComponent } from './auth-gaurd/auth-gaurd.component';
 import { AuthGaurdService } from 'src/app/services/auth-gaurd.service';
 import { FisrtHomeComponent } from './components/fisrt-home/fisrt-home.component';
 import { SecondHomeComponent } from './components/second-home/second-home.component';
@@ -102,7 +101,6 @@ PlotlyModule.plotlyjs = PlotlyJS;
     EvaluationComponent,
     ChartsComponent,
     BulkaddmarksComponent,
-    AuthGaurdComponent,
     FisrtHomeComponent,
     SecondHomeComponent,
 

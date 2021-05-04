@@ -95,4 +95,5 @@ export class HomeComponent implements OnInit {
   loggedin() {
     this.router.navigate(['/logedin/batches']);
   }
+  
 }
