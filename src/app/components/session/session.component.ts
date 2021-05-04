@@ -90,6 +90,7 @@ export class SessionComponent implements OnInit {
           }
           console.log(c1);
           this.dataSource.data[i]["attendence"]=c1;
+          
          // this.dataSource.data[i]["fromatten"]=this.getFromAttendence(this.dataSource.data[i]["googleFormId"]);
           }
         console.log(this.dataSource.data)
