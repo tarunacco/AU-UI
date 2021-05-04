@@ -21,7 +21,6 @@ export class SessionComponent implements OnInit {
   batchName: String;
   isLoading = true;
   attend: any[] = [];
-
   constructor(
     private dialog: MatDialog,
     private http: HttpClient,
@@ -69,8 +68,10 @@ export class SessionComponent implements OnInit {
 
         for (let i = 0; i < this.dataSource.data.length; i++) {
           let c1 = 0;
+          console.log(this.attend);
           for (let j = 0; j < this.attend.length; j++) {
             if (this.attend[j][this.dataSource.data[i]['sessionId']] != null) {
+              this.getSessionAttendence();
               console.log(
                 this.attend[j][this.dataSource.data[i]['sessionId']][
                   'attendance'
@@ -87,7 +88,22 @@ export class SessionComponent implements OnInit {
           }
           console.log(c1);
           this.dataSource.data[i]['attendence'] = c1;
+         
           // this.dataSource.data[i]["fromatten"]=this.getFromAttendence(this.dataSource.data[i]["googleFormId"]);
+          this.http
+      .get<any>(
+        'https://script.google.com/macros/s/AKfycbyYic4yIIXb_W65ntjOdspet7u7djUIZpCfYmQkT4AfH-vmKQhivwo2m-JVsP31fwmz/exec',
+        {
+          headers: { Anonymous: 'skip' },
+          params: {
+            formId: this.dataSource.data[i]["googleFormId"],
+            operation: 'getFormResponses',
+          },
+        }
+      )
+      .subscribe((val) => {
+        this.dataSource.data[i]["fromatten"]= val['totalRespondents'];
+      });
         }
         console.log(this.dataSource.data);
         this.dataSource.sort = this.sort;
@@ -155,25 +171,22 @@ export class SessionComponent implements OnInit {
     //  let y=JSON.parse(localStorage.getItem(name));
     window.open(`https://docs.google.com/forms/d/${formid}/edit`);
   }
-  getFromAttendence(id) {
-    let totalCount = 0;
-    this.http
-      .get<any>(
-        'https://script.google.com/macros/s/AKfycbyYic4yIIXb_W65ntjOdspet7u7djUIZpCfYmQkT4AfH-vmKQhivwo2m-JVsP31fwmz/exec',
-        {
-          headers: { Anonymous: 'skip' },
-          params: {
-            formId: id,
-            operation: 'getFormResponses',
-          },
-        }
-      )
-      .subscribe((val) => {
-        // console.log(val['totalRespondents'])
-        totalCount = val['totalRespondents'];
-        console.log(totalCount);
-      });
-
-    return totalCount;
-  }
+  // getFromAttendence(id) {
+  //   let total;
+  //   this.http
+  //     .get<any>(
+  //       'https://script.google.com/macros/s/AKfycbyYic4yIIXb_W65ntjOdspet7u7djUIZpCfYmQkT4AfH-vmKQhivwo2m-JVsP31fwmz/exec',
+  //       {
+  //         headers: { Anonymous: 'skip' },
+  //         params: {
+  //           formId: id,
+  //           operation: 'getFormResponses',
+  //         },
+  //       }
+  //     )
+  //     .subscribe((val) => {
+  //        total= val['totalRespondents'];
+  //     });
+  //   return total;
+  // }
 }
