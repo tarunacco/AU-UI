@@ -1,10 +1,4 @@
 import { HttpClient } from '@angular/common/http';
-<<<<<<< HEAD
-import { Component, OnInit } from '@angular/core';
-
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-=======
 import { Inject } from '@angular/core';
 import {
   Component,
@@ -22,39 +16,10 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
->>>>>>> 938cc704d6ca9b10c33417fcd4ec25f8b39da19f
 
 @Component({
   selector: 'app-batchform',
   templateUrl: './batchform.component.html',
-<<<<<<< HEAD
-  styleUrls: ['./batchform.component.css']
-})
-
-
-export class BatchformComponent implements OnInit {
-
-
-  newBatchForm : FormGroup;
-  constructor(private fb: FormBuilder, private http: HttpClient, private dialogRef:MatDialogRef<BatchformComponent>) {}
-
-
-  ngOnInit() {
-    this.newBatchForm = this.fb.group({
-      batchName: ['', [Validators.required]],
-        startDate: ['', [Validators.required]],
-        endDate: ['', [Validators.required]],
-    });
-  }
-
-
-  // public batches : BatchSchema[] = [];
-
-
-
-  onSubmit() {
-    this.http.post('/batches', this.newBatchForm.value).subscribe(() => this.dialogRef.close())
-=======
   styleUrls: ['./batchform.component.css'],
 })
 
@@ -140,6 +105,5 @@ export class BatchformComponent implements OnInit {
         duration: 5000,
       });
     }
->>>>>>> 938cc704d6ca9b10c33417fcd4ec25f8b39da19f
   }
 }

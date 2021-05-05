@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-<h3>New Batch </h3>
-<form [formGroup] = "newBatchForm">
-  <mat-form-field>
-    <input matInput placeholder="Batch Name" formControlName="batchName">
-  </mat-form-field>
-
-  <mat-form-field>
-    <input matInput [matDatepicker]="startDate" placeholder="Start Date">
-=======
 <app-overlay-loader *ngIf="isProgressLoading" [loadText]="loadText"></app-overlay-loader>
 <h3 style="text-align: center; font-weight: bold">Provide Batch Details</h3>
 <form [formGroup]="newBatchForm">
@@ -22,77 +12,16 @@
 
   <mat-form-field>
     <input matInput [matDatepicker]="startDate" placeholder="Start Date" formControlName="startDate" />
->>>>>>> 938cc704d6ca9b10c33417fcd4ec25f8b39da19f
     <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
     <mat-datepicker #startDate></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field>
-<<<<<<< HEAD
-    <input matInput [matDatepicker]="endDate" placeholder="End Date">
-=======
     <input matInput [matDatepicker]="endDate" placeholder="End Date" formControlName="endDate" />
->>>>>>> 938cc704d6ca9b10c33417fcd4ec25f8b39da19f
     <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
     <mat-datepicker #endDate></mat-datepicker>
   </mat-form-field>
 
-<<<<<<< HEAD
-</form>
-
-<div>
-  <button mat-button>Cancel</button>
-  <button mat-raised-button>Save</button>
-</div>
-
-<!-- <mat-dialog-content>
-  <!DOCTYPE html>
-  <html lang="en">
-
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Provide Batch Details</title>
-  </head>
-
-  <body>
-    <div class="container-fluid">
-      <h1 class="text-center"> Provide Batch Details </h1>
-
-      <form [formGroup]="newBatchForm">
-
-        <div class="form-group">
-          <label>Batch Name : </label>
-          <input type="text" formControlName="BatchName" class="form-control">
-        </div>
-
-
-        <div class="form-group">
-          <label>Start Date : </label>
-          <input type="date" formControlName="StartDate" class="form-control">
-        </div>
-
-
-        <div class="form-group">
-          <label>End Date : </label>
-          <input type="date" formControlName="EndDate" class="form-control">
-        </div>
-
-        <mat-dialog-actions>
-          <button mat-button mat-dialog-close class="btn btn-dark" type="submit" (click)="onSubmit()">Submit</button>
-        </mat-dialog-actions>
-      </form>
-
-
-
-    </div>
-
-  </body>
-
-  </html>
-</mat-dialog-content> -->
-=======
   <br />
 
   <mat-form-field>
@@ -110,4 +39,3 @@
     {{ dialogData ? "Update" : "Save" }}
   </button>
 </div>
->>>>>>> 938cc704d6ca9b10c33417fcd4ec25f8b39da19f

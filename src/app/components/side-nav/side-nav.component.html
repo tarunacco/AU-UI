@@ -1,26 +1,12 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav
-<<<<<<< HEAD
-=======
     style="width: 230px"
-    
->>>>>>> 938cc704d6ca9b10c33417fcd4ec25f8b39da19f
+
     #drawer
     class="sidenav"
     fixedInViewport
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
-<<<<<<< HEAD
-    [opened]="(isHandset$ | async) === false"
-  >
-    <mat-toolbar
-      ><img
-        src="https://www.accolite.com/assets/jpg/logo.png"
-        alt="logo"
-        height="50"
-        width="150"
-    /></mat-toolbar>
-=======
     [opened]="(isHandset$ | async) === true"
   >
     <div style="padding-top: 10px">
@@ -30,22 +16,15 @@
         width="210"
       />
     </div>
->>>>>>> 938cc704d6ca9b10c33417fcd4ec25f8b39da19f
     <br />
     <br />
     <br />
     <br />
     <mat-nav-list>
-<<<<<<< HEAD
-      <a mat-list-item href="/batches">Batches</a>
-      <a mat-list-item href="#">Sessions</a>
-      <a mat-list-item href="#">Trainers</a>
-      <a mat-list-item href="#">Attendance</a>
-=======
       <!-- <div class="li-item">
         <div fxlayout="row" fxLayoutAlign="space-between center" style="padding: 20px">
           <mat-icon> person_pin</mat-icon><a class="list" mat-list-item href="/signin">Signin</a>
-        </div> 
+        </div>
       </div>-->
       <div class="li-item">
         <div
@@ -67,26 +46,13 @@
           ><a class="list" mat-list-item href="/logedin/trainers">Trainers</a>
         </div>
       </div>
->>>>>>> 938cc704d6ca9b10c33417fcd4ec25f8b39da19f
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
       <button
         type="button"
-<<<<<<< HEAD
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async"
-      >
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>Welcome to Accolite University!</span>
-    </mat-toolbar>
-    <!-- Add Content Here -->
-=======
-       
+
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="drawer.toggle()"
@@ -95,10 +61,10 @@
       </button>
       &nbsp;&nbsp;
       <span>Welcome to Accolite University</span>
-      
+
       <span class="example-spacer"></span>
 
-      
+
       <button mat-button [matMenuTriggerFor]="appMenu" >
         <mat-icon> <img class="jpg-icon" src={{pic}} style="max-width: 150%; min-width: 120%" /></mat-icon>
       </button>
@@ -110,7 +76,6 @@
         <button *ngIf="isUserLoggedIn == false" mat-menu-item (click)="loginUser()">Login</button>
       </mat-menu>
     </mat-toolbar>
->>>>>>> 938cc704d6ca9b10c33417fcd4ec25f8b39da19f
 
     <ng-content></ng-content>
   </mat-sidenav-content>

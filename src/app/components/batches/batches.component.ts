@@ -1,18 +1,4 @@
 import { HttpClient } from '@angular/common/http';
-<<<<<<< HEAD
-import { Component, OnInit } from '@angular/core';
-import {
-  FormGroup,
-  FormControl,
-  Validators,
-  FormBuilder,
-} from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { BatchformComponent } from '../batchform/batchform.component';
-import { BatchSchema } from '../batchform/batchSchema';
-
-
-=======
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -21,38 +7,12 @@ import { Router } from '@angular/router';
 import { BatchformComponent } from '../batchform/batchform.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator } from '@angular/material/paginator';
->>>>>>> 938cc704d6ca9b10c33417fcd4ec25f8b39da19f
 
 @Component({
   selector: 'app-batches',
   templateUrl: './batches.component.html',
   styleUrls: ['./batches.component.css'],
 })
-<<<<<<< HEAD
-export class BatchesComponent implements OnInit {
-  constructor(private dialog: MatDialog) {}
-
-  displayedColumns: string[] = ['BatchName', 'StartDate', 'EndDate'];
-  dataSource = [];
-  ngOnInit(): void {
-
-
-  }
-
-  openNewBatchDialog() {
-    this.dialog.open(BatchformComponent);
-    // this.dialog.open(BatchformComponent).afterClosed().subscribe();
-  }
-
-  // showBatches() {
-  //   let batches = [];
-  //   batches = JSON.parse(sessionStorage.getItem('Batches'));
-  //   console.log('Localstorage batches ' + batches[0].BatchName);
-  // }
-
-
-
-=======
 export class BatchesComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = [
@@ -132,5 +92,4 @@ export class BatchesComponent implements OnInit, AfterViewInit {
   openClassroom(link) {
     window.open(link);
   }
->>>>>>> 938cc704d6ca9b10c33417fcd4ec25f8b39da19f
 }
