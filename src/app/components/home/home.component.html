@@ -13,12 +13,22 @@
     <div class="center">
       <button
         *ngIf="isNotLoggedIn"
+        [disabled]="isSigningIn"
         mat-raised-button
         mat-elevation-z8
         style="height: 50px"
         (click)="socialLogin()"
       >
-        <mat-icon style="width: 50px; height: 30px" svgIcon="logo"></mat-icon>
+        <mat-icon
+          *ngIf="!isSigningIn"
+          style="width: 50px; height: 30px"
+          svgIcon="logo"
+        ></mat-icon>
+        <mat-icon
+          *ngIf="isSigningIn"
+          style="width: 50px; height: 30px"
+          svgIcon="loader"
+        ></mat-icon>
         Login With Google
       </button>
       <button
@@ -29,7 +39,7 @@
         (click)="loggedin()"
         color="primary"
       >
-      <mat-icon>arrow_right</mat-icon> Lets Go
+        <mat-icon>arrow_right</mat-icon> Lets Go
       </button>
     </div>
   </div>
