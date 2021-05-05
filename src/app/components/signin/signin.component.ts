@@ -13,7 +13,6 @@ const googleLogoURL =
   styleUrls: ['./signin.component.css'],
 })
 export class SigninComponent implements OnInit {
-
   constructor(
     public authService: AuthService,
     private matIconRegistry: MatIconRegistry,
@@ -33,12 +32,7 @@ export class SigninComponent implements OnInit {
 
   socialLogin() {
     if (this.type === 'google') {
-      this.authService.GoogleAuth().then((res) => {
-        if (res.status === true) {
-          this.onSignIn(res.user);
-            this.router.navigate(['']); 
-        }
-      });
+      this.authService.GoogleAuth();
     } else {
       console.log('Method Not Supported Yet');
     }
@@ -46,7 +40,7 @@ export class SigninComponent implements OnInit {
 
   ngOnInit(): void {}
 }
+
 function goToItems() {
   throw new Error('Function not implemented.');
 }
-

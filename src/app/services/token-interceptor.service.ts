@@ -3,6 +3,7 @@ import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { map } from 'rxjs/operators';
+import { exemptURLs } from 'src/global constants/exemptURLs';
 @Injectable()
 
 export class TokenInterceptorService implements HttpInterceptor{
@@ -14,7 +15,10 @@ export class TokenInterceptorService implements HttpInterceptor{
       return next.handle(newRequest);
     }
 
-    request = request.clone({ headers: request.headers.set('Authorization',`Bearer ${this.auth.getToken()}`) });
+    if(!exemptURLs.includes(request.url)){
+      request = request.clone({ headers: request.headers.set('Authorization',`Bearer ${this.auth.getToken()}`) });
+    }
+    
     console.log(this.auth.getToken())
 
     return next.handle(request).pipe(

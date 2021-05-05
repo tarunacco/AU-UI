@@ -5,14 +5,10 @@
   <div class="typed">
     <span class="element"></span><br />
     <br />
-    <!-- <app-signin
-    *ngIf="isNotLoggedIn"
-    type="google"
-    [onSignIn]="signIn"
-  ></app-signin> -->
+
     <div class="center">
       <button
-        *ngIf="isNotLoggedIn"
+        *ngIf="!isSigningIn"
         mat-raised-button
         mat-elevation-z8
         style="height: 50px"
@@ -21,16 +17,12 @@
         <mat-icon style="width: 50px; height: 30px" svgIcon="logo"></mat-icon>
         Login With Google
       </button>
-      <button
-        *ngIf="!isNotLoggedIn"
-        mat-raised-button
-        mat-elevation-z8
-        style="height: 50px"
-        (click)="loggedin()"
-        color="primary"
-      >
-      <mat-icon>arrow_right</mat-icon> Lets Go
-      </button>
+
+      <img
+        *ngIf="isSigningIn"
+        style="width: 300px; height: 120px"
+        src="https://miro.medium.com/max/978/0*cWpsf9D3g346Va20.gif"
+      />
     </div>
   </div>
 </div>

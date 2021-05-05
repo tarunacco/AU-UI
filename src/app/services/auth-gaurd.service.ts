@@ -10,7 +10,7 @@ export class AuthGaurdService implements CanActivate{
 constructor(private authService:AuthService){
 
 }
-  
+
   canActivate() {
     if(localStorage.getItem("currentGoogleLoggedInUser")){
       console.log(true)

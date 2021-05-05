@@ -1,12 +1,11 @@
+import { globalURLs } from './../../../global constants/globalURLs';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import firebase, { auth } from 'firebase';
 import Typed from 'typed.js';
-const googleLogoURL =
-  'https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -21,14 +20,10 @@ export class HomeComponent implements OnInit {
   ) {
     this.matIconRegistry.addSvgIcon(
       'logo',
-      this.domSanitizer.bypassSecurityTrustResourceUrl(googleLogoURL)
+      this.domSanitizer.bypassSecurityTrustResourceUrl(globalURLs.googleLogoURL)
     );
   }
-  // @Input()
-  // public type;
 
-  // @Input()
-  // public onSignIn;
   str = [
     'Managing Batches',
     'Managing Trainers',
@@ -44,8 +39,7 @@ export class HomeComponent implements OnInit {
     let tempUserDetails = localStorage.getItem('currentGoogleLoggedInUser');
     if (tempUserDetails) {
       this.loggedin();
-      console.log("tokanID")
-      
+      console.log("tokenID")
     }
     const options = {
       strings: this.str,
@@ -59,41 +53,24 @@ export class HomeComponent implements OnInit {
     };
 
     const typed = new Typed('.element', options);
-  }
-  isNotLoggedIn = true;
 
-  async storeDetails(user) {
-    await firebase
-      .auth()
-      .currentUser.getIdToken(/* forceRefresh */ true)
-      .then(function (idToken) {
-        let profile = user;
-        profile['firebaseIdToken'] = idToken; 
-        localStorage.setItem(
-          'currentGoogleLoggedInUser',
-          JSON.stringify(profile)
-        );
-       // console.log(profile);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    let isSigningInAvailable = localStorage.getItem('isSigningIn');
+    if(isSigningInAvailable){
+      this.isSigningIn = isSigningInAvailable === 'true' ? true : false;
+    }
   }
+
+  isNotLoggedIn = true;
+  isSigningIn = false;
 
   socialLogin() {
-    this.authService.GoogleAuth().then(async (res) => {
-      if (res.status === true) {
-        await this.storeDetails(res.user);
-        this.isNotLoggedIn = false;
-        this.router.navigate(['/logedin/batches']);
-      } else {
-        console.log('Method Not Supported Yet');
-      }
-    });
+    this.isSigningIn = true;
+    localStorage.setItem('isSigningIn', 'true');
+    this.authService.GoogleAuth();
   }
 
   loggedin() {
     this.router.navigate(['/logedin/batches']);
   }
-  
+
 }
