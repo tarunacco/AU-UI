@@ -22,17 +22,8 @@ export class HomeComponent implements OnInit {
       'logo',
       this.domSanitizer.bypassSecurityTrustResourceUrl(globalURLs.googleLogoURL)
     );
-
-    this.matIconRegistry.addSvgIcon(
-      'loader',
-      this.domSanitizer.bypassSecurityTrustResourceUrl(globalURLs.loaderURL)
-    );
   }
-  // @Input()
-  // public type;
 
-  // @Input()
-  // public onSignIn;
   str = [
     'Managing Batches',
     'Managing Trainers',
