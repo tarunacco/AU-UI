@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h3>New Batch </h3>
 <form [formGroup] = "newBatchForm">
   <mat-form-field>
@@ -6,16 +7,37 @@
 
   <mat-form-field>
     <input matInput [matDatepicker]="startDate" placeholder="Start Date">
+=======
+<app-overlay-loader *ngIf="isProgressLoading" [loadText]="loadText"></app-overlay-loader>
+<h3 style="text-align: center; font-weight: bold">Provide Batch Details</h3>
+<form [formGroup]="newBatchForm">
+  <mat-form-field style="width: 100%" style="display: none">
+    <input matInput placeholder="Batch Id" formControlName="batchId" />
+  </mat-form-field>
+
+  <mat-form-field style="width: 100%">
+    <input matInput placeholder="Batch Name" formControlName="batchName" />
+  </mat-form-field>
+  <br />
+
+  <mat-form-field>
+    <input matInput [matDatepicker]="startDate" placeholder="Start Date" formControlName="startDate" />
+>>>>>>> 938cc704d6ca9b10c33417fcd4ec25f8b39da19f
     <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
     <mat-datepicker #startDate></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field>
+<<<<<<< HEAD
     <input matInput [matDatepicker]="endDate" placeholder="End Date">
+=======
+    <input matInput [matDatepicker]="endDate" placeholder="End Date" formControlName="endDate" />
+>>>>>>> 938cc704d6ca9b10c33417fcd4ec25f8b39da19f
     <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
     <mat-datepicker #endDate></mat-datepicker>
   </mat-form-field>
 
+<<<<<<< HEAD
 </form>
 
 <div>
@@ -70,3 +92,22 @@
 
   </html>
 </mat-dialog-content> -->
+=======
+  <br />
+
+  <mat-form-field>
+    <input matInput placeholder="Batch Skype Id" formControlName="commonSkypeId" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Batch Email Id" formControlName="groupEmailId" />
+  </mat-form-field>
+</form>
+
+<div>
+  <button mat-button mat-dialog-close color="warn">Cancel</button>
+  <button (click)="onSubmit()" mat-raised-button color="primary">
+    {{ dialogData ? "Update" : "Save" }}
+  </button>
+</div>
+>>>>>>> 938cc704d6ca9b10c33417fcd4ec25f8b39da19f

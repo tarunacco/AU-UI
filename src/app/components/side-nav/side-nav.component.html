@@ -1,10 +1,16 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav
+<<<<<<< HEAD
+=======
+    style="width: 230px"
+    
+>>>>>>> 938cc704d6ca9b10c33417fcd4ec25f8b39da19f
     #drawer
     class="sidenav"
     fixedInViewport
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
+<<<<<<< HEAD
     [opened]="(isHandset$ | async) === false"
   >
     <mat-toolbar
@@ -14,21 +20,61 @@
         height="50"
         width="150"
     /></mat-toolbar>
+=======
+    [opened]="(isHandset$ | async) === true"
+  >
+    <div style="padding-top: 10px">
+      <img
+        src="https://prnewswire2-a.akamaihd.net/p/1893751/sp/189375100/thumbnail/entry_id/1_u2vurmfd/def_height/2700/def_width/2700/version/100031/type/1"
+        alt="logo"
+        width="210"
+      />
+    </div>
+>>>>>>> 938cc704d6ca9b10c33417fcd4ec25f8b39da19f
     <br />
     <br />
     <br />
     <br />
     <mat-nav-list>
+<<<<<<< HEAD
       <a mat-list-item href="/batches">Batches</a>
       <a mat-list-item href="#">Sessions</a>
       <a mat-list-item href="#">Trainers</a>
       <a mat-list-item href="#">Attendance</a>
+=======
+      <!-- <div class="li-item">
+        <div fxlayout="row" fxLayoutAlign="space-between center" style="padding: 20px">
+          <mat-icon> person_pin</mat-icon><a class="list" mat-list-item href="/signin">Signin</a>
+        </div> 
+      </div>-->
+      <div class="li-item">
+        <div
+          fxlayout="row"
+          fxLayoutAlign="space-between center"
+          style="padding-left: 20px"
+        >
+          <mat-icon>group</mat-icon
+          ><a class="list" mat-list-item href="/logedin/batches">Batches</a>
+        </div>
+      </div>
+      <div class="li-item">
+        <div
+          fxlayout="row"
+          fxLayoutAlign="space-between center"
+          style="padding: 20px"
+        >
+          <mat-icon> person_pin</mat-icon
+          ><a class="list" mat-list-item href="/logedin/trainers">Trainers</a>
+        </div>
+      </div>
+>>>>>>> 938cc704d6ca9b10c33417fcd4ec25f8b39da19f
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
       <button
         type="button"
+<<<<<<< HEAD
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="drawer.toggle()"
@@ -39,6 +85,32 @@
       <span>Welcome to Accolite University!</span>
     </mat-toolbar>
     <!-- Add Content Here -->
+=======
+       
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      &nbsp;&nbsp;
+      <span>Welcome to Accolite University</span>
+      
+      <span class="example-spacer"></span>
+
+      
+      <button mat-button [matMenuTriggerFor]="appMenu" >
+        <mat-icon> <img class="jpg-icon" src={{pic}} style="max-width: 150%; min-width: 120%" /></mat-icon>
+      </button>
+
+      <mat-menu #appMenu="matMenu">
+        <!-- <p style="padding: 15px;">Username:{{user.given_name}} <br>
+        </p> -->
+        <button *ngIf="isUserLoggedIn" mat-menu-item (click)="logoutUser()">Logout</button>
+        <button *ngIf="isUserLoggedIn == false" mat-menu-item (click)="loginUser()">Login</button>
+      </mat-menu>
+    </mat-toolbar>
+>>>>>>> 938cc704d6ca9b10c33417fcd4ec25f8b39da19f
 
     <ng-content></ng-content>
   </mat-sidenav-content>

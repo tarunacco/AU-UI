@@ -1,0 +1,599 @@
+<testExecutions version="1">
+  <file path="src/app/components/batchform/batchform.component.spec.ts">
+    <testCase name="BatchformComponent should create" duration="740">
+      <failure message="Error">NullInjectorError: R3InjectorError(DynamicTestModule)[FormBuilder -&gt; FormBuilder]: 
+  NullInjectorError: No provider for FormBuilder!
+error properties: Object({ ngTempTokenPath: null, ngTokenPath: [ 'FormBuilder', 'FormBuilder' ] })
+NullInjectorError: R3InjectorError(DynamicTestModule)[FormBuilder -&gt; FormBuilder]: 
+  NullInjectorError: No provider for FormBuilder!
+    at NullInjector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11044:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at NgModuleRef$1.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:25275:1)
+    at Object.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:24989:1)
+    at lookupTokenUsingModuleInjector (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3327:1)
+    at getOrCreateInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3439:1)
+    at ɵɵdirectiveInject (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:14649:1)
+    at NodeInjectorFactory.BatchformComponent_Factory [as factory] (ng:///BatchformComponent/ɵfac.js:4:46)
+    at getNodeInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3534:1)
+
+Error: Expected undefined to be truthy.
+    at &lt;Jasmine&gt;
+    at UserContext.&lt;anonymous&gt; (src/app/components/batchform/batchform.component.spec.ts:23:23)
+    at ZoneDelegate.invoke (node_modules/zone.js/dist/zone-evergreen.js:364:1)
+    at ProxyZoneSpec.push.QpwO.ProxyZoneSpec.onInvoke (node_modules/zone.js/dist/zone-testing.js:292:1)
+</failure>
+    </testCase>
+  </file>
+  <file path="src/app/components/grouping/grouping.component.spec.ts">
+    <testCase name="GroupingComponent should create" duration="43">
+      <failure message="Error">NullInjectorError: R3InjectorError(DynamicTestModule)[MatDialog -&gt; MatDialog]: 
+  NullInjectorError: No provider for MatDialog!
+error properties: Object({ ngTempTokenPath: null, ngTokenPath: [ 'MatDialog', 'MatDialog' ] })
+NullInjectorError: R3InjectorError(DynamicTestModule)[MatDialog -&gt; MatDialog]: 
+  NullInjectorError: No provider for MatDialog!
+    at NullInjector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11044:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at NgModuleRef$1.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:25275:1)
+    at Object.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:24989:1)
+    at lookupTokenUsingModuleInjector (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3327:1)
+    at getOrCreateInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3439:1)
+    at ɵɵdirectiveInject (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:14649:1)
+    at NodeInjectorFactory.GroupingComponent_Factory [as factory] (ng:///GroupingComponent/ɵfac.js:4:45)
+    at getNodeInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3534:1)
+
+Error: Expected undefined to be truthy.
+    at &lt;Jasmine&gt;
+    at UserContext.&lt;anonymous&gt; (src/app/components/grouping/grouping.component.spec.ts:23:23)
+    at ZoneDelegate.invoke (node_modules/zone.js/dist/zone-evergreen.js:364:1)
+    at ProxyZoneSpec.push.QpwO.ProxyZoneSpec.onInvoke (node_modules/zone.js/dist/zone-testing.js:292:1)
+</failure>
+    </testCase>
+  </file>
+  <file path="src/app/components/batches/batches.component.spec.ts">
+    <testCase name="BatchesComponent should create" duration="48">
+      <failure message="Error">NullInjectorError: R3InjectorError(DynamicTestModule)[MatDialog -&gt; MatDialog]: 
+  NullInjectorError: No provider for MatDialog!
+error properties: Object({ ngTempTokenPath: null, ngTokenPath: [ 'MatDialog', 'MatDialog' ] })
+NullInjectorError: R3InjectorError(DynamicTestModule)[MatDialog -&gt; MatDialog]: 
+  NullInjectorError: No provider for MatDialog!
+    at NullInjector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11044:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at NgModuleRef$1.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:25275:1)
+    at Object.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:24989:1)
+    at lookupTokenUsingModuleInjector (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3327:1)
+    at getOrCreateInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3439:1)
+    at ɵɵdirectiveInject (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:14649:1)
+    at NodeInjectorFactory.BatchesComponent_Factory [as factory] (ng:///BatchesComponent/ɵfac.js:4:44)
+    at getNodeInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3534:1)
+
+Error: Expected undefined to be truthy.
+    at &lt;Jasmine&gt;
+    at UserContext.&lt;anonymous&gt; (src/app/components/batches/batches.component.spec.ts:23:23)
+    at ZoneDelegate.invoke (node_modules/zone.js/dist/zone-evergreen.js:364:1)
+    at ProxyZoneSpec.push.QpwO.ProxyZoneSpec.onInvoke (node_modules/zone.js/dist/zone-testing.js:292:1)
+</failure>
+    </testCase>
+  </file>
+  <file path="src/app/components/batchdetails/batchdetails.component.spec.ts">
+    <testCase name="BatchdetailsComponent should create" duration="33">
+      <failure message="Error">NullInjectorError: R3InjectorError(DynamicTestModule)[ActivatedRoute -&gt; ActivatedRoute]: 
+  NullInjectorError: No provider for ActivatedRoute!
+error properties: Object({ ngTempTokenPath: null, ngTokenPath: [ 'ActivatedRoute', 'ActivatedRoute' ] })
+NullInjectorError: R3InjectorError(DynamicTestModule)[ActivatedRoute -&gt; ActivatedRoute]: 
+  NullInjectorError: No provider for ActivatedRoute!
+    at NullInjector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11044:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at NgModuleRef$1.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:25275:1)
+    at Object.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:24989:1)
+    at lookupTokenUsingModuleInjector (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3327:1)
+    at getOrCreateInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3439:1)
+    at ɵɵdirectiveInject (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:14649:1)
+    at NodeInjectorFactory.BatchdetailsComponent_Factory [as factory] (ng:///BatchdetailsComponent/ɵfac.js:4:49)
+    at getNodeInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3534:1)
+
+Error: Expected undefined to be truthy.
+    at &lt;Jasmine&gt;
+    at UserContext.&lt;anonymous&gt; (src/app/components/batchdetails/batchdetails.component.spec.ts:23:23)
+    at ZoneDelegate.invoke (node_modules/zone.js/dist/zone-evergreen.js:364:1)
+    at ProxyZoneSpec.push.QpwO.ProxyZoneSpec.onInvoke (node_modules/zone.js/dist/zone-testing.js:292:1)
+</failure>
+    </testCase>
+  </file>
+  <file path="src/app/components/edit-group/edit-group.component.spec.ts">
+    <testCase name="EditGroupComponent should create" duration="15">
+      <failure message="Error">NullInjectorError: R3InjectorError(DynamicTestModule)[HttpClient -&gt; HttpClient]: 
+  NullInjectorError: No provider for HttpClient!
+error properties: Object({ ngTempTokenPath: null, ngTokenPath: [ 'HttpClient', 'HttpClient' ] })
+NullInjectorError: R3InjectorError(DynamicTestModule)[HttpClient -&gt; HttpClient]: 
+  NullInjectorError: No provider for HttpClient!
+    at NullInjector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11044:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at NgModuleRef$1.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:25275:1)
+    at Object.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:24989:1)
+    at lookupTokenUsingModuleInjector (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3327:1)
+    at getOrCreateInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3439:1)
+    at ɵɵdirectiveInject (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:14649:1)
+    at NodeInjectorFactory.EditGroupComponent_Factory [as factory] (ng:///EditGroupComponent/ɵfac.js:4:46)
+    at getNodeInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3534:1)
+
+Error: Expected undefined to be truthy.
+    at &lt;Jasmine&gt;
+    at UserContext.&lt;anonymous&gt; (src/app/components/edit-group/edit-group.component.spec.ts:23:23)
+    at ZoneDelegate.invoke (node_modules/zone.js/dist/zone-evergreen.js:364:1)
+    at ProxyZoneSpec.push.QpwO.ProxyZoneSpec.onInvoke (node_modules/zone.js/dist/zone-testing.js:292:1)
+</failure>
+    </testCase>
+  </file>
+  <file path="src/app/components/attendance/attendance.component.spec.ts">
+    <testCase name="AttendanceComponent should create" duration="52">
+      <failure message="Error">NullInjectorError: R3InjectorError(DynamicTestModule)[HttpClient -&gt; HttpClient]: 
+  NullInjectorError: No provider for HttpClient!
+error properties: Object({ ngTempTokenPath: null, ngTokenPath: [ 'HttpClient', 'HttpClient' ] })
+NullInjectorError: R3InjectorError(DynamicTestModule)[HttpClient -&gt; HttpClient]: 
+  NullInjectorError: No provider for HttpClient!
+    at NullInjector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11044:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at NgModuleRef$1.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:25275:1)
+    at Object.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:24989:1)
+    at lookupTokenUsingModuleInjector (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3327:1)
+    at getOrCreateInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3439:1)
+    at ɵɵdirectiveInject (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:14649:1)
+    at NodeInjectorFactory.AttendanceComponent_Factory [as factory] (ng:///AttendanceComponent/ɵfac.js:4:47)
+    at getNodeInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3534:1)
+
+Error: Expected undefined to be truthy.
+    at &lt;Jasmine&gt;
+    at UserContext.&lt;anonymous&gt; (src/app/components/attendance/attendance.component.spec.ts:23:23)
+    at ZoneDelegate.invoke (node_modules/zone.js/dist/zone-evergreen.js:364:1)
+    at ProxyZoneSpec.push.QpwO.ProxyZoneSpec.onInvoke (node_modules/zone.js/dist/zone-testing.js:292:1)
+</failure>
+    </testCase>
+  </file>
+  <file path="src/app/components/home/home.component.spec.ts">
+    <testCase name="HomeComponent should create" duration="16"/>
+  </file>
+  <file path="src/app/components/charts/charts.component.spec.ts">
+    <testCase name="ChartsComponent should create" duration="8">
+      <failure message="Error">NullInjectorError: R3InjectorError(DynamicTestModule)[HttpClient -&gt; HttpClient]: 
+  NullInjectorError: No provider for HttpClient!
+error properties: Object({ ngTempTokenPath: null, ngTokenPath: [ 'HttpClient', 'HttpClient' ] })
+NullInjectorError: R3InjectorError(DynamicTestModule)[HttpClient -&gt; HttpClient]: 
+  NullInjectorError: No provider for HttpClient!
+    at NullInjector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11044:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at NgModuleRef$1.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:25275:1)
+    at Object.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:24989:1)
+    at lookupTokenUsingModuleInjector (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3327:1)
+    at getOrCreateInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3439:1)
+    at ɵɵdirectiveInject (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:14649:1)
+    at NodeInjectorFactory.ChartsComponent_Factory [as factory] (ng:///ChartsComponent/ɵfac.js:4:43)
+    at getNodeInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3534:1)
+
+Error: Expected undefined to be truthy.
+    at &lt;Jasmine&gt;
+    at UserContext.&lt;anonymous&gt; (src/app/components/charts/charts.component.spec.ts:23:23)
+    at ZoneDelegate.invoke (node_modules/zone.js/dist/zone-evergreen.js:364:1)
+    at ProxyZoneSpec.push.QpwO.ProxyZoneSpec.onInvoke (node_modules/zone.js/dist/zone-testing.js:292:1)
+</failure>
+    </testCase>
+  </file>
+  <!-- <file path="src/app/services/auth-service/auth-service.component.spec.ts">
+    <testCase name="AuthServiceComponent should create" duration="5">
+      <failure message="Error">NullInjectorError: R3InjectorError(DynamicTestModule)[AngularFireAuth -&gt; InjectionToken angularfire2.app.options -&gt; InjectionToken angularfire2.app.options]: 
+  NullInjectorError: No provider for InjectionToken angularfire2.app.options!
+error properties: Object({ ngTempTokenPath: null, ngTokenPath: [ 'AngularFireAuth', 'InjectionToken angularfire2.app.options', 'InjectionToken angularfire2.app.options' ] })
+NullInjectorError: R3InjectorError(DynamicTestModule)[AngularFireAuth -&gt; InjectionToken angularfire2.app.options -&gt; InjectionToken angularfire2.app.options]: 
+  NullInjectorError: No provider for InjectionToken angularfire2.app.options!
+    at NullInjector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11044:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at injectInjectorOnly (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:4723:1)
+    at ɵɵinject (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:4727:1)
+    at Object.AngularFireAuth_Factory [as factory] (node_modules/@angular/fire/__ivy_ngcc__/fesm2015/angular-fire-auth.js:257:146)
+    at R3Injector.hydrate (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11379:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11200:1)
+    at NgModuleRef$1.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:25275:1)
+    at Object.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:24989:1)
+
+Error: Expected undefined to be truthy.
+    at &lt;Jasmine&gt;
+    at UserContext.&lt;anonymous&gt; (src/app/services/auth-service/auth-service.component.spec.ts:23:23)
+    at ZoneDelegate.invoke (node_modules/zone.js/dist/zone-evergreen.js:364:1)
+    at ProxyZoneSpec.push.QpwO.ProxyZoneSpec.onInvoke (node_modules/zone.js/dist/zone-testing.js:292:1)
+</failure>
+    </testCase>
+  </file> -->
+  <file path="src/app/components/evaluation/evaluation.component.spec.ts">
+    <testCase name="EvaluationComponent should create" duration="258">
+      <failure message="Error">NullInjectorError: R3InjectorError(DynamicTestModule)[HttpClient -&gt; HttpClient]: 
+  NullInjectorError: No provider for HttpClient!
+error properties: Object({ ngTempTokenPath: null, ngTokenPath: [ 'HttpClient', 'HttpClient' ] })
+NullInjectorError: R3InjectorError(DynamicTestModule)[HttpClient -&gt; HttpClient]: 
+  NullInjectorError: No provider for HttpClient!
+    at NullInjector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11044:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at NgModuleRef$1.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:25275:1)
+    at Object.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:24989:1)
+    at lookupTokenUsingModuleInjector (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3327:1)
+    at getOrCreateInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3439:1)
+    at ɵɵdirectiveInject (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:14649:1)
+    at NodeInjectorFactory.EvaluationComponent_Factory [as factory] (ng:///EvaluationComponent/ɵfac.js:4:47)
+    at getNodeInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3534:1)
+
+Error: Expected undefined to be truthy.
+    at &lt;Jasmine&gt;
+    at UserContext.&lt;anonymous&gt; (src/app/components/evaluation/evaluation.component.spec.ts:23:23)
+    at ZoneDelegate.invoke (node_modules/zone.js/dist/zone-evergreen.js:364:1)
+    at ProxyZoneSpec.push.QpwO.ProxyZoneSpec.onInvoke (node_modules/zone.js/dist/zone-testing.js:292:1)
+</failure>
+    </testCase>
+  </file>
+  <file path="src/app/components/bulkaddsessions/bulkaddsessions.component.spec.ts">
+    <testCase name="BulkaddsessionsComponent should create" duration="12">
+      <failure message="Error">NullInjectorError: R3InjectorError(DynamicTestModule)[HttpClient -&gt; HttpClient]: 
+  NullInjectorError: No provider for HttpClient!
+error properties: Object({ ngTempTokenPath: null, ngTokenPath: [ 'HttpClient', 'HttpClient' ] })
+NullInjectorError: R3InjectorError(DynamicTestModule)[HttpClient -&gt; HttpClient]: 
+  NullInjectorError: No provider for HttpClient!
+    at NullInjector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11044:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at NgModuleRef$1.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:25275:1)
+    at Object.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:24989:1)
+    at lookupTokenUsingModuleInjector (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3327:1)
+    at getOrCreateInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3439:1)
+    at ɵɵdirectiveInject (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:14649:1)
+    at NodeInjectorFactory.BulkaddsessionsComponent_Factory [as factory] (ng:///BulkaddsessionsComponent/ɵfac.js:5:7)
+    at getNodeInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3534:1)
+
+Error: Expected undefined to be truthy.
+    at &lt;Jasmine&gt;
+    at UserContext.&lt;anonymous&gt; (src/app/components/bulkaddsessions/bulkaddsessions.component.spec.ts:23:23)
+    at ZoneDelegate.invoke (node_modules/zone.js/dist/zone-evergreen.js:364:1)
+    at ProxyZoneSpec.push.QpwO.ProxyZoneSpec.onInvoke (node_modules/zone.js/dist/zone-testing.js:292:1)
+</failure>
+    </testCase>
+  </file>
+  <file path="src/app/components/trainer-form/trainer-form.component.spec.ts">
+    <testCase name="TrainerFormComponent should create" duration="14">
+      <failure message="Error">NullInjectorError: R3InjectorError(DynamicTestModule)[FormBuilder -&gt; FormBuilder]: 
+  NullInjectorError: No provider for FormBuilder!
+error properties: Object({ ngTempTokenPath: null, ngTokenPath: [ 'FormBuilder', 'FormBuilder' ] })
+NullInjectorError: R3InjectorError(DynamicTestModule)[FormBuilder -&gt; FormBuilder]: 
+  NullInjectorError: No provider for FormBuilder!
+    at NullInjector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11044:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at NgModuleRef$1.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:25275:1)
+    at Object.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:24989:1)
+    at lookupTokenUsingModuleInjector (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3327:1)
+    at getOrCreateInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3439:1)
+    at ɵɵdirectiveInject (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:14649:1)
+    at NodeInjectorFactory.TrainerFormComponent_Factory [as factory] (ng:///TrainerFormComponent/ɵfac.js:4:48)
+    at getNodeInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3534:1)
+
+Error: Expected undefined to be truthy.
+    at &lt;Jasmine&gt;
+    at UserContext.&lt;anonymous&gt; (src/app/components/trainer-form/trainer-form.component.spec.ts:23:23)
+    at ZoneDelegate.invoke (node_modules/zone.js/dist/zone-evergreen.js:364:1)
+    at ProxyZoneSpec.push.QpwO.ProxyZoneSpec.onInvoke (node_modules/zone.js/dist/zone-testing.js:292:1)
+</failure>
+    </testCase>
+  </file>
+  <file path="src/app/components/create-group/create-group.component.spec.ts">
+    <testCase name="CreateGroupComponent should create" duration="15">
+      <failure message="Error">NullInjectorError: R3InjectorError(DynamicTestModule)[HttpClient -&gt; HttpClient]: 
+  NullInjectorError: No provider for HttpClient!
+error properties: Object({ ngTempTokenPath: null, ngTokenPath: [ 'HttpClient', 'HttpClient' ] })
+NullInjectorError: R3InjectorError(DynamicTestModule)[HttpClient -&gt; HttpClient]: 
+  NullInjectorError: No provider for HttpClient!
+    at NullInjector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11044:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at NgModuleRef$1.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:25275:1)
+    at Object.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:24989:1)
+    at lookupTokenUsingModuleInjector (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3327:1)
+    at getOrCreateInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3439:1)
+    at ɵɵdirectiveInject (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:14649:1)
+    at NodeInjectorFactory.CreateGroupComponent_Factory [as factory] (ng:///CreateGroupComponent/ɵfac.js:4:48)
+    at getNodeInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3534:1)
+
+Error: Expected undefined to be truthy.
+    at &lt;Jasmine&gt;
+    at UserContext.&lt;anonymous&gt; (src/app/components/create-group/create-group.component.spec.ts:23:23)
+    at ZoneDelegate.invoke (node_modules/zone.js/dist/zone-evergreen.js:364:1)
+    at ProxyZoneSpec.push.QpwO.ProxyZoneSpec.onInvoke (node_modules/zone.js/dist/zone-testing.js:292:1)
+</failure>
+    </testCase>
+  </file>
+  <file path="src/app/components/bulkaddmarks/bulkaddmarks.component.spec.ts">
+    <testCase name="BulkaddmarksComponent should create" duration="19">
+      <failure message="Error">NullInjectorError: R3InjectorError(DynamicTestModule)[HttpClient -&gt; HttpClient]: 
+  NullInjectorError: No provider for HttpClient!
+error properties: Object({ ngTempTokenPath: null, ngTokenPath: [ 'HttpClient', 'HttpClient' ] })
+NullInjectorError: R3InjectorError(DynamicTestModule)[HttpClient -&gt; HttpClient]: 
+  NullInjectorError: No provider for HttpClient!
+    at NullInjector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11044:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at NgModuleRef$1.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:25275:1)
+    at Object.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:24989:1)
+    at lookupTokenUsingModuleInjector (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3327:1)
+    at getOrCreateInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3439:1)
+    at ɵɵdirectiveInject (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:14649:1)
+    at NodeInjectorFactory.BulkaddmarksComponent_Factory [as factory] (ng:///BulkaddmarksComponent/ɵfac.js:5:7)
+    at getNodeInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3534:1)
+
+Error: Expected undefined to be truthy.
+    at &lt;Jasmine&gt;
+    at UserContext.&lt;anonymous&gt; (src/app/components/bulkaddmarks/bulkaddmarks.component.spec.ts:23:23)
+    at ZoneDelegate.invoke (node_modules/zone.js/dist/zone-evergreen.js:364:1)
+    at ProxyZoneSpec.push.QpwO.ProxyZoneSpec.onInvoke (node_modules/zone.js/dist/zone-testing.js:292:1)
+</failure>
+    </testCase>
+  </file>
+  <file path="src/app/components/bulkaddstudents/bulkaddstudents.component.spec.ts">
+    <testCase name="BulkaddstudentsComponent should create" duration="12">
+      <failure message="Error">NullInjectorError: R3InjectorError(DynamicTestModule)[HttpClient -&gt; HttpClient]: 
+  NullInjectorError: No provider for HttpClient!
+error properties: Object({ ngTempTokenPath: null, ngTokenPath: [ 'HttpClient', 'HttpClient' ] })
+NullInjectorError: R3InjectorError(DynamicTestModule)[HttpClient -&gt; HttpClient]: 
+  NullInjectorError: No provider for HttpClient!
+    at NullInjector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11044:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at NgModuleRef$1.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:25275:1)
+    at Object.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:24989:1)
+    at lookupTokenUsingModuleInjector (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3327:1)
+    at getOrCreateInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3439:1)
+    at ɵɵdirectiveInject (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:14649:1)
+    at NodeInjectorFactory.BulkaddstudentsComponent_Factory [as factory] (ng:///BulkaddstudentsComponent/ɵfac.js:5:7)
+    at getNodeInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3534:1)
+
+Error: Expected undefined to be truthy.
+    at &lt;Jasmine&gt;
+    at UserContext.&lt;anonymous&gt; (src/app/components/bulkaddstudents/bulkaddstudents.component.spec.ts:23:23)
+    at ZoneDelegate.invoke (node_modules/zone.js/dist/zone-evergreen.js:364:1)
+    at ProxyZoneSpec.push.QpwO.ProxyZoneSpec.onInvoke (node_modules/zone.js/dist/zone-testing.js:292:1)
+</failure>
+    </testCase>
+  </file>
+  <file path="src/app/components/studentform/studentform.component.spec.ts">
+    <testCase name="StudentformComponent should create" duration="11">
+      <failure message="Error">NullInjectorError: R3InjectorError(DynamicTestModule)[FormBuilder -&gt; FormBuilder]: 
+  NullInjectorError: No provider for FormBuilder!
+error properties: Object({ ngTempTokenPath: null, ngTokenPath: [ 'FormBuilder', 'FormBuilder' ] })
+NullInjectorError: R3InjectorError(DynamicTestModule)[FormBuilder -&gt; FormBuilder]: 
+  NullInjectorError: No provider for FormBuilder!
+    at NullInjector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11044:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at NgModuleRef$1.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:25275:1)
+    at Object.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:24989:1)
+    at lookupTokenUsingModuleInjector (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3327:1)
+    at getOrCreateInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3439:1)
+    at ɵɵdirectiveInject (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:14649:1)
+    at NodeInjectorFactory.StudentformComponent_Factory [as factory] (ng:///StudentformComponent/ɵfac.js:4:48)
+    at getNodeInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3534:1)
+
+Error: Expected undefined to be truthy.
+    at &lt;Jasmine&gt;
+    at UserContext.&lt;anonymous&gt; (src/app/components/studentform/studentform.component.spec.ts:23:23)
+    at ZoneDelegate.invoke (node_modules/zone.js/dist/zone-evergreen.js:364:1)
+    at ProxyZoneSpec.push.QpwO.ProxyZoneSpec.onInvoke (node_modules/zone.js/dist/zone-testing.js:292:1)
+</failure>
+    </testCase>
+  </file>
+  <file path="src/app/components/trainers/trainers.component.spec.ts">
+    <testCase name="TrainersComponent should create" duration="16">
+      <failure message="Error">NullInjectorError: R3InjectorError(DynamicTestModule)[MatDialog -&gt; MatDialog]: 
+  NullInjectorError: No provider for MatDialog!
+error properties: Object({ ngTempTokenPath: null, ngTokenPath: [ 'MatDialog', 'MatDialog' ] })
+NullInjectorError: R3InjectorError(DynamicTestModule)[MatDialog -&gt; MatDialog]: 
+  NullInjectorError: No provider for MatDialog!
+    at NullInjector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11044:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at NgModuleRef$1.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:25275:1)
+    at Object.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:24989:1)
+    at lookupTokenUsingModuleInjector (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3327:1)
+    at getOrCreateInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3439:1)
+    at ɵɵdirectiveInject (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:14649:1)
+    at NodeInjectorFactory.TrainersComponent_Factory [as factory] (ng:///TrainersComponent/ɵfac.js:4:45)
+    at getNodeInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3534:1)
+
+Error: Expected undefined to be truthy.
+    at &lt;Jasmine&gt;
+    at UserContext.&lt;anonymous&gt; (src/app/components/trainers/trainers.component.spec.ts:23:23)
+    at ZoneDelegate.invoke (node_modules/zone.js/dist/zone-evergreen.js:364:1)
+    at ProxyZoneSpec.push.QpwO.ProxyZoneSpec.onInvoke (node_modules/zone.js/dist/zone-testing.js:292:1)
+</failure>
+    </testCase>
+  </file>
+  <file path="src/app/components/students/students.component.spec.ts">
+    <testCase name="StudentsComponent should create" duration="110">
+      <failure message="Error">NullInjectorError: R3InjectorError(DynamicTestModule)[MatDialog -&gt; MatDialog]: 
+  NullInjectorError: No provider for MatDialog!
+error properties: Object({ ngTempTokenPath: null, ngTokenPath: [ 'MatDialog', 'MatDialog' ] })
+NullInjectorError: R3InjectorError(DynamicTestModule)[MatDialog -&gt; MatDialog]: 
+  NullInjectorError: No provider for MatDialog!
+    at NullInjector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11044:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at NgModuleRef$1.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:25275:1)
+    at Object.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:24989:1)
+    at lookupTokenUsingModuleInjector (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3327:1)
+    at getOrCreateInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3439:1)
+    at ɵɵdirectiveInject (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:14649:1)
+    at NodeInjectorFactory.StudentsComponent_Factory [as factory] (ng:///StudentsComponent/ɵfac.js:4:45)
+    at getNodeInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3534:1)
+
+Error: Expected undefined to be truthy.
+    at &lt;Jasmine&gt;
+    at UserContext.&lt;anonymous&gt; (src/app/components/students/students.component.spec.ts:23:23)
+    at ZoneDelegate.invoke (node_modules/zone.js/dist/zone-evergreen.js:364:1)
+    at ProxyZoneSpec.push.QpwO.ProxyZoneSpec.onInvoke (node_modules/zone.js/dist/zone-testing.js:292:1)
+</failure>
+    </testCase>
+  </file>
+  <file path="src/app/components/assignments/assignments.component.spec.ts">
+    <testCase name="AssignmentsComponent should create" duration="33">
+      <failure message="Error">NullInjectorError: R3InjectorError(DynamicTestModule)[HttpClient -&gt; HttpClient]: 
+  NullInjectorError: No provider for HttpClient!
+error properties: Object({ ngTempTokenPath: null, ngTokenPath: [ 'HttpClient', 'HttpClient' ] })
+NullInjectorError: R3InjectorError(DynamicTestModule)[HttpClient -&gt; HttpClient]: 
+  NullInjectorError: No provider for HttpClient!
+    at NullInjector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11044:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at NgModuleRef$1.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:25275:1)
+    at Object.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:24989:1)
+    at lookupTokenUsingModuleInjector (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3327:1)
+    at getOrCreateInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3439:1)
+    at ɵɵdirectiveInject (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:14649:1)
+    at NodeInjectorFactory.AssignmentsComponent_Factory [as factory] (ng:///AssignmentsComponent/ɵfac.js:4:48)
+    at getNodeInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3534:1)
+
+Error: Expected undefined to be truthy.
+    at &lt;Jasmine&gt;
+    at UserContext.&lt;anonymous&gt; (src/app/components/assignments/assignments.component.spec.ts:23:23)
+    at ZoneDelegate.invoke (node_modules/zone.js/dist/zone-evergreen.js:364:1)
+    at ProxyZoneSpec.push.QpwO.ProxyZoneSpec.onInvoke (node_modules/zone.js/dist/zone-testing.js:292:1)
+</failure>
+    </testCase>
+  </file>
+  <file path="src/app/components/side-nav/side-nav.component.spec.ts">
+    <testCase name="SideNavComponent should compile" duration="338"/>
+  </file>
+  <file path="src/app/components/addfeedback/addfeedback.component.spec.ts">
+    <testCase name="AddfeedbackComponent should create" duration="25">
+      <failure message="Error">NullInjectorError: R3InjectorError(DynamicTestModule)[HttpClient -&gt; HttpClient]: 
+  NullInjectorError: No provider for HttpClient!
+error properties: Object({ ngTempTokenPath: null, ngTokenPath: [ 'HttpClient', 'HttpClient' ] })
+NullInjectorError: R3InjectorError(DynamicTestModule)[HttpClient -&gt; HttpClient]: 
+  NullInjectorError: No provider for HttpClient!
+    at NullInjector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11044:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at NgModuleRef$1.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:25275:1)
+    at Object.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:24989:1)
+    at lookupTokenUsingModuleInjector (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3327:1)
+    at getOrCreateInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3439:1)
+    at ɵɵdirectiveInject (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:14649:1)
+    at NodeInjectorFactory.AddfeedbackComponent_Factory [as factory] (ng:///AddfeedbackComponent/ɵfac.js:4:48)
+    at getNodeInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3534:1)
+
+Error: Expected undefined to be truthy.
+    at &lt;Jasmine&gt;
+    at UserContext.&lt;anonymous&gt; (src/app/components/addfeedback/addfeedback.component.spec.ts:23:23)
+    at ZoneDelegate.invoke (node_modules/zone.js/dist/zone-evergreen.js:364:1)
+    at ProxyZoneSpec.push.QpwO.ProxyZoneSpec.onInvoke (node_modules/zone.js/dist/zone-testing.js:292:1)
+</failure>
+    </testCase>
+  </file>
+  <file path="src/app/components/session/session.component.spec.ts">
+    <testCase name="SessionComponent should create" duration="31">
+      <failure message="Error">NullInjectorError: R3InjectorError(DynamicTestModule)[MatDialog -&gt; MatDialog]: 
+  NullInjectorError: No provider for MatDialog!
+error properties: Object({ ngTempTokenPath: null, ngTokenPath: [ 'MatDialog', 'MatDialog' ] })
+NullInjectorError: R3InjectorError(DynamicTestModule)[MatDialog -&gt; MatDialog]: 
+  NullInjectorError: No provider for MatDialog!
+    at NullInjector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11044:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at NgModuleRef$1.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:25275:1)
+    at Object.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:24989:1)
+    at lookupTokenUsingModuleInjector (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3327:1)
+    at getOrCreateInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3439:1)
+    at ɵɵdirectiveInject (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:14649:1)
+    at NodeInjectorFactory.SessionComponent_Factory [as factory] (ng:///SessionComponent/ɵfac.js:4:44)
+    at getNodeInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3534:1)
+
+Error: Expected undefined to be truthy.
+    at &lt;Jasmine&gt;
+    at UserContext.&lt;anonymous&gt; (src/app/components/session/session.component.spec.ts:23:23)
+    at ZoneDelegate.invoke (node_modules/zone.js/dist/zone-evergreen.js:364:1)
+    at ProxyZoneSpec.push.QpwO.ProxyZoneSpec.onInvoke (node_modules/zone.js/dist/zone-testing.js:292:1)
+</failure>
+    </testCase>
+  </file>
+  <file path="src/app/components/sessionform/sessionform.component.spec.ts">
+    <testCase name="SessionformComponent should create" duration="19">
+      <failure message="Error">NullInjectorError: R3InjectorError(DynamicTestModule)[FormBuilder -&gt; FormBuilder]: 
+  NullInjectorError: No provider for FormBuilder!
+error properties: Object({ ngTempTokenPath: null, ngTokenPath: [ 'FormBuilder', 'FormBuilder' ] })
+NullInjectorError: R3InjectorError(DynamicTestModule)[FormBuilder -&gt; FormBuilder]: 
+  NullInjectorError: No provider for FormBuilder!
+    at NullInjector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11044:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at NgModuleRef$1.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:25275:1)
+    at Object.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:24989:1)
+    at lookupTokenUsingModuleInjector (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3327:1)
+    at getOrCreateInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3439:1)
+    at ɵɵdirectiveInject (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:14649:1)
+    at NodeInjectorFactory.SessionformComponent_Factory [as factory] (ng:///SessionformComponent/ɵfac.js:4:48)
+    at getNodeInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3534:1)
+
+Error: Expected undefined to be truthy.
+    at &lt;Jasmine&gt;
+    at UserContext.&lt;anonymous&gt; (src/app/components/sessionform/sessionform.component.spec.ts:23:23)
+    at ZoneDelegate.invoke (node_modules/zone.js/dist/zone-evergreen.js:364:1)
+    at ProxyZoneSpec.push.QpwO.ProxyZoneSpec.onInvoke (node_modules/zone.js/dist/zone-testing.js:292:1)
+</failure>
+    </testCase>
+  </file>
+  <file path="src/app/components/add-student/add-student.component.spec.ts">
+    <testCase name="AddStudentComponent should create" duration="18">
+      <failure message="Error">NullInjectorError: R3InjectorError(DynamicTestModule)[HttpClient -&gt; HttpClient]: 
+  NullInjectorError: No provider for HttpClient!
+error properties: Object({ ngTempTokenPath: null, ngTokenPath: [ 'HttpClient', 'HttpClient' ] })
+NullInjectorError: R3InjectorError(DynamicTestModule)[HttpClient -&gt; HttpClient]: 
+  NullInjectorError: No provider for HttpClient!
+    at NullInjector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11044:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at R3Injector.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:11211:1)
+    at NgModuleRef$1.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:25275:1)
+    at Object.get (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:24989:1)
+    at lookupTokenUsingModuleInjector (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3327:1)
+    at getOrCreateInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3439:1)
+    at ɵɵdirectiveInject (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:14649:1)
+    at NodeInjectorFactory.AddStudentComponent_Factory [as factory] (ng:///AddStudentComponent/ɵfac.js:4:47)
+    at getNodeInjectable (node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js:3534:1)
+
+Error: Expected undefined to be truthy.
+    at &lt;Jasmine&gt;
+    at UserContext.&lt;anonymous&gt; (src/app/components/add-student/add-student.component.spec.ts:23:23)
+    at ZoneDelegate.invoke (node_modules/zone.js/dist/zone-evergreen.js:364:1)
+    at ProxyZoneSpec.push.QpwO.ProxyZoneSpec.onInvoke (node_modules/zone.js/dist/zone-testing.js:292:1)
+</failure>
+    </testCase>
+  </file>
+  <file path="src/app/components/overlay-loader/overlay-loader.component.spec.ts">
+    <testCase name="OverlayLoaderComponent should create" duration="10"/>
+  </file>
+  <file path="src/app/app.component.spec.ts">
+    <testCase name="AppComponent should have as title 'AUManagementSystem'" duration="14"/>
+    <testCase name="AppComponent should render title" duration="7">
+      <failure message="Error">TypeError: Cannot read property 'textContent' of null
+    at UserContext.&lt;anonymous&gt; (src/app/app.component.spec.ts:33:51)
+    at ZoneDelegate.invoke (node_modules/zone.js/dist/zone-evergreen.js:364:1)
+    at ProxyZoneSpec.push.QpwO.ProxyZoneSpec.onInvoke (node_modules/zone.js/dist/zone-testing.js:292:1)
+    at ZoneDelegate.invoke (node_modules/zone.js/dist/zone-evergreen.js:363:1)
+    at Zone.run (node_modules/zone.js/dist/zone-evergreen.js:123:1)
+    at runInTestZone (node_modules/zone.js/dist/zone-testing.js:545:1)
+    at UserContext.&lt;anonymous&gt; (node_modules/zone.js/dist/zone-testing.js:560:1)
+    at &lt;Jasmine&gt;
+</failure>
+    </testCase>
+    <testCase name="AppComponent should create the app" duration="6"/>
+  </file>
+</testExecutions>

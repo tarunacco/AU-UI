@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { NgModule } from '@angular/core';
 import { MatSliderModule } from '@angular/material/slider';
 import { AppRoutingModule } from './app-routing.module';
@@ -18,21 +19,111 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
-import {MatTableModule} from '@angular/material/table';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatTableModule } from '@angular/material/table';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MatTabsModule } from '@angular/material/tabs';
+import { BatchdetailsComponent } from './components/batchdetails/batchdetails.component';
+import { SessionComponent } from './components/session/session.component';
+import { SessionformComponent } from './components/sessionform/sessionform.component';
+import { StudentsComponent } from './components/students/students.component';
+import { StudentformComponent } from './components/studentform/studentform.component';
+import { TrainersComponent } from './components/trainers/trainers.component';
+import { TrainerFormComponent } from './components/trainer-form/trainer-form.component';
+import { MatSelect, MatSelectModule } from '@angular/material/select';
+import { MatSortModule } from '@angular/material/sort';
+import { MatMenuModule } from '@angular/material/menu';
+import { AttendanceComponent } from './components/attendance/attendance.component';
+import { BulkaddstudentsComponent } from './components/bulkaddstudents/bulkaddstudents.component';
+//import {MatToolbarModule} from '@angular/material/toolbar';
+import { NgxCsvParserModule } from 'ngx-csv-parser';
+import { MatTableExporterModule } from 'mat-table-exporter';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AssignmentsComponent } from './components/assignments/assignments.component';
+import { BulkaddsessionsComponent } from './components/bulkaddsessions/bulkaddsessions.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { HomeComponent } from './components/./home/home.component';
+import { OverlayLoaderComponent } from './components/overlay-loader/overlay-loader.component';
+import { GroupingComponent } from './components/grouping/grouping.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { CreateGroupComponent } from './components/create-group/create-group.component';
+import {MatRadioModule} from '@angular/material/radio';
+import { CommonModule } from '@angular/common';
+import { AddStudentComponent } from './components/add-student/add-student.component';
+import { AddfeedbackComponent } from './components/addfeedback/addfeedback.component';
+import { EditGroupComponent } from './components/edit-group/edit-group.component';
+import { EvaluationComponent } from './components/evaluation/evaluation.component';
+import { ChartsComponent } from './components/charts/charts.component';
+import * as PlotlyJS from 'plotly.js/dist/plotly.js';
+import { PlotlyModule } from 'angular-plotly.js';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from '../environments/environment';
+import { BulkaddmarksComponent } from './components/bulkaddmarks/bulkaddmarks.component';
+import {SigninComponent} from './components/signin/signin.component';
+import { AuthGaurdService } from 'src/app/services/auth-gaurd.service';
+import { FisrtHomeComponent } from './components/fisrt-home/fisrt-home.component';
+import { SecondHomeComponent } from './components/second-home/second-home.component';
+import {TokenInterceptorService} from 'src/app/services/token-interceptor.service';
+//import { PlotlyModule } from 'angular-plotly.js';
+PlotlyModule.plotlyjs = PlotlyJS;
 @NgModule({
-  declarations: [AppComponent, BatchesComponent, BatchformComponent, SideNavComponent],
+  declarations: [
+    SigninComponent,
+    AppComponent,
+    BatchesComponent,
+    BatchformComponent,
+    SideNavComponent,
+    BatchdetailsComponent,
+    SessionComponent,
+    SessionformComponent,
+    StudentsComponent,
+    StudentformComponent,
+    TrainersComponent,
+    TrainerFormComponent,
+    AttendanceComponent,
+    BulkaddstudentsComponent,
+    AssignmentsComponent,
+    BulkaddsessionsComponent,
+    HomeComponent,
+    OverlayLoaderComponent,
+    GroupingComponent,
+    CreateGroupComponent,
+    AddStudentComponent,
+    AddfeedbackComponent,
+    EditGroupComponent,
+    EvaluationComponent,
+    ChartsComponent,
+    BulkaddmarksComponent,
+    FisrtHomeComponent,
+    SecondHomeComponent,
+
+  ],
+
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    PlotlyModule,
+    MatCheckboxModule,
+    MatRadioModule,
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSliderModule,
+    MatSelectModule,
+    MatSortModule,
     MatDialogModule,
     MatInputModule,
     MatButtonModule,
+    MatExpansionModule,
     MatCardModule,
     MatFormFieldModule,
     MatSidenavModule,
@@ -41,13 +132,37 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatIconModule,
     MatListModule,
     FormsModule,
-      ReactiveFormsModule,
-      MatTableModule,
-      MatDatepickerModule,
-      MatNativeDateModule,
-      FlexLayoutModule
+    ReactiveFormsModule,
+    MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FlexLayoutModule,
+    HttpClientModule,
+    MatTabsModule,
+    MatSortModule,
+    MatMenuModule,
+    NgxCsvParserModule,
+    MatTableExporterModule,
+    MatSnackBarModule,
+    MatTooltipModule,
+    MatDividerModule,
+    MatProgressSpinnerModule,
+    MatPaginatorModule
   ],
-  providers: [],
+  exports: [MatTabsModule, MatSortModule],
+
+   providers: [
+     AuthGaurdService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ],
+    // ,{
+    //  provide: HTTP_INTERCEPTORS,
+    //   useClass: TokenInterseptorService,
+    // multi: true}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,0 +1,53 @@
+<div>
+  <div class="containerForHeading">
+    <h1 class="heading">Batch : {{ batchName }}</h1>
+  </div>
+  <br />
+  <mat-tab-group
+    #tabRef
+    mat-align-tabs="center"
+    (selectedTabChange)="onTabChange($event)"
+  >
+    <mat-tab *ngFor="let tab of tabs; let ind = index">
+      <ng-template mat-tab-label>{{ tab.tabName }}</ng-template>
+    </mat-tab>
+  </mat-tab-group>
+
+  <app-session 
+  [ngClass]="[disableSession === true ? 'myClass' : '']"
+    [batchId]="batchId"
+  >
+  </app-session>
+
+  <app-students
+    *ngIf="getTabValue('Candidates') === selectedTabValue"
+    [batchId]="batchId"
+  >
+  </app-students>
+
+  <app-attendance
+    *ngIf="getTabValue('Attendance') === selectedTabValue"
+    [batchId]="batchId"
+  ></app-attendance>
+
+  <app-assignments
+    *ngIf="getTabValue('Assignment') === selectedTabValue"
+    [batchId]="batchId"
+  >
+  </app-assignments>
+  <app-grouping
+    *ngIf="getTabValue('Assign Group') === selectedTabValue"
+    [batchId]="batchId"
+  >
+  </app-grouping>
+  <app-evaluation
+    *ngIf="getTabValue('Final Evaluation') === selectedTabValue"
+    [batchId]="batchId"
+  >
+  </app-evaluation>
+  <app-charts
+    *ngIf="getTabValue('Charts') === selectedTabValue"
+    [batchId]="batchId"
+  >
+  </app-charts>
+</div>

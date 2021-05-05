@@ -1,0 +1,28 @@
+<div class="horiaaa">
+  <h1>
+    <span>Accolite University Management System</span>
+  </h1>
+  <div class="typed">
+    <span class="element"></span><br />
+    <br />
+
+    <div class="center">
+      <button
+        *ngIf="!isSigningIn"
+        mat-raised-button
+        mat-elevation-z8
+        style="height: 50px"
+        (click)="socialLogin()"
+      >
+        <mat-icon style="width: 50px; height: 30px" svgIcon="logo"></mat-icon>
+        Login With Google
+      </button>
+
+      <img
+        *ngIf="isSigningIn"
+        style="width: 300px; height: 120px"
+        src="https://miro.medium.com/max/978/0*cWpsf9D3g346Va20.gif"
+      />
+    </div>
+  </div>
+</div>
