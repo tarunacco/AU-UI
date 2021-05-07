@@ -41,7 +41,6 @@ export class SideNavComponent implements OnInit {
       this.isUserLoggedIn = true;
     }
   }
-  
   logoutUser() {
     this.authService.signOutAndRedirect();
   }

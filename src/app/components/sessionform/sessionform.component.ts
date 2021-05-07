@@ -124,10 +124,6 @@ export class SessionformComponent implements OnInit {
                 }
               )
               .subscribe((val1) => {
-                console.log(val1['formId']);
-                // localStorage.setItem(
-                //   this.newSessionForm.get('sessionName').value,
-                //   JSON.stringify(val['formId']));
                 this.formId = val1['formId'];
                 tempForm['classroomTopicId'] = val['createdTopic']['topicId'];
                 tempForm['classroomTopicName'] = val['createdTopic']['name'];

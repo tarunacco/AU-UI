@@ -36,11 +36,12 @@ export class AuthService {
           localStorage.setItem('isSigningIn', 'false');
           await this.storeDetails(result.additionalUserInfo?.profile);
           this.router.navigate(['/logedin/batches']);
-        } else {
-          console.log('not inside');
-          localStorage.setItem('isSigningIn', 'false');
-          this.redirectToSamePage();
         }
+        //  else {
+        //   console.log('not inside');
+        //   localStorage.setItem('isSigningIn', 'false');
+        //   this.redirectToSamePage();
+        // }
       })
       .catch((error) => {
         localStorage.setItem('isSigningIn', 'false');
