@@ -22,11 +22,13 @@ export class SideNavComponent implements OnInit {
   pic = ' http://forums.asp.net/t/896760.aspx';
   isUserLoggedIn = false;
 
+
   constructor(
     private breakpointObserver: BreakpointObserver,
     private router: Router,
     public authService: AuthService
   ) {}
+
   ngOnInit(): void {
     let tempUser = JSON.parse(
       localStorage.getItem('currentGoogleLoggedInUser')
@@ -42,7 +44,8 @@ export class SideNavComponent implements OnInit {
   logoutUser() {
     this.authService.signOutAndRedirect();
   }
-  loginUser() {
+
+  loginUser(){
     this.router.navigate(['']);
     this.reloadComponent();
   }

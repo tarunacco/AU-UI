@@ -1,7 +1,7 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav
     style="width: 230px"
-    
+
     #drawer
     class="sidenav"
     fixedInViewport
@@ -24,7 +24,7 @@
       <!-- <div class="li-item">
         <div fxlayout="row" fxLayoutAlign="space-between center" style="padding: 20px">
           <mat-icon> person_pin</mat-icon><a class="list" mat-list-item href="/signin">Signin</a>
-        </div> 
+        </div>
       </div>-->
       <div class="li-item">
         <div
@@ -52,7 +52,7 @@
     <mat-toolbar color="primary">
       <button
         type="button"
-       
+
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="drawer.toggle()"
@@ -61,10 +61,10 @@
       </button>
       &nbsp;&nbsp;
       <span>Welcome to Accolite University</span>
-      
+
       <span class="example-spacer"></span>
 
-      
+
       <button mat-button [matMenuTriggerFor]="appMenu" >
         <mat-icon> <img class="jpg-icon" src={{pic}} style="max-width: 150%; min-width: 120%" /></mat-icon>
       </button>
