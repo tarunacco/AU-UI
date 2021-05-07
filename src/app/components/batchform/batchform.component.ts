@@ -86,7 +86,7 @@ export class BatchformComponent implements OnInit {
           )
           .subscribe((val) => {
             console.log(val);
-            console.log(typeof val);
+        //    console.log(typeof val);
             tempForm['commonClassroomId'] = val['id'];
             tempForm['classroomLink'] = val['alternateLink'];
             tempForm['courseGroupEmail'] = val['courseGroupEmail'];

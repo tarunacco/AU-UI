@@ -17,6 +17,7 @@ import { MatSort } from '@angular/material/sort';
 export class SessionComponent implements OnInit {
   @Input()
   batchId: number;
+  @Input()
   batchObject;
   batchName: String;
   isLoading = true;
@@ -28,8 +29,8 @@ export class SessionComponent implements OnInit {
     private snackbar: MatSnackBar
   ) {
     console.log(this.batchId);
-    this.batchObject = this.router.getCurrentNavigation().extras.state.batchObject;
-    this.batchName = this.batchObject.batchName;
+//this.batchObject = this.router.getCurrentNavigation()?.extras?.state?.batchObject;
+    this.batchName = this.batchObject?.batchName;
   }
 
   displayedColumns: string[] = [

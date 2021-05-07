@@ -14,8 +14,10 @@
   </mat-tab-group>
 
   <app-session 
-  [ngClass]="[disableSession === true ? 'myClass' : '']"
+ 
+  *ngIf="getTabValue('Session') === selectedTabValue"
     [batchId]="batchId"
+    [batchObject]="batchObject"
   >
   </app-session>
 
