@@ -33,8 +33,6 @@ export class ChartsComponent implements OnInit {
         this.buNames.push(this.BUdata[i]['buName']);
         this.trainersCount.push(this.BUdata[i]['trainerPerBU']);
       }
-      console.log(this.buNames);
-      console.log(this.trainersCount);
     });
   }
 
@@ -48,8 +46,6 @@ export class ChartsComponent implements OnInit {
           this.locations.push(this.locationsData[i]['location']);
           this.studentsCount.push(this.locationsData[i]['studentPerLocation']);
         }
-        console.log(this.locationsData);
-        console.log(this.locationsData);
       });
   }
 
@@ -77,10 +73,4 @@ export class ChartsComponent implements OnInit {
       // yaxis: {range: [2,50]}
     },
   };
-  // graph3 = {
-  //   data: [{ x: this.locations, y: this.studentsCount, type: 'bar' }],
-  //   layout: { title: 'Location wise Candidate Count',
-  //   colorway:["goldenrod"],
-  //  },
-  // };
 }
