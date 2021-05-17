@@ -6,6 +6,7 @@
     height: 230px; */
     width: 60%;
   }
+
   .overlay {
     /* align-items:center;
     justify-content: center;
@@ -14,9 +15,10 @@
     top: 0; */
     height: 0px;
     /* width: 50px; */
-  
+
   }
-  .overlay1 {
+
+.overlay1 {
     /* align-items:center;
     justify-content: center;
     position: fixed;

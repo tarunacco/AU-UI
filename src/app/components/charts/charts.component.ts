@@ -8,24 +8,24 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ChartsComponent implements OnInit {
   constructor(private http: HttpClient) {}
-  
+
   @Input()
   batchId: number;
 
   ngOnInit(): void {
     this.getTrainersCount();
-    this.getStudentsCount();  
+    this.getStudentsCount();
   }
 
   BUdata = [];
-  locationsData=[];
+  locationsData = [];
   buNames = [];
   trainersCount = [];
   locations = [];
   studentsCount = [];
 
   getTrainersCount() {
-   // console.log('inside method');
+    // console.log('inside method');
     this.http.get<any[]>('api/trainer/allByBUCount').subscribe((res) => {
       console.log(res);
       this.BUdata = res;
@@ -38,40 +38,44 @@ export class ChartsComponent implements OnInit {
     });
   }
 
-  getStudentsCount()
-  {
-    this.http.get<any[]>('api/student/allPerLocation/?batchId=' + this.batchId).subscribe((res) => {
-      console.log(res);
-      this.locationsData = res;
-      for (let i in this.locationsData) {
-        this.locations.push(this.locationsData[i]['location']);
-        this.studentsCount.push(this.locationsData[i]['studentPerLocation']);
-      }
-    });
+  getStudentsCount() {
+    this.http
+      .get<any[]>('api/student/allPerLocation/?batchId=' + this.batchId)
+      .subscribe((res) => {
+        console.log(res);
+        this.locationsData = res;
+        for (let i in this.locationsData) {
+          this.locations.push(this.locationsData[i]['location']);
+          this.studentsCount.push(this.locationsData[i]['studentPerLocation']);
+        }
+        console.log(this.locationsData);
+        console.log(this.locationsData);
+      });
   }
 
-  
   graph1 = {
     autosize: true,
     // width: 300,
     // height: 500,
     data: [{ x: this.buNames, y: this.trainersCount, type: 'bar' }],
-    
-    layout: { title: 'Trainers Count From Each BU' ,
-    colorway: ["green"],
-   // xaxis: {range: [1,5]},
-    yaxis: {range: [1,5]}
+
+    layout: {
+      title: 'Trainers Count From Each BU',
+      colorway: ['green'],
+      // xaxis: {range: [1,5]},
+      //yaxis: { range: [1, 5] },
     },
   };
- 
+
   //  chart2
   graph2 = {
     data: [{ x: this.locations, y: this.studentsCount, type: 'bar' }],
-    layout: { title: 'Location wise Candidate Count',
-    colorway:["goldenrod"],
-    // xaxis: {range: [2,50]},
-    // yaxis: {range: [2,50]}
-   },
+    layout: {
+      title: 'Location wise Candidate Count',
+      colorway: ['goldenrod'],
+      // xaxis: {range: [2,50]},
+      // yaxis: {range: [2,50]}
+    },
   };
   // graph3 = {
   //   data: [{ x: this.locations, y: this.studentsCount, type: 'bar' }],
